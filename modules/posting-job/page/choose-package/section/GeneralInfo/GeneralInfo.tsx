@@ -1,5 +1,5 @@
 "use client";
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import { ICompanyInfoResponse } from "@/common/interfaces";
 import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";

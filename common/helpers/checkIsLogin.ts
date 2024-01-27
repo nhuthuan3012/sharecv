@@ -1,4 +1,4 @@
-import { getCookie } from "./getCokkies";
+import { getCookie } from "./getCookies";
 
 import { TOKEN } from "../constants/cookies";
 

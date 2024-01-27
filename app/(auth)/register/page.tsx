@@ -1,4 +1,4 @@
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import VideoPlayer from "@/modules/auth/components/video-player/VideoPlayer";
 import { RegisterFormHolder } from "@/modules/auth/page";
 import { Box, Typography } from "@mui/material";

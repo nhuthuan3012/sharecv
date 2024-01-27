@@ -1,5 +1,5 @@
 "use client";
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import { getRole, removeAccessCookies } from "@/common/helpers/setCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";

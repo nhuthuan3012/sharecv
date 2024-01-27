@@ -1,5 +1,5 @@
 import { TOKEN } from "@/common/constants/cookies";
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import { API_URL } from "@/config/_constant";
 
 const getRequestURL = (url: string) => {
