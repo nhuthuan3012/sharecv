@@ -1,0 +1,15 @@
+@forward "./product-list-view.scss";
+
+.category-active,
+.brand-active {
+  color: #ac907f;
+  font-weight: bold;
+}
+
+.category-filter-item {
+  cursor: pointer;
+
+  &:hover {
+    color: #ac907f;
+  }
+}

@@ -1,0 +1,16 @@
+.banner {
+  background: url("/images/banner.png");
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #020202;
+    opacity: 0.6;
+    z-index: 1;
+  }
+}

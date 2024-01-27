@@ -1,0 +1,104 @@
+// @use "./commons";
+// @use "./modules";
+@use "node_modules/tailwindcss/tailwind.css" as *;
+// @use "node_modules/react-multi-carousel-18/lib/styles.css" as *;
+// @use "node_modules/react-dropdown/style.css" as *;
+@use "node_modules/slick-carousel/slick/slick.css" as *;
+@use "node_modules/slick-carousel/slick/slick-theme.css" as *;
+@use "./util";
+@use "./common";
+@use "./modules";
+@use "./variable" as v;
+// @use "./404.scss" as *;
+
+@forward "./font";
+
+body {
+  font-family: v.$font-primary;
+  background-color: v.$color-white;
+  font-size: v.$font-size-text;
+  color: v.$color-secondary;
+  overflow: scroll;
+}
+
+input,
+button,
+select {
+  &:focus {
+    outline: none;
+  }
+}
+
+a:hover {
+  color: v.$color-primary;
+}
+
+@include util.mq("widescreen") {
+  .container {
+    max-width: 1170px !important;
+  }
+}
+
+.color-primary {
+  color: v.$color-primary;
+}
+
+.react-multi-carousel-dot {
+  position: relative;
+  display: flex;
+}
+.react-multi-carousel-dot button {
+  position: relative;
+  background-color: #d7d7d7;
+  border-width: 0;
+  width: 8px;
+  height: 8px;
+}
+.react-multi-carousel-dot--active button {
+  background-color: #ac907f;
+}
+
+.react-multi-carousel-dot--active button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ac907f;
+  border-radius: 50%;
+}
+
+.react-multi-carousel-dot-list {
+  bottom: 12px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input.custom-number-input::-webkit-outer-spin-button,
+input.custom-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.custom-number-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.react-multi-carousel-dot button {
+  background-color: #d7d7d7;
+}
+.react-multi-carousel-dot--active button {
+  background-color: #ac907f;
+}
+
+.content {
+  background: url("/icons/background-head.svg") no-repeat top left,
+    url("/icons/background-foot.svg") no-repeat bottom right;
+}
+
+.zalo-chat-widget {
+  bottom: 100px !important;
+  right: 25px !important;
+}

@@ -1,0 +1,27 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@use "node_modules/slick-carousel/slick/slick.css" as *;
+@use "node_modules/slick-carousel/slick/slick-theme.css" as *;
+/* Chrome, Safari, Edge, Opera */
+input.custom-number-input::-webkit-outer-spin-button,
+input.custom-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.custom-number-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.react-multi-carousel-dot button {
+  background-color: #D7D7D7;
+}
+.react-multi-carousel-dot--active button {
+  background-color: #AC907F;
+  
+}

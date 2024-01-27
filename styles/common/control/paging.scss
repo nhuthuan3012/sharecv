@@ -1,0 +1,59 @@
+@use "../../variable" as v;
+
+$_text-color: rgb(71, 85, 103);
+
+.pagination {
+  display: flex;
+  cursor: pointer;
+
+  li {
+    border: 0.5px solid $_text-color;
+    padding: 0.15rem;
+    margin: 0.1rem;
+  }
+
+  a {
+    color: $_text-color;
+    padding: 10px;
+  }
+
+  &.justify-right {
+    justify-content: right;
+  }
+
+  &.justify-left {
+    justify-content: left;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+}
+
+.pagination-link {
+  font-weight: bold;
+
+  &-active {
+    background: v.$color-primary;
+
+    a {
+      color: v.$color-white;
+    }
+
+    &:hover {
+      a {
+        color: v.$color-white;
+      }
+    }
+  }
+}
+
+.pagination-link-disabled {
+  touch-action: none;
+  opacity: 0.2;
+  pointer-events: none;
+
+  a {
+    color: $_text-color;
+  }
+}

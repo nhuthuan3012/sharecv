@@ -1,0 +1,8 @@
+.filepond--root .filepond--drop-label {
+    min-height: 200px;
+}
+.filepond--drop-label{
+    background-color: white;
+    border: 2px solid #073776;
+    border-radius: 10px;
+}

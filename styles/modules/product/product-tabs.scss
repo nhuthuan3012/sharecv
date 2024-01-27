@@ -1,0 +1,8 @@
+@use "../../variable" as v;
+
+.product-tabs {
+  &-active {
+    color: v.$color-primary;
+    border-bottom-color: v.$color-primary;
+  }
+}

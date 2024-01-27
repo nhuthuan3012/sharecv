@@ -1,0 +1,12 @@
+@media (min-width: 767px) and (max-width: 900px) {
+  .nav {
+    height: auto !important;
+    .navigation {
+      width: 100%;
+      order: 3;
+    }
+    .action {
+      order: 2;
+    }
+  }
+}

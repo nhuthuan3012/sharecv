@@ -1,0 +1,89 @@
+@use "../../variable" as v;
+@use "../../util" as u;
+
+.ranger-common {
+  .ranger-track {
+    display: inline-block;
+    height: 8px;
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  .ranger-tick {
+    top: 30px;
+
+    &-label {
+      position: absolute;
+      font-size: 0.6rem;
+      color: rgba(0, 0, 0, 0.5);
+      top: 100%;
+      transform: translate(-50%, 1.2rem);
+      white-space: nowrap;
+
+      &.tick-description {
+        left: 50%;
+        font-size: 0.8rem;
+      }
+
+      &.tick-min {
+        top: 20px;
+        left: 0%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 0;
+      }
+
+      &.tick-max {
+        top: 20px;
+        left: 75%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 0;
+
+        @include u.mq("tablet") {
+          left: 90%;
+        }
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      background: rgba(0, 0, 0, 0.2);
+      height: 5px;
+      width: 2px;
+      transform: translate(-50%, 0.7rem);
+    }
+  }
+
+  .ranger-segment {
+    height: 100%;
+
+    &-0 {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &-1 {
+      background: v.$color-primary;
+    }
+
+    &-2 {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .ranger-handle {
+    background: v.$color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 100%;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    color: v.$color-white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}

@@ -1,0 +1,8 @@
+@use "../../variable" as v;
+
+.blog-form {
+  .post-comment-btn {
+    background-color: v.$color-primary;
+    color: v.$color-white;
+  }
+}

@@ -1,0 +1,87 @@
+@use "../../variable" as v;
+
+.product-list-view {
+  .product-tag {
+    position: absolute;
+    width: 80px;
+    top: 29px;
+    right: -15px;
+    text-align: center;
+    color: v.$color-white;
+    transform: rotate(90deg);
+
+    &-sale {
+      background-color: #808080;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+      }
+
+      &::after {
+        height: 0;
+        width: 0;
+        right: -32px;
+        top: 15px;
+        border-bottom: 6px solid #808080;
+        border-right: 6px solid transparent;
+      }
+
+      &::before {
+        height: 0;
+        width: 0;
+        right: -32px;
+        top: 0;
+        border-top: 6px solid #808080;
+        border-right: 6px solid transparent;
+      }
+    }
+    &-new {
+      padding-left: 10px;
+      padding-right: 10px;
+      background: v.$color-primary;
+      border-top-left-radius: 3px;
+    }
+  }
+
+  .product-overlay-wrapper {
+    .product-overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        opacity: 0.3;
+      }
+    }
+    .button-actions {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      background-color: white;
+      padding: 15px;
+
+      &-item {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ccc;
+
+        &:last-child {
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+}

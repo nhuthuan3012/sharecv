@@ -1,0 +1,29 @@
+/*
+    1. COLOR
+    2. FONT-STYLE
+    3. LAYOUT
+    4. RESPONSIVE
+*/
+
+// 1. COLOR
+$color-primary: #0986CA;
+$color-primary-hover: #00856f;
+$color-input: #e5e7eb;
+$color-secondary: #374252;
+$color-white: #fff;
+$color-input-black: rgba(0, 0, 0, 0.85);
+$color-form-label: #4f71ec;
+$color-error: #ef4444;
+$color-error-hover: #df3c3c;
+
+//2. FONT STYLE
+$font-primary: "Quicksand", sans-serif;
+$font-size-text: 14px;
+
+//3. LAYOUT
+
+//4. RESPONSIVE
+$tablet: "screen and (min-width: 768px)";
+$desk: "screen and (min-width: 1024px)";
+$widescreen: "screen and (min-width: 1240px)";
+$fullhd: "screen and (min-width: 1920px)";

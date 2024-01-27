@@ -1,0 +1,12 @@
+@use "../../variable" as v;
+
+.blog-view {
+  border-bottom: 1px solid #ccc;
+
+  .read-more-btn {
+    &:hover {
+      color: v.$color-white;
+      background-color: v.$color-primary;
+    }
+  }
+}
