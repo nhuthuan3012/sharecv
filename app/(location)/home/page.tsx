@@ -10,9 +10,6 @@ import Benefit from "@/modules/home/section/benefit/Benefit";
 import Review from "@/modules/home/section/review/Review";
 function Home() {
   // if (!getCookie("token")) {
-  if (!true) {
-    redirect("/login", RedirectType.replace);
-  }
 
   return (
     <Box
