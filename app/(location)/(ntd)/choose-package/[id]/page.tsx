@@ -4,7 +4,7 @@ import { IResume } from "@/modules/cv-info-ntd/resume.interface";
 import CvInfoPage from "@/modules/cv-info-ntd/pages/CvInfoPage";
 import { set } from "lodash";
 import { useEffect, useState } from "react";
-import { getRole } from "@/common/helpers/setCookies";
+import { getRole } from "@/common/helpers/getCookies";
 
 function CandidateInfoPage({ params }: { params: { id: string } }) {
   const initialData: IResume = {
