@@ -7,25 +7,28 @@ import { Footer } from "@/common/components/Footer";
 // import dayjs from "dayjs";
 // import "dayjs/locale/vi";
 import { PropsWithChildren, useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { checkIsLogin } from "@/common/helpers/checkIsLogin";
+import { getAccessCookies } from "@/common/helpers/setCookies";
 
 export default function MainLayout({ children }: PropsWithChildren) {
   const isLogin = checkIsLogin();
-  //   const router = useRouter();
+  const router = useRouter();
   //   useEffect(() => {
   //     dayjs.locale("vi");
   //   }, []);
-
-  if (!isLogin) {
-    redirect("/login");
-  }
+  useEffect(() => {
+    console.log("isLogin", isLogin);
+    if (!isLogin) {
+      router.push("/login");
+    }
+  }, [isLogin]);
 
   return (
-    < div  >
+    <div>
       <Header />
       <div className="flex justify-center">{children}</div>
       <Footer />
-    </div >
+    </div>
   );
 }

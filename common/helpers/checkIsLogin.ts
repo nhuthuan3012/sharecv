@@ -1,5 +1,5 @@
-import { getCookie } from "./getCookies";
+import { getAccessCookies } from "./getCookies";
 
 import { TOKEN } from "../constants/cookies";
 
-export const checkIsLogin = () => !!getCookie(TOKEN);
+export const checkIsLogin = () => !!getAccessCookies();
