@@ -2,8 +2,6 @@
 
 import { IconButton } from "@mui/material";
 import { EducationItemProps } from "./type";
-import SquareAdd from "../uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../uploadcv4/search-cv/icons/SquareXmark";
 import CustomSelect from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { academicDegree } from "./mockData";
@@ -12,6 +10,8 @@ import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { addEducation, changeEducation, removeEducation } from "@/lib/redux/slices";
 import utc from 'dayjs/plugin/utc';
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 dayjs.extend(utc);
 
 export default function EducationItem({

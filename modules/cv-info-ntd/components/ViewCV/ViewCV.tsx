@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {
+import ReactPDF, {
   Page,
   Text,
   View,
@@ -10,6 +10,8 @@ import {
   Font,
   PDFViewer,
 } from "@react-pdf/renderer";
+import { Box, Typography } from "@mui/material";
+import { ViewHeadline } from "@mui/icons-material";
 // Create styles
 Font.register({
   family: "Oswald",
@@ -18,9 +20,29 @@ Font.register({
 
 const styles = StyleSheet.create({
   body: {
-    paddingTop: 35,
-    paddingBottom: 65,
+    gap:20,
+    // backgroundImage: `url(${"/login-background.png"})`,
+    display: "flex",
+    // flexDirection: "column",
+    alignContent: "flex-start",
+    paddingTop: 65,
+    paddingBottom: 15,
     paddingHorizontal: 35,
+  },
+  pageBackground: {
+    position: "absolute",
+    display: "flex",
+    justifyContent: "center",
+    alignSelf: "center",
+    minWidth: "100%",
+    minHeight: "100%",
+    height: "100%",
+    width: "100%",
+    filter: {
+      blur: "4px",
+    },
+    opacity: 0.2,
+    zIndex: "-1",
   },
   title: {
     fontSize: 24,
@@ -66,44 +88,110 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const ViewCV = () => (
-  <PDFViewer width={"80%"} height={"1200px"}>
-    <Document style={{width:"100%", height:"1200px"}}>
+  // <Box   width={"500px"} height={"1200px"} sx={{}}>
+  <PDFViewer showToolbar={false} width={"80%"} height={"1200px"}>
+    <Document style={{width: "100%", height: "1200px" }}>
       <Page size="A4" style={styles.body}>
-        <Text style={styles.header} fixed>
-          ~ Created with react-pdf ~
-        </Text>
-        <Text style={styles.title}>Don Quijote de la Mancha</Text>
-        <Text style={styles.author}>Miguel de Cervantes</Text>
-        <Image
-          // style={styles.image}
-          src="/Logo.png"
-        />
-        <Text style={styles.subtitle}>
-          Capítulo I: Que trata de la condición y ejercicio del famoso hidalgo
-          D. Quijote de la Mancha
-        </Text>
-        <Text style={styles.text}>
-          En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha
-          mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga
-          antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que
-          carnero, salpicón las más noches, duelos y quebrantos los sábados,
-          lentejas los viernes, algún palomino de añadidura los domingos,
-          consumían las tres partes de su hacienda. El resto della concluían
-          sayo de velarte, calzas de velludo para las fiestas con sus pantuflos
-          de lo mismo, los días de entre semana se honraba con su vellori de lo
-          más fino. Tenía en su casa una ama que pasaba de los cuarenta, y una
-          sobrina que no llegaba a los veinte, y un mozo de campo y plaza, que
-          así ensillaba el rocín como tomaba la podadera. Frisaba la edad de
-          nuestro hidalgo con los cincuenta años, era de complexión recia, seco
-          de carnes, enjuto de rostro; gran madrugador y amigo de la caza.
-          Quieren decir que tenía el sobrenombre de Quijada o Quesada (que en
-          esto hay alguna diferencia en los autores que deste caso escriben),
-          aunque por conjeturas verosímiles se deja entender que se llama
-          Quijana; pero esto importa poco a nuestro cuento; basta que en la
-          narración dél no se salga un punto de la verdad
-        </Text>
+        <View style={styles.pageBackground}>
+          <Image style={{ display: "flex" }} src="/Logo.png" />
+        </View>
+
+        <View
+          style={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              width: "20%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Image style={{ display: "flex" }} src="/Logo.png" />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              width: "80%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
+            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              width: "20%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Image style={{ display: "flex" }} src="/Logo.png" />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              width: "80%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
+            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              width: "20%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <Image style={{ display: "flex" }} src="/Logo.png" />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              width: "80%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
+            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
+          </View>
+        </View>
       </Page>
     </Document>
   </PDFViewer>
 );
+// ReactPDF.render()
 export default ViewCV;

@@ -27,7 +27,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <div>
       <Header />
-      <div className="flex justify-center">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );
