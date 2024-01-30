@@ -2,13 +2,13 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { CertificateItemProps } from "./types";
 import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
-import SquareAdd from "../uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../uploadcv4/search-cv/icons/SquareXmark";
 import CustomSelect from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { languageOptions, languageCertificationOptions } from "./mockData";
 import { useDispatch } from "react-redux";
 import { addCertificate, changeCertificate, removeCertificate } from "@/lib/redux/slices";
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 
 export default function CertificateItem({
   index,

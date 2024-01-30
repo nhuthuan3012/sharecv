@@ -7,18 +7,17 @@ import {
     type MRT_ColumnDef,
 } from 'material-react-table';
 import { Autocomplete, Box, Button, Divider, Tab, TextField, Typography } from '@mui/material';
-import { TabButtonStyle, TabTextStyle } from './styles';
-import { TableSearchBar } from './components/searchbar';
-import { CustomPagination } from './components/pagination';
-
+import { TabButtonStyle, TabTextStyle } from '@/modules/job-list-ctv/styles';
+import { TableSearchBar } from '@/modules/job-list-ctv/components/searchbar';
+import { CustomPagination } from '@/modules/job-list-ctv/components/pagination';
+import { ICtvJobList } from '@/interfaces/ctv-job-list';
+import { CtvJobListTable } from '@/modules/job-list-ctv/sections/CtvJobListTable';
 import dayjs from 'dayjs';
 import { getCtvJobList } from '@/common/apis/job-list-ctv';
-import { CtvJobListTable } from './sections/CtvJobListTable';
-import { ICtvJobList } from '@/common/interfaces/ctv-job-list';
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { selectJobListCtv, setData } from '@/lib/redux/slices/jobListCtvSlice';
+import { selectJobListCtv, setData } from '@/modules/job-list-ctv/jobListCtvSlice';
 
 const pageTabs = {
     1: "referred",
