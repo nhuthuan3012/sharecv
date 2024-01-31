@@ -1,15 +1,15 @@
 "use client"
 import { styled } from '@mui/material/styles';
 import { Box, Button, Grid, Paper, Typography } from "@mui/material"
-import { detailPointTextStyles, header1Styles, headerStyles, percentageDetailTextStyles, percentageTextStyles, returnButtonStyles } from "../styles";
 import { PieChart } from '@mui/x-charts/PieChart';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { useRouter } from 'next/navigation'
 import { use, useEffect, useLayoutEffect, useState } from 'react';
 import { getAdminMatchingCVResult, getCTVMatchingCVResult } from '@/common/apis/ai_result';
-import { ICvMatchingResult } from '@/common/interfaces/ai-results';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { ICvMatchingResult } from '@/interfaces/ai-results';
+import { detailPointTextStyles, header1Styles, headerStyles, percentageTextStyles } from '@/modules/ai-result/styles';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme: any }) => ({
     height: 33,

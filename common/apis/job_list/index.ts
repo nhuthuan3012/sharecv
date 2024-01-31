@@ -1,7 +1,6 @@
+import { IJobListCreateResponse, IJobListDraftResponse } from "@/interfaces/job-list";
 import { axiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
-
-import { IJobListCreateResponse, IJobListDraftResponse } from "@/common/interfaces/job-list";
 
 export const getCreatedJobList = (data: { page_index: number, limit: number }): Promise<AxiosResponse<IJobListCreateResponse>> => {
     let payload: any = {

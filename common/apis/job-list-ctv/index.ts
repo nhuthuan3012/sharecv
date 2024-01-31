@@ -1,6 +1,4 @@
-import { ICvMatchingResultResponse } from "@/common/interfaces/ai-results";
-import { ICtvJobListResponse } from "@/common/interfaces/ctv-job-list";
-import { IUVListNtdResponse } from "@/common/interfaces/uv-list-ntd";
+import { ICtvJobListResponse } from "@/interfaces/ctv-job-list";
 import { axiosClient, subaxiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
 
