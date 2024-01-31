@@ -1,6 +1,6 @@
 "use client";
 import { candidateInfoApi } from "@/common/apis/candidate-info";
-import { getRole } from "@/common/helpers/setCookies";
+import { getRole } from "@/common/helpers/getCookies";
 import { IResume } from "@/modules/cv-info-ntd/resume.interface";
 import CvInfoPage from "@/modules/cv-info/pages/CvInfoPage";
 import { set } from "lodash";

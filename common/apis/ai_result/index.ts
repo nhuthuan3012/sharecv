@@ -1,4 +1,4 @@
-import { ICvMatchingResultResponse } from "@/common/interfaces/ai-results";
+import { ICvMatchingResultResponse } from "@/interfaces/ai-results";
 import { axiosClient, subaxiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
 

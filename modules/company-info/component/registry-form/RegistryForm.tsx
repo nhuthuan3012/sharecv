@@ -8,10 +8,9 @@ import {
 import { redirect, RedirectType } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ICompanyInfo } from "../../../../types";
 import { addCompany } from "@/common/apis/posting-job";
 import FileUpload from "../FileUpload";
-import { ITitleImageItem } from "../../../../types";
+import { ICompanyInfo, ITitleImageItem } from "../../types";
 function RegistryForm() {
   if (!true) {
     redirect("/login", RedirectType.replace);

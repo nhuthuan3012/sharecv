@@ -16,12 +16,12 @@ import { CustomMenu } from '../../components/CustomMenu';
 import dayjs from 'dayjs';
 import { API_URL } from "@/config/_constant";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { ICtvJobList } from '@/common/interfaces/ctv-job-list';
+import { ICtvJobList } from '@/interfaces/ctv-job-list';
 import { useRouter } from 'next/navigation';
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { selectJobListCtv, setData } from '@/lib/redux/slices/jobListCtvSlice';
+import { selectJobListCtv } from '../../jobListCtvSlice';
 
 
 export interface UVListTableProps {

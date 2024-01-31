@@ -39,6 +39,35 @@ function CvInfoPage({
   awards,
   certificates,
 }: IResume) {
+  const initialData: IResume = {
+    cv_id: cv_id,
+    status: status,
+    job_service: job_service,
+    avatar: avatar,
+    candidate_name: candidate_name,
+    current_job: current_job,
+    industry: industry,
+    birthday: birthday,
+    gender: gender,
+    objectives: objectives,
+    email: email,
+    phone: phone,
+    identification_code: identification_code,
+    address: address,
+    city: city,
+    country: country,
+    linkedin: linkedin,
+    website: website,
+    facebook: facebook,
+    instagram: instagram,
+    skills:skills,
+    total_point: total_point,
+    experience: experience,
+    educations: educations,
+    projects: projects,
+    awards: awards,
+    certificates: certificates
+  };
   const today = dayjs();
   const birthdayDate = dayjs(new Date(birthday));
 
@@ -109,7 +138,7 @@ function CvInfoPage({
             </ul>
           </Box>
           <Box width="100%" display="flex" justifyContent={"center"}>
-                <ViewCV/>
+                <ViewCV {...initialData}/>
           </Box>
           
           <Box width="100%" display="flex" justifyContent={"space-between"}>

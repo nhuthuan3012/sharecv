@@ -12,6 +12,7 @@ import ReactPDF, {
 } from "@react-pdf/renderer";
 import { Box, Typography } from "@mui/material";
 import { ViewHeadline } from "@mui/icons-material";
+import { IResume } from "@/modules/cv-info/resume.interface";
 // Create styles
 Font.register({
   family: "Oswald",
@@ -87,7 +88,37 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const ViewCV = () => (
+const ViewCV = ({
+  cv_id,
+  status,
+  job_service,
+  avatar,
+  candidate_name,
+  current_job,
+  industry,
+  birthday,
+  gender,
+  objectives,
+  email,
+  phone,
+  identification_code,
+  address,
+  city,
+  country,
+  linkedin,
+  website,
+  facebook,
+  instagram,
+  skills,
+  total_point,
+  experience,
+  educations,
+  projects,
+  awards,
+  certificates,
+}: IResume) => {
+  console.log("avatar", avatar)
+  return (
   // <Box   width={"500px"} height={"1200px"} sx={{}}>
   <PDFViewer showToolbar={false} width={"80%"} height={"1200px"}>
     <Document style={{width: "100%", height: "1200px" }}>
@@ -112,7 +143,7 @@ const ViewCV = () => (
               justifyContent: "flex-start",
             }}
           >
-            <Image style={{ display: "flex" }} src="/Logo.png" />
+            <Image src={avatar? avatar : "Logo.png"} />
           </View>
           <View
             style={{
@@ -143,7 +174,7 @@ const ViewCV = () => (
               justifyContent: "flex-start",
             }}
           >
-            <Image style={{ display: "flex" }} src="/Logo.png" />
+            <Image style={{ display: "flex" }} src={avatar? avatar : "Logo.png"} />
           </View>
           <View
             style={{
@@ -193,5 +224,6 @@ const ViewCV = () => (
     </Document>
   </PDFViewer>
 );
+}
 // ReactPDF.render()
 export default ViewCV;
