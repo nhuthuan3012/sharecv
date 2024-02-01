@@ -19,9 +19,6 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { ICtvJobList } from '@/interfaces/ctv-job-list';
 import { useRouter } from 'next/navigation';
 
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { selectJobListCtv } from '../../jobListCtvSlice';
 
 
 export interface UVListTableProps {
@@ -33,7 +30,7 @@ export const CtvJobListTable = ({
 }: UVListTableProps) => {
     const router = useRouter();
 
-    let uvListData: ICtvJobList[] = useSelector(selectJobListCtv);
+    let uvListData: ICtvJobList[] = data;
 
     const handleClickJobDetail = (index: any) => {
         router.push(`job-description/collaborator/${data[index].job_id}`);

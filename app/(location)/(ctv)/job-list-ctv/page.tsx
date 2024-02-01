@@ -12,12 +12,8 @@ import { TableSearchBar } from '@/modules/job-list-ctv/components/searchbar';
 import { CustomPagination } from '@/modules/job-list-ctv/components/pagination';
 import { ICtvJobList } from '@/interfaces/ctv-job-list';
 import { CtvJobListTable } from '@/modules/job-list-ctv/sections/CtvJobListTable';
-import dayjs from 'dayjs';
 import { getCtvJobList } from '@/common/apis/job-list-ctv';
 
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { selectJobListCtv, setData } from '@/modules/job-list-ctv/jobListCtvSlice';
 
 const pageTabs = {
     1: "referred",
@@ -36,8 +32,7 @@ function UVListPage() {
         total_items: 20,
     })
 
-    const dispatch = useDispatch();
-    let uvListData: ICtvJobList[] = useSelector(selectJobListCtv);
+    const [uvListData, setUvListData] = useState<ICtvJobList[]>([]);
 
     useEffect(() => {
         try {
@@ -54,7 +49,7 @@ function UVListPage() {
                     total_pages: res.data.data.total_pages,
                     total_items: res.data.data.total_items,
                 })
-                dispatch(setData(res.data.data.item_lst));
+                setUvListData(res.data.data.item_lst);
             })
         } catch (err) {
             console.log(err);
