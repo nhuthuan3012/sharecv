@@ -21,6 +21,7 @@ const customStyles = {
 
   control: (provided: any) => ({
     ...provided,
+    minHeight: '54px',
     height: '100%',
     borderWidth: '2px',
     borderColor: "#073776",
@@ -59,7 +60,7 @@ function CustomSelect<
         {label}
         {required && <span className="text-red-500"> *</span>}
       </label>
-      <div className="h-11">
+      <div className="">
       <Select  {...selectProps} styles={customStyles} theme={(theme) => ({ ...theme, borderRadius: 8 })} />
       </div>
     </div>

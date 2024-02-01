@@ -18,8 +18,11 @@ const Component = (
         required={required}
         className={classNames(
           className,
-          "w-full px-4 py-2 border-2 border-primary bg-white rounded-lg placeholder-placeholder"
+          "w-full px-4 py-2 border-2 border-primary bg-white rounded-lg placeholder-placeholder focus:border-white"
         )}
+          style={{
+            outlineColor: 'rgba(6, 55, 118, 1)'
+          }}
         value={value}
       >
       </textarea>

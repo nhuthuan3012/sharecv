@@ -2,19 +2,21 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { CertificateItemProps } from "./types";
 import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
-import SquareAdd from "../uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../uploadcv4/search-cv/icons/SquareXmark";
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 import CustomSelect from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { languageOptions, languageCertificationOptions } from "./mockData";
-import { useDispatch } from "react-redux";
-import { addCertificate, changeCertificate, removeCertificate } from "@/lib/redux/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { addCertificate, changeCertificate, removeCertificate, selectUploadCV } from "@/lib/redux/slices";
+import { uploadCV } from "@/common/apis/upload_cv";
 
 export default function CertificateItem({
   index,
   initialValues,
   newest,
 }: CertificateItemProps) {
+  const uploadCV = useSelector(selectUploadCV)
   const dispatch = useDispatch()
   return (
     <div
@@ -52,7 +54,7 @@ export default function CertificateItem({
           label="Tên chứng chỉ"
           instanceId={"certificate_name"}
           isMulti={false}
-          options={languageCertificationOptions}
+          options={languageCertificationOptions[initialValues.certificate_language as keyof typeof languageCertificationOptions]}
           value={{ label: initialValues.certificate_name, value: initialValues.certificate_name }}
           onChange={(value) => dispatch(changeCertificate({value: value?.value as string, key: 'certificate_name', index: index}))}
         />

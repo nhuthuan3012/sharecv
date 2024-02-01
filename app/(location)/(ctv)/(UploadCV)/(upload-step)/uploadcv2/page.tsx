@@ -26,11 +26,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeAvatar,
   changePersonalInfor,
-  counterSlice,
-  selectCount,
   selectUploadCV,
 } from "@/lib/redux/slices";
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
 
 const industries = [
   { value: "education", label: "Education" },
@@ -199,6 +198,7 @@ const UploadCV2 = () => {
   const [files, setFiles] = useState<File[]>([]);
   const uploadCV = useSelector(selectUploadCV);
   const dispatch = useDispatch();
+  const navigate = useRouter()
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -214,6 +214,10 @@ const UploadCV2 = () => {
                   files={files}
                   onupdatefiles={(files: FilePondFile[]) => {
                     setFiles(files.map((file) => file.file as File));
+                    if(files[0]){
+                      const url = URL.createObjectURL(files[0].file);
+                      dispatch(changeAvatar(url))
+                      }
                   }}
                   allowMultiple={false}
                   instantUpload={false}
@@ -560,6 +564,7 @@ const UploadCV2 = () => {
                   Lưu nháp
                 </button>
                 <button
+                  onClick={() => navigate.push('/uploadcv3')}
                   type="button"
                   className=" bg-primary rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-none cursor-pointer text-white"
                 >

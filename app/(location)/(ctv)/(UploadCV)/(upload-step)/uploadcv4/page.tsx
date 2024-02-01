@@ -1,4 +1,4 @@
-import ExperienceForm from "../../../../../modules/upload-cv/components/experience-form/ExperienceForm"
+import ExperienceForm from "@/modules/upload-cv/components/experience-form/ExperienceForm"
 
 const UploadCV4: React.FC = () => {
     return (

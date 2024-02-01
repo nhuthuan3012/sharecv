@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { reduxStore } from "@/lib/redux/store";
 import { ReduxStore } from "@/lib/redux/store";
 import { useRef } from 'react'
-import { getAccessCookies, getRole } from "@/common/helpers/setCookies";
+import { getAccessCookies } from "@/common/helpers/setCookies";
 import { redirect, RedirectType } from "next/navigation";
 import Cookies from 'js-cookie';
 
@@ -21,14 +21,10 @@ export default function UploadCVLayout({
     storeRef.current = reduxStore()
   }
 
-  if (getRole() !== "collaborator") {
-    redirect("/home", RedirectType.replace);
-  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Provider store={storeRef.current}>
-        <Header />
         {children}
       </Provider>
     </LocalizationProvider>

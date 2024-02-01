@@ -18,7 +18,7 @@ const Component = (
       <input
         {...props}
         id={id}
-        className="bg-gray-50 border-solid border-2 border-primary text-gray-900 text-sm rounded-lg  block w-full p-2.5 placeholder-placeholder"
+        className="bg-gray-50 border-solid border-2 border-primary text-gray-900 text-sm rounded-lg  block w-full p-2.5 placeholder-placeholder h-[55px]"
         placeholder={placeholder}
         required
       ></input>

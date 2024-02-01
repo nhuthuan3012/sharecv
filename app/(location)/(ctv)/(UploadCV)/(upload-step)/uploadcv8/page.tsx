@@ -12,11 +12,19 @@ export default function UploadCV8() {
   const uploadCV = useSelector(selectUploadCV);
 
 
-  const handleFillResume = async () => {
+  const handleFillResume = async (e: any) => {
+    let avatar = await fetch(uploadCV.personal_infor.avatar).then(r => r.blob());
+    console.log(avatar)
+    let cv_file = await fetch(uploadCV.personal_infor.cv_file).then(r => r.blob())
+    const other = [
+      {certificate_name: "ACCA", certificate_point_level: "B1", start_time: "2022-01-22 10:16:09", end_time: "2023-01-22 10:16:09"},
+      {certificate_name: "CPA", certificate_point_level: "", start_time: "2019-01-22 10:16:09", end_time: "2023-01-22 10:16:09"}
+      ]
+    e.preventDefault()
     await fillResume({
       job_id: "1",
-      avatar: new File([], "", { type: "" }),
-      cv_file: new File([], "", { type: "" }),
+      avatar: avatar,
+      cv_file: cv_file,
       name: uploadCV.personal_infor.name,
       industry: uploadCV.personal_infor.industry,
       level: uploadCV.personal_infor.level,
@@ -30,6 +38,7 @@ export default function UploadCV8() {
       birthday: uploadCV.personal_infor.birthday,
       gender: uploadCV.personal_infor.gender,
       descriptions: "",
+      projects: uploadCV.projects,
       identification_code: uploadCV.personal_infor.id,
       linkedin: uploadCV.personal_infor.linkedln,
       website: uploadCV.personal_infor.website,
@@ -39,9 +48,8 @@ export default function UploadCV8() {
       work_experiences: uploadCV.experiences,
       skills: uploadCV.skills,
       awards: uploadCV.awards,
-      projects: uploadCV.projects,
       language_certificates: uploadCV.certificates,
-      other_certificates: [""],
+      other_certificates: JSON.stringify(other),
     });
   };
   return (
@@ -76,7 +84,7 @@ export default function UploadCV8() {
               Lưu nháp
             </button>
             <button
-              onClick={() => router.push("posting-job/cv-pricing/1")}
+              onClick={(e) => handleFillResume(e)}
               type="button"
               className=" bg-primary rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-none cursor-pointer text-white"
             >

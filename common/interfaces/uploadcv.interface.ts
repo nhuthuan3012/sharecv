@@ -4,14 +4,14 @@ export interface IUploadCVResponse {
   data: {
     message: string;
   data: {
-    job_title: string[];
+    job_title: string;
     education: Education[];
     work_experience: Experience[];
     skills: string[];
     awards: {
       award_name: string,
       time: string,
-      descriptions: string
+      description: string
     }[];
     projects: {
       project_name: string;
@@ -30,7 +30,7 @@ export interface IUploadCVResponse {
       ];
       other_certificates: string[];
     };
-    industry: string[];
+    industry: string;
     objectives: string;
     personal_information: {
       name: string;
@@ -48,7 +48,7 @@ export interface IUploadCVResponse {
       email: string;
       country: string;
       city: string;
-      address: string[];
+      address: string;
     };
     orientation: string[];
   };

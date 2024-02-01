@@ -2,6 +2,7 @@
 
 import CustomSelect from "@/common/components/control/select/Select";
 import { changeSkill, selectUploadCV } from "@/lib/redux/slices";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 const options = [
   { value: "figma", label: "Figma" },
@@ -12,6 +13,7 @@ const options = [
 const UploadCV3 = () => {
   const dispatch = useDispatch()
   const uploadCV = useSelector(selectUploadCV);
+  const navigate = useRouter()
   return (
     <>
       <div className="container p-10 bg-background rounded-xl">
@@ -41,6 +43,7 @@ const UploadCV3 = () => {
               Lưu nháp
             </button>
             <button
+            onClick={() => navigate.push('/uploadcv4')}
               type="button"
               className=" bg-primary rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-none cursor-pointer text-white"
             >

@@ -4,10 +4,11 @@ import { Box, Button } from "@mui/material";
 import ExperienceItem from "./ExperienceItem";
 import { useSelector } from "react-redux";
 import { selectUploadCV } from "@/lib/redux/slices";
+import { useRouter } from "next/navigation";
 
 function ExperienceForm() {
  
-
+  const navigate = useRouter()
   const uploadCV = useSelector(selectUploadCV)
 
   return (
@@ -24,6 +25,7 @@ function ExperienceForm() {
       </Box>
       <div className="w-full flex justify-end my-4">
         <Button
+        onClick={() => navigate.push('/uploadcv5')}
           variant="contained"
           sx={{
             textTransform: "none",

@@ -2,11 +2,11 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { ProjectItemProps } from "./type";
 import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
-import SquareAdd from "../uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../uploadcv4/search-cv/icons/SquareXmark";
-import { Input } from "@/common/components/control/Input";
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 import { useDispatch } from "react-redux";
 import { addProject, addProjectAchive, changeProject, changeProjectAchive, removeProject, removeProjectAchive } from "@/lib/redux/slices";
+import { Input } from "@/common/components/control/Input";
 
 
 export default function ProjectItem({
@@ -39,8 +39,8 @@ export default function ProjectItem({
           <Input
             label="Tên dự án"
             placeholder="Please type here"
-            value={initialValues.name_project}
-            onChange={(e) => dispatch(changeProject({key: 'name_project', index: index, value: e.target.value}))}
+            value={initialValues.project_name}
+            onChange={(e) => dispatch(changeProject({key: 'project_name', index: index, value: e.target.value}))}
           />
         </div>
         <div className="flex flex-row gap-10">
@@ -101,7 +101,7 @@ export default function ProjectItem({
           </IconButton>
           </div>
           <div className="flex flex-col gap-5 my-0">
-            {initialValues.description?.map((item, awardIndex) => (
+            {initialValues.descriptions.map((item, awardIndex) => (
               <div key={awardIndex} className="flex flex-row gap-5">
                 <Input
                   value={item}
