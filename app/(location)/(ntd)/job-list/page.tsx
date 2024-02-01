@@ -7,14 +7,14 @@ import {
     type MRT_ColumnDef,
 } from 'material-react-table';
 import { Autocomplete, Box, Button, Divider, Tab, TextField, Typography } from '@mui/material';
-import { TabButtonStyle, TabTextStyle } from './styles';
-import { TableSearchBar } from './components/searchbar';
-import { CreateJobTable } from './sections/CreatedJobTable';
-import { IJobListCreate, IJobListDraft } from '@/common/interfaces/job-list';
-import { CustomPagination } from './components/pagination';
-import { DraftJobTable } from './sections/DraftJobTable';
 import { getCreatedJobList, getDraftJobList } from '@/common/apis/job_list';
 import dayjs from 'dayjs';
+import { IJobListCreate, IJobListDraft } from '@/interfaces/job-list';
+import { TabButtonStyle, TabTextStyle } from '@/modules/job-list-ntd/styles';
+import { TableSearchBar } from '@/modules/job-list-ntd/components/searchbar';
+import { CreateJobTable } from '@/modules/job-list-ntd/sections/CreatedJobTable';
+import { DraftJobTable } from '@/modules/job-list-ntd/sections/DraftJobTable';
+import { CustomPagination } from '@/modules/job-list-ntd/components/pagination';
 
 function JobListPage() {
     const [isDraftPage, setIsDraftPage] = useState<boolean>(false);

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { reduxStore } from "@/lib/redux/store";
 import { ReduxStore } from "@/lib/redux/store";
 import { useRef } from 'react'
-import { getAccessCookies } from "@/common/helpers/setCookies";
+import { getAccessCookies, getRole } from "@/common/helpers/getCookies";
 import { redirect, RedirectType } from "next/navigation";
 import Cookies from 'js-cookie';
 

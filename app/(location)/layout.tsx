@@ -18,7 +18,6 @@ export default function MainLayout({ children }: PropsWithChildren) {
   //     dayjs.locale("vi");
   //   }, []);
   useEffect(() => {
-    console.log("isLogin", isLogin);
     if (!isLogin) {
       router.push("/login");
     }
@@ -27,7 +26,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <div>
       <Header />
-      <div className="">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );

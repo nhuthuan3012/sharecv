@@ -7,14 +7,14 @@ import {
     type MRT_ColumnDef,
 } from 'material-react-table';
 import { Autocomplete, Box, Button, Divider, Tab, TextField, Typography } from '@mui/material';
-import { TabButtonStyle, TabTextStyle } from './styles';
-import { TableSearchBar } from './components/searchbar';
-import { CustomPagination } from './components/pagination';
-import { UVListTable } from './sections/UVListTable';
 import { getUvListNtd } from '@/common/apis/uv-list-ntd';
 
 import dayjs from 'dayjs';
-import { IUVListNtd } from '@/common/interfaces/uv-list-ntd';
+import { IUVListNtd } from '@/interfaces/uv-list-ntd';
+import { TabButtonStyle, TabTextStyle } from '@/modules/uv-list-ntd/styles';
+import { TableSearchBar } from '@/modules/uv-list-ntd/components/searchbar';
+import { UVListTable } from '@/modules/uv-list-ntd/sections/UVListTable';
+import { CustomPagination } from '@/modules/uv-list-ntd/components/pagination';
 
 const pageTabs = {
     1: "all",

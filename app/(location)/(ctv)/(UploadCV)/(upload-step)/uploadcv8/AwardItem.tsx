@@ -1,13 +1,13 @@
 import { Input } from "@/common/components/control/Input";
 import IconButton from "@mui/material/IconButton";
-import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
 import { AwardItemProps } from "./type";
 import { Textarea } from "@/common/components/control/textarea";
 import { useDispatch } from "react-redux";
 import { addAward, changeAward, removeAward } from "@/lib/redux/slices";
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 
 
 export default function AwardItem({

@@ -7,18 +7,13 @@ import {
     type MRT_ColumnDef,
 } from 'material-react-table';
 import { Autocomplete, Box, Button, Divider, Tab, TextField, Typography } from '@mui/material';
-import { TabButtonStyle, TabTextStyle } from './styles';
-import { TableSearchBar } from './components/searchbar';
-import { CustomPagination } from './components/pagination';
-
-import dayjs from 'dayjs';
+import { TabButtonStyle, TabTextStyle } from '@/modules/job-list-ctv/styles';
+import { TableSearchBar } from '@/modules/job-list-ctv/components/searchbar';
+import { CustomPagination } from '@/modules/job-list-ctv/components/pagination';
+import { ICtvJobList } from '@/interfaces/ctv-job-list';
+import { CtvJobListTable } from '@/modules/job-list-ctv/sections/CtvJobListTable';
 import { getCtvJobList } from '@/common/apis/job-list-ctv';
-import { CtvJobListTable } from './sections/CtvJobListTable';
-import { ICtvJobList } from '@/common/interfaces/ctv-job-list';
 
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { selectJobListCtv, setData } from '@/lib/redux/slices/jobListCtvSlice';
 
 const pageTabs = {
     1: "referred",
@@ -37,8 +32,7 @@ function UVListPage() {
         total_items: 20,
     })
 
-    const dispatch = useDispatch();
-    let uvListData: ICtvJobList[] = useSelector(selectJobListCtv);
+    const [uvListData, setUvListData] = useState<ICtvJobList[]>([]);
 
     useEffect(() => {
         try {
@@ -55,7 +49,7 @@ function UVListPage() {
                     total_pages: res.data.data.total_pages,
                     total_items: res.data.data.total_items,
                 })
-                dispatch(setData(res.data.data.item_lst));
+                setUvListData(res.data.data.item_lst);
             })
         } catch (err) {
             console.log(err);

@@ -1,5 +1,4 @@
-import { ICvMatchingResultResponse } from "@/common/interfaces/ai-results";
-import { IUVListNtdResponse } from "@/common/interfaces/uv-list-ntd";
+import { IUVListNtdResponse } from "@/interfaces/uv-list-ntd";
 import { axiosClient, subaxiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
 

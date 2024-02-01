@@ -7,15 +7,15 @@ import {
     type MRT_ColumnDef,
 } from 'material-react-table';
 import { Autocomplete, Box, Button, Divider, Tab, TextField, Typography } from '@mui/material';
-import { TabButtonStyle, TabTextStyle } from './styles';
-import { TableSearchBar } from './components/searchbar';
-import { CustomPagination } from './components/pagination';
 
 import dayjs from 'dayjs';
 import { getCtvJobList } from '@/common/apis/job-list-ctv';
-import { AdminUvListTable } from './sections/AdminUvListTable';
-import { IUvListAdmin } from '@/common/interfaces/uv-list-admin';
 import { getUvListAdmin } from '@/common/apis/uv-list-admin';
+import { TableSearchBar } from '@/modules/uv-list-admin/components/searchbar';
+import { TabButtonStyle, TabTextStyle } from '@/modules/uv-list-admin/styles';
+import { CustomPagination } from '@/modules/uv-list-admin/components/pagination';
+import { IUvListAdmin } from '@/interfaces/uv-list-admin';
+import { AdminUvListTable } from '@/modules/uv-list-admin/sections/AdminUvListTable';
 
 const pageTabs = {
     1: "all",

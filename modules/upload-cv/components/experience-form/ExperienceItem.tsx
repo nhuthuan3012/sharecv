@@ -21,10 +21,10 @@ import {
 } from "./mockData";
 import { useState } from "react";
 import dayjs from "dayjs";
-import SquareAdd from "../../icons/SquareAdd";
-import SquareXmark from "../../icons/SquareXmark";
 import { useDispatch } from "react-redux";
 import { addExperience, changeExperience, removeExperience } from "@/lib/redux/slices";
+import SquareAdd from "../../icons/SquareAdd";
+import SquareXmark from "../../icons/SquareXmark";
 
 function ExperienceItem({
   index,

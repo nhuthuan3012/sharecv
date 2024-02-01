@@ -1,6 +1,6 @@
 "use client";
 import { getCookie } from "@/common/helpers/getCookies";
-import { getRole, removeAccessCookies } from "@/common/helpers/setCookies";
+import { getRole } from "@/common/helpers/getCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
 import JobDescription from "@/modules/posting-job/page/job-description/JobDescription";

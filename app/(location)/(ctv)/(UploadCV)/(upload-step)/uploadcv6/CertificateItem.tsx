@@ -9,7 +9,6 @@ import { Input } from "@/common/components/control/Input";
 import { languageOptions, languageCertificationOptions } from "./mockData";
 import { useDispatch, useSelector } from "react-redux";
 import { addCertificate, changeCertificate, removeCertificate, selectUploadCV } from "@/lib/redux/slices";
-import { uploadCV } from "@/common/apis/upload_cv";
 
 export default function CertificateItem({
   index,
