@@ -69,7 +69,10 @@ export interface IJobDetailResponse {
   job_type: string | null;
   skills: string[] | null;
   received_job_time: string | null;
-  working_time: string | null;
+  working_time: {
+    week: string;
+    time: string;
+  } | null;
   descriptions: string[] | null;
   requirements: string[] | null;
   benefits: string[]|null ;

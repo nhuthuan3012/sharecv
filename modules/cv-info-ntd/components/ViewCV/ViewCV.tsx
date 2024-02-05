@@ -13,15 +13,17 @@ import ReactPDF, {
 import { Box, Typography } from "@mui/material";
 import { ViewHeadline } from "@mui/icons-material";
 import { IResume } from "@/modules/cv-info/resume.interface";
+import "react-pdf/dist/Page/TextLayer.css";
+import dayjs from "dayjs";
 // Create styles
 Font.register({
-  family: "Oswald",
-  src: "https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf",
+  family: "Montserrat",
+  src: "http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf",
 });
 
 const styles = StyleSheet.create({
   body: {
-    gap:20,
+    gap: 20,
     // backgroundImage: `url(${"/login-background.png"})`,
     display: "flex",
     // flexDirection: "column",
@@ -50,10 +52,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Oswald",
   },
-  author: {
-    fontSize: 12,
-    textAlign: "center",
-    marginBottom: 40,
+  name: {
+    fontSize: 20,
+    fontFamily: "Montserrat",
+    color: "rgba(6, 55, 118, 1)",
+  },
+  industry: {
+    fontSize: 18,
+    fontFamily: "Montserrat",
   },
   subtitle: {
     fontSize: 18,
@@ -61,10 +67,14 @@ const styles = StyleSheet.create({
     fontFamily: "Oswald",
   },
   text: {
-    margin: 12,
-    fontSize: 14,
-    textAlign: "justify",
-    fontFamily: "Times-Roman",
+    fontSize: 12,
+    fontWeight: "bold",
+    fontFamily: "Helvetica-Bold",
+  },
+  nomarl: {
+    fontSize: 12,
+    fontWeight: "bold",
+    fontFamily: "Montserrat",
   },
   image: {
     marginVertical: 15,
@@ -84,6 +94,11 @@ const styles = StyleSheet.create({
     right: 0,
     textAlign: "center",
     color: "grey",
+  },
+  viewRow: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
   },
 });
 
@@ -117,113 +132,413 @@ const ViewCV = ({
   awards,
   certificates,
 }: IResume) => {
-  console.log("avatar", avatar)
+  // educations&&console.log("data", educations[0].start_time);
   return (
-  // <Box   width={"500px"} height={"1200px"} sx={{}}>
-  <PDFViewer showToolbar={false} width={"80%"} height={"1200px"}>
-    <Document style={{width: "100%", height: "1200px" }}>
-      <Page size="A4" style={styles.body}>
-        <View style={styles.pageBackground}>
-          <Image style={{ display: "flex" }} src="/Logo.png" />
-        </View>
-
-        <View
-          style={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              width: "20%",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Image src={avatar? avatar : "Logo.png"} />
-          </View>
-          <View
-            style={{
-              display: "flex",
-              width: "80%",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
-            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
-          </View>
-        </View>
-        <View
-          style={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              width: "20%",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Image style={{ display: "flex" }} src={avatar? avatar : "Logo.png"} />
-          </View>
-          <View
-            style={{
-              display: "flex",
-              width: "80%",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
-            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
-          </View>
-        </View>
-        <View
-          style={{
-            display: "flex",
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              width: "20%",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-            }}
-          >
+    // <Box   width={"500px"} height={"1200px"} sx={{}}>
+    <PDFViewer showToolbar={false} width={"80%"} height={"1200px"}>
+      <Document style={{ width: "100%", height: "1200px" }}>
+        <Page wrap size="A4" style={styles.body}>
+          <View style={styles.pageBackground}>
             <Image style={{ display: "flex" }} src="/Logo.png" />
           </View>
           <View
             style={{
+              height: "100px",
               display: "flex",
-              width: "80%",
+              width: "100%",
               flexDirection: "row",
               justifyContent: "flex-start",
-              alignItems: "center",
             }}
           >
-            <Text style={{ color: "orange" }}>aaaaaaaa</Text>
-            <Text style={{ color: "orange" }}>BBBBBBBB</Text>
+            <View
+              style={{
+                height: "auto",
+                display: "flex",
+                width: "40%",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+              }}
+            >
+              <Image style={{ height: "auto" }} src="/Logo.png" />
+            </View>
+            <View
+              style={{
+                display: "flex",
+                width: "60%",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text style={styles.name}>Họ và tên</Text>
+              <Text style={styles.industry}>{industry}</Text>
+            </View>
           </View>
-        </View>
-      </Page>
-    </Document>
-  </PDFViewer>
-);
-}
+          <View
+            style={{
+              height: "100px",
+              display: "flex",
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                width: "30%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Infomation </Text>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                width: "70%",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>Ngày sinh: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {`${dayjs(birthday).format("DD/MM/YYYY")}`}
+                </Text>
+              </View>
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>Age: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {`${dayjs(birthday).format("DD/MM/YYYY")}`}
+                </Text>
+              </View>
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>Sex: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {gender}
+                </Text>
+              </View>
+            </View>
+          </View>
+          {educations&&(
+          <View
+            style={{
+              borderTop: 1,
+              borderColor: "#D9D9D9",
+              display: "flex",
+              width: "100%",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                height: "70px",
+                width: "100%",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Education </Text>
+            </View>
+            <View
+              wrap={false}
+              style={{
+                gap: "10px",
+                display: "flex",
+                width: "100%",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+              }}
+            >
+              {educations.map((item, index) => (
+                <View
+                  key={index}
+                  wrap={false}
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      width: "30%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.start_time !== undefined
+                          ? dayjs(item.start_time).format("MM/YYYY")
+                          : ""
+                      } -`}{" "}
+                    </Text>
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.end_time !== undefined
+                          ? dayjs(item.end_time).format("MM/YYYY")
+                          : ""
+                      }`}{" "}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      gap: "5px",
+                      display: "flex",
+                      width: "70%",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={styles.text}>{item.institute}</Text>
+                    <Text
+                      style={{ color: "black", fontSize: 12 }}
+                    >{`${item.degree} ${item.major}`}</Text>
+                    <Text style={{ color: "black", fontSize: 12 }}>
+                      {item.gpa}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
+          )}
+          {educations&&(
+          <View
+            style={{
+              borderTop: 1,
+              borderColor: "#D9D9D9",
+              display: "flex",
+              width: "100%",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                height: "70px",
+                width: "100%",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Experience </Text>
+            </View>
+            <View
+              wrap={false}
+              style={{
+                gap: "10px",
+                display: "flex",
+                width: "100%",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+              }}
+            >
+              {educations.map((item, index) => (
+                <View
+                  key={index}
+                  wrap={false}
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      width: "30%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.start_time !== undefined
+                          ? dayjs(item.start_time).format("MM/YYYY")
+                          : ""
+                      } -`}{" "}
+                    </Text>
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.end_time !== undefined
+                          ? dayjs(item.end_time).format("MM/YYYY")
+                          : ""
+                      }`}{" "}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      gap: "5px",
+                      display: "flex",
+                      width: "70%",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={styles.text}>{item.institute}</Text>
+                    <Text
+                      style={{ color: "black", fontSize: 12 }}
+                    >{`${item.degree} ${item.major}`}</Text>
+                    <Text style={{ color: "black", fontSize: 12 }}>
+                      {item.gpa}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
+          )}
+          <View
+            style={{
+              borderTop: 1,
+              borderColor: "#D9D9D9",
+              display: "flex",
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                width: "30%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Skills </Text>
+            </View>
+            <View
+              style={{
+                gap: "5px",
+                display: "flex",
+                width: "70%",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text style={styles.nomarl}>Ngày sinh: </Text>
+            </View>
+          </View>
+          {educations&&(
+          <View
+            style={{
+              borderTop: 1,
+              borderColor: "#D9D9D9",
+              display: "flex",
+              width: "100%",
+              justifyContent: "flex-start",
+              flexDirection: "column",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                height: "70px",
+                width: "100%",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Text style={{ color: "rgba(6, 55, 118, 1)" }}>
+                {" "}
+                Certificates{" "}
+              </Text>
+            </View>
+            <View
+              wrap={false}
+              style={{
+                gap: "10px",
+                display: "flex",
+                width: "100%",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+              }}
+            >
+              {educations.map((item, index) => (
+                <View
+                  key={index}
+                  wrap={false}
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      width: "30%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.start_time !== undefined
+                          ? dayjs(item.start_time).format("MM/YYYY")
+                          : ""
+                      } -`}{" "}
+                    </Text>
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                      {" "}
+                      {`${
+                        item.end_time !== undefined
+                          ? dayjs(item.end_time).format("MM/YYYY")
+                          : ""
+                      }`}{" "}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      gap: "5px",
+                      display: "flex",
+                      width: "70%",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={styles.text}>{item.institute}</Text>
+                    <Text
+                      style={{ color: "black", fontSize: 12 }}
+                    >{`${item.degree} ${item.major}`}</Text>
+                    <Text style={{ color: "black", fontSize: 12 }}>
+                      {item.gpa}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>)}
+        </Page>
+      </Document>
+    </PDFViewer>
+  );
+};
 // ReactPDF.render()
 export default ViewCV;
