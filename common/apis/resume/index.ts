@@ -10,9 +10,9 @@ import {
 import qs from "qs";
 import { IUserLogin, IUserRegister } from "@/modules/auth/types";
 
-export const getValuateCV = (id:string): Promise<ValuateCV> => {
+export const getValuateCV = (id:string,role:string): Promise<ValuateCV> => {
     return axiosClient.get(`/postjob/collaborator/get-resume-valuate`, { params: { cv_id: id } });
-  };
+};
 
 export const revaluate = (data: IRevaluate): Promise<IAuthResponse> => {
   return axiosClient.put("/postjob/collaborator/update-resume-valuate", data);

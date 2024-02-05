@@ -1,8 +1,8 @@
 "use client";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
-import PointPackage from "./component/PointPackage";
-import { IListPointRespone } from "@/interfaces/point-package";
+import PointPackageComponent from "./component/PointPackage";
+import { IListPointRespone,PointPackage } from "@/interfaces/point-package";
 function BuyPoint({ data }: { data: PointPackage[] }) {
   return (
     <Box
@@ -18,7 +18,7 @@ function BuyPoint({ data }: { data: PointPackage[] }) {
         </Box>
       {data&&data.map((item, index) => (
         <Box key={index} className="col-span-5">
-          <PointPackage data={item} />
+          <PointPackageComponent data={item} />
         </Box>
       ))}
     </Box>

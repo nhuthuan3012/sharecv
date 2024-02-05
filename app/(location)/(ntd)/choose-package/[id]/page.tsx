@@ -29,7 +29,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
     facebook: null,
     instagram: null,
     skills: [],
-    total_point: 0,
+    cv_point: 0,
     experience: [],
     educations: [],
     projects: [],
@@ -56,7 +56,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-full flex justify-center">
-      <CvInfoPage {...candidateData} />
+      <CvInfoPage   {...candidateData} />
     </div>
   );
 }

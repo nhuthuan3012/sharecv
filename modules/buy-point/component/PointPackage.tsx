@@ -1,22 +1,32 @@
 "use client";
 import { PointPackage } from "@/interfaces/point-package";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-function PointPackage({data}:{data:PointPackage}) {
+function PointPackageComponent({ data }: { data: PointPackage }) {
   const [number, setNumber] = useState(0);
-
+  const router = useRouter();
   const handleIncrement = () => {
     setNumber((prevNumber) => prevNumber + 1);
   };
 
   const handleDecrement = () => {
-    if(number>0){
-        setNumber((prevNumber) => prevNumber - 1);
+    if (number > 0) {
+      setNumber((prevNumber) => prevNumber - 1);
     }
-    if(number<0){
-        setNumber(0);
+    if (number < 0) {
+      setNumber(0);
     }
   };
+  const onClickBuy = () => {
+    if (number > 0) {
+      router.push(`/make-a-payment?id=${data.package_id}&number=${number}`)
+    }
+    if (number < 0) {
+      alert("please enter number of purchase");
+    }
+  };
+
   return (
     <Box
       width="100%"
@@ -39,7 +49,10 @@ function PointPackage({data}:{data:PointPackage}) {
         py={2}
         className="border-primary col-span-1"
       >
-        <Typography className="text-primary text-base"> {data.point?data.point: 0} </Typography>
+        <Typography className="text-primary text-base">
+          {" "}
+          {data.point ? data.point : 0}{" "}
+        </Typography>
         <Typography className="text-primary text-sm"> điểm </Typography>
       </Box>
       <Box
@@ -53,12 +66,13 @@ function PointPackage({data}:{data:PointPackage}) {
         className="border-primary col-span-5 gap-10"
       >
         <Typography className="text-primary text-lg">
-          {data.price?data.price.toLocaleString('en-US'): "0"}
+          {data.price ? data.price.toLocaleString("en-US") : "0"}
         </Typography>
         <Button
           variant="contained"
           className="bg-white border-primary text-primary hover:bg-primary hover:text-white"
-          sx={{ border: 1,boxShadow:0, borderRadius: "20px" }}
+          sx={{ border: 1, boxShadow: 0, borderRadius: "20px" }}
+          onClick={onClickBuy}
         >
           Mua ngay
         </Button>
@@ -75,23 +89,33 @@ function PointPackage({data}:{data:PointPackage}) {
         <Button
           variant="contained"
           className="bg-white border-primary text-primary hover:bg-primary hover:text-white"
-          sx={{boxShadow:0,height:"60px", width:"20px",borderRadius: "50%" }}
+          sx={{
+            boxShadow: 0,
+            height: "60px",
+            width: "20px",
+            borderRadius: "50%",
+          }}
           onClick={handleIncrement}
         >
-            <Typography className="text-xl"> + </Typography>
+          <Typography className="text-xl"> + </Typography>
         </Button>
         <Typography className="text-2xl text-primary">{number}</Typography>
         <Button
           variant="contained"
           className="bg-white border-primary text-primary hover:bg-primary hover:text-white"
-          sx={{boxShadow:0,height:"60px", width:"20px",borderRadius: "50%" }}
+          sx={{
+            boxShadow: 0,
+            height: "60px",
+            width: "20px",
+            borderRadius: "50%",
+          }}
           onClick={handleDecrement}
         >
-            <Typography className="text-xl"> - </Typography>
+          <Typography className="text-xl"> - </Typography>
         </Button>
       </Box>
     </Box>
   );
 }
 
-export default PointPackage;
+export default PointPackageComponent;
