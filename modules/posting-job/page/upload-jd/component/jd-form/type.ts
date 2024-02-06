@@ -1,4 +1,4 @@
-export interface IJobLevelOpt {
+export interface OptionSelect {
     label: string;
     value: string;
 }
