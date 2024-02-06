@@ -4,11 +4,13 @@ import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
 import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
 import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
-import CustomSelect from "@/common/components/control/select/Select";
+import {CustomSelect} from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { languageOptions, languageCertificationOptions } from "./mockData";
 import { useDispatch, useSelector } from "react-redux";
 import { addCertificate, changeCertificate, removeCertificate, selectUploadCV } from "@/lib/redux/slices";
+import { SingleValue } from "react-select";
+import { SelectOption } from "@/common/components/control/select/types";
 
 export default function CertificateItem({
   index,
@@ -45,7 +47,7 @@ export default function CertificateItem({
           options={languageOptions}
           label="Tên ngoại ngữ"
           value={{ label: initialValues.certificate_language, value: initialValues.certificate_language }}
-          onChange={(value) => dispatch(changeCertificate({value: value?.value as string, key: 'certificate_language', index: index}))}
+          onChange={(value) => dispatch(changeCertificate({value: (value as SingleValue<SelectOption>)?.value as string, key: 'certificate_language', index: index}))}
         />
       </div>
       <div className="flex flex-row gap-10">
@@ -55,7 +57,7 @@ export default function CertificateItem({
           isMulti={false}
           options={languageCertificationOptions[initialValues.certificate_language as keyof typeof languageCertificationOptions]}
           value={{ label: initialValues.certificate_name, value: initialValues.certificate_name }}
-          onChange={(value) => dispatch(changeCertificate({value: value?.value as string, key: 'certificate_name', index: index}))}
+          onChange={(value) => dispatch(changeCertificate({value: (value as SingleValue<SelectOption>)?.value as string, key: 'certificate_name', index: index}))}
         />
         <Input
           label="Level"

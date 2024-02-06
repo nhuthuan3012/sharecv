@@ -1,6 +1,7 @@
 "use client";
 
-import CustomSelect from "@/common/components/control/select/Select";
+import {CustomSelect} from "@/common/components/control/select/Select";
+import { SelectOption } from "@/common/components/control/select/types";
 import { changeSkill, selectUploadCV } from "@/lib/redux/slices";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +25,7 @@ const UploadCV3 = () => {
           options={options}
           instanceId={"skill"}
           value={uploadCV.skills.map((item) => ({ value: item, label: item }))}
-          onChange={(value) => dispatch(changeSkill(value.map(item => item.value)))}
+          onChange={(value) => dispatch(changeSkill((value as SelectOption[]).map(item => item.value)))}
         />
       </div>
       <div className="container mt-10">
