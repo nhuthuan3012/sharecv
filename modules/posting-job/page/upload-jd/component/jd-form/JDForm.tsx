@@ -25,8 +25,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeJobDescription, selectUploadJD } from "@/lib/redux/slices";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { JobDescription, resolver } from "./resolver";
-import Option, { ActionMeta } from "react-select"
+import { MultiValue, OnChangeValue, SingleValue } from "react-select"
 import { SelectOption } from "@/common/components/control/select/types";
+import { FormEvent } from "react";
 
 
 function JDForm() {
@@ -34,21 +35,24 @@ function JDForm() {
   const uploadJD = useSelector(selectUploadJD);
   const {
     control,
+    getValues,
     handleSubmit,
     setError,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<JobDescription>({
     resolver,
     defaultValues: uploadJD.jobDescription,
   });
-  const onSubmit: SubmitHandler<JobDescription> = (data) => console.log(data)
+  const onSubmit1 = (e : FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(errors.job_title?.message)
+  }
   
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="border-2 border-solid rounded-2xl p-8 border-primary bg-light">
         <p className="text-primary font-bold">Thông tin công việc</p>
-        <form className="grid grid-cols-2 gap-8" onSubmit={handleSubmit(onSubmit)}>
+        <form className="grid grid-cols-2 gap-8" onSubmit={(e) => onSubmit1(e)}>
           <Controller
             control={control}
             name="job_title"
@@ -57,17 +61,20 @@ function JDForm() {
                 {...field}
                 value={uploadJD.jobDescription.job_title}
                 onChange={(e) =>
-                  dispatch(
-                    changeJobDescription({
-                      key: "job_title",
-                      value: e.target.value,
-                    })
-                  )
+                  {
+                    field.onChange(e)
+                    dispatch(
+                      changeJobDescription({
+                        key: "job_title",
+                        value: e.target.value,
+                      })
+                    )
+                  }
                 }
                 required
                 placeholder="Please type here"
                 label="Tên công việc"
-                errorMsg={errors.job_title?.message}
+                errorMsg={errors?.job_title?.message}
               />
             )}
           />
@@ -83,12 +90,15 @@ function JDForm() {
                 }}
 
                 onChange={(newValue) =>
-                  dispatch(
-                    changeJobDescription({
-                      value: (newValue as SelectOption)?.value ?? "",
-                      key: "job_type",
-                    })
-                  )
+                  {
+                    field.onChange((newValue as SelectOption)?.value ?? "")
+                    dispatch(
+                      changeJobDescription({
+                        value: (newValue as SelectOption)?.value ?? "",
+                        key: "industries",
+                      })
+                    )
+                  }
                 }
                 instanceId={"industry"}
                 isMulti={false}
@@ -163,14 +173,14 @@ function JDForm() {
                   label: uploadJD.jobDescription.gender.toString(),
                   value: uploadJD.jobDescription.gender.toString(),
                 }}
-                // onChange={(option) =>
-                //   dispatch(
-                //     changeJobDescription({
-                //       value: option?.value ?? "",
-                //       key: "gender",
-                //     })
-                //   )
-                // }
+                onChange={(newValue: OnChangeValue<SelectOption,false> | unknown) =>
+                  dispatch(
+                    changeJobDescription({
+                      value: (newValue as SingleValue<SelectOption>)?.value ?? "",
+                      key: "gender",
+                    })
+                  )
+                }
                 instanceId={"gender"}
                 isMulti={false}
                 required
@@ -236,14 +246,14 @@ function JDForm() {
                         label: uploadJD.jobDescription.start_days_of_week,
                         value: uploadJD.jobDescription.start_days_of_week,
                       }}
-                      // onChange={(option) =>
-                      //   dispatch(
-                      //     changeJobDescription({
-                      //       value: option?.value ?? "",
-                      //       key: "start_days_of_week",
-                      //     })
-                      //   )
-                      // }
+                      onChange={(option: SingleValue<SelectOption> | unknown) =>
+                        dispatch(
+                          changeJobDescription({
+                            value: (option as SingleValue<SelectOption>)?.value ?? "",
+                            key: "start_days_of_week",
+                          })
+                        )
+                      }
                       instanceId={"start-date"}
                       isMulti={false}
                       options={daysOfWeek}
@@ -260,14 +270,14 @@ function JDForm() {
                         label: uploadJD.jobDescription.end_days_of_week,
                         value: uploadJD.jobDescription.end_days_of_week,
                       }}
-                      // onChange={(option) =>
-                      //   dispatch(
-                      //     changeJobDescription({
-                      //       value: option?.value ?? "",
-                      //       key: "end_days_of_week",
-                      //     })
-                      //   )
-                      // }
+                      onChange={(option: SingleValue<SelectOption> | unknown) =>
+                        dispatch(
+                          changeJobDescription({
+                            value: (option as SingleValue<SelectOption>)?.value ?? "",
+                            key: "end_days_of_week",
+                          })
+                        )
+                      }
                       instanceId={"end-date"}
                       isMulti={false}
                       options={daysOfWeek}
@@ -456,14 +466,14 @@ function JDForm() {
                   value: item,
                   label: item,
                 }))}
-                // onChange={(option) => {
-                //   dispatch(
-                //     changeJobDescription({
-                //       value: option.map((item) => item.value),
-                //       key: "levels",
-                //     })
-                //   );
-                // }}
+                onChange={(option : MultiValue<SelectOption> | unknown) => {
+                  dispatch(
+                    changeJobDescription({
+                      value: (option as MultiValue<SelectOption>)?.map((item) => item.value),
+                      key: "levels",
+                    })
+                  );
+                }}
                 instanceId={"jobLevelOpt"}
                 isMulti={true}
                 required
@@ -485,14 +495,14 @@ function JDForm() {
                   value: item,
                   label: item,
                 }))}
-                // onChange={(option) => {
-                //   dispatch(
-                //     changeJobDescription({
-                //       value: option.map((item) => item.value),
-                //       key: "roles",
-                //     })
-                //   );
-                // }}
+                onChange={(option: MultiValue<SelectOption> | unknown) => {
+                  dispatch(
+                    changeJobDescription({
+                      value: (option as MultiValue<SelectOption>).map((item) => item.value),
+                      key: "roles",
+                    })
+                  );
+                }}
                 instanceId={"responsibilityOpt"}
                 isMulti={true}
                 required
@@ -587,8 +597,7 @@ function JDForm() {
           </div>
           <button
             type="submit"
-            className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
-            style={{ color: "white", borderColor: "#073776" }}
+            
           >
             Thêm
           </button>

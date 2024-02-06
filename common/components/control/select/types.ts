@@ -1,5 +1,5 @@
 export interface SelectOption {
-    value: string,
-    label: string,
+    readonly value: string,
+    readonly label: string,
   }
   

@@ -1,4 +1,6 @@
-export const industries = [
+import { SelectOption } from "@/common/components/control/select/types";
+
+export const industries: readonly SelectOption[] = [
     { value: "Education", label: "Education" },
     { value: "Construction", label: "Construction" },
     { value: "Design", label: "Design" },
@@ -23,7 +25,7 @@ export const industries = [
     { value: "Public Administration", label: "Public Administration" },
   ];
 
-export const skills = [
+export const skills: readonly SelectOption[] = [
   { value: "Analyze Data", label: "Analyze Data" },
   { value: "Báo cáo", label: "Báo cáo" },
   { value: "Chính sách", label: "Chính sách" },
@@ -52,23 +54,23 @@ export const skills = [
   { value: "Xây dựng đội ngũ", label: "Xây dựng đội ngũ" },
 ]
 
-export const jobType = [
+export const jobType: readonly SelectOption[] = [
     { value: "fulltime", label: "Toàn thời gian" },
     { value: "parttime", label: "Bán thời gian" }, 
 ]
 
-export const skill = [
+export const skill: readonly SelectOption[] = [
     { value: "fulltime", label: "Toàn thời gian" },
     { value: "parttime", label: "Bán thời gian" }, 
 ]
 
-export const gender = [
+export const gender: readonly SelectOption[] = [
     { value: "male", label: "Nam" },
     { value: "female", label: "Nữ" },
     { value: "other", label: "Khác" },
   ];
 
-  export const daysOfWeek = [
+  export const daysOfWeek: readonly SelectOption[] = [
     { value: "Mon", label: "Thứ 2" },
     { value: "Tues", label: "Thứ 3" },
     { value: "Wed", label: "Thứ 4" },
@@ -78,7 +80,7 @@ export const gender = [
     { value: "Sun", label: "Chủ Nhật" },
   ];
 
-  export const jobLevelOpt  = [
+  export const jobLevelOpt: readonly SelectOption[]  = [
     { value: "Internship", label: "Internship" },
     { value: "Fresher", label: "Fresher" },
     { value: "Junior", label: "Junior" },
@@ -89,7 +91,7 @@ export const gender = [
     { value: "Other", label: "Other" },
   ];
   
-  export const responsibilityOpt = [
+  export const responsibilityOpt: readonly SelectOption[] = [
     { value: "Develop and maintain web applications", label: "Develop and maintain web applications" },
     { value: "Develop and maintain mobile applications", label: "Develop and maintain mobile applications" },
     { value: "Develop and maintain APIs", label: "Develop and maintain APIs" },

@@ -9,20 +9,21 @@ import { OtherCertificate } from "@/modules/posting-job/page/upload-jd/component
 import { Salary } from "@/modules/posting-job/page/upload-jd/component/salary-form/resolver";
 
 export interface UploadJdSliceState {
+  jdFile: string;
   jobDescription: JobDescription;
-  education: Education;
+  education: Education[];
   languageCerttificate: LanguageCertificate[];
   otherCertificate: OtherCertificate[];
   salary: Salary;
   workAddress: WorkAddress;
-  status: "idle" | "loading" | "failed";
+  status: "idle" | "loading" | "failed" | "fulfilled";
 }
 
 // Initial Value
 const initialJobDescription: JobDescription = {
   job_title: "",
   industries: "Education",
-  job_type: "",
+  job_type: "parttime",
   skills: ["Analyze data"],
   gender: Gender.Male,
   received_job_time: "2024-01-01",
@@ -69,8 +70,9 @@ export const initialworkAddress: WorkAddress = {
 };
 
 export const initialState: UploadJdSliceState = {
+  jdFile: '',
   jobDescription: initialJobDescription,
-  education: initialEducation,
+  education: [initialEducation],
   languageCerttificate: [initialLanguageCertificate],
   otherCertificate: [initialOtherCertificate],
   salary: initialSalary,

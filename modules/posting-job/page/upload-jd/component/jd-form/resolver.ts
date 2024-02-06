@@ -14,7 +14,7 @@ const jobDescriptionSchema = yup.object().shape({
     industries: yup.string().required(requiredMsg),
     job_type: yup.string().required(requiredMsg),
     skills: yup.array(yup.string().required(requiredMsg)),
-    gender: yup.string().required(requiredMsg).oneOf(Object.values(Gender)),
+    gender: yup.string().required(requiredMsg),
     received_job_time: yup.string().required(requiredMsg),
     start_days_of_week: yup.string().required(requiredMsg),
     end_days_of_week: yup.string().required(requiredMsg),

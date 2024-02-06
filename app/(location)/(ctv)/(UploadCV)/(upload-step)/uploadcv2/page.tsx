@@ -20,7 +20,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 import { Input } from "@/common/components/control/Input";
 import { Textarea } from "@/common/components/control/textarea";
-import CustomSelect from "@/common/components/control/select/Select";
+import {CustomSelect} from "@/common/components/control/select/Select";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -30,6 +30,8 @@ import {
 } from "@/lib/redux/slices";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
+import { SelectOption } from "@/common/components/control/select/types";
+import { SingleValue } from "react-select";
 
 const industries = [
   { value: "education", label: "Education" },
@@ -257,7 +259,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.label as string,
+                        value: (value as SingleValue<SelectOption>)?.label as string,
                         key: "industry",
                       })
                     )
@@ -289,7 +291,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.label as string,
+                        value: (value as SingleValue<SelectOption>)?.label as string,
                         key: "level",
                       })
                     )
@@ -356,7 +358,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "city",
                       })
                     )
@@ -375,7 +377,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "country",
                       })
                     )
@@ -445,7 +447,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "gender",
                       })
                     )

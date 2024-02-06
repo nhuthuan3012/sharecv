@@ -1,5 +1,5 @@
 "use client";
-import { redirect, RedirectType } from "next/navigation";
+import { redirect, RedirectType, useRouter } from "next/navigation";
 import { IconButton } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import JDForm from "@/modules/posting-job/page/upload-jd/component/jd-form/JDForm";
@@ -10,6 +10,7 @@ import SalaryForm from "@/modules/posting-job/page/upload-jd/component/salary-fo
 import WorkingAddressForm from "@/modules/posting-job/page/upload-jd/component/address-form/WorkingAddressForm";
 import AwardPrizeForm from "@/modules/posting-job/page/upload-jd/component/award-prize-form/AwardPrizeForm";
 function UploadJDPage({ params }: { params: any }) {
+  const router = useRouter()
   // if (!getCookie("token")) {
   if (!true) {
     redirect("/login", RedirectType.replace);
@@ -25,7 +26,7 @@ function UploadJDPage({ params }: { params: any }) {
       </p>
       <div className="container flex flex-col gap-10">
         <div>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={() => router.push('/parse-jd')}>
             <ArrowCircleLeftIcon sx={{ color: "#063776", fontSize: 40 }} />
           </IconButton>
         </div>
