@@ -1,4 +1,4 @@
-import { IUvListAdminResponse } from "@/common/interfaces/uv-list-admin";
+import { IUvListAdminResponse } from "@/interfaces/uv-list-admin";
 import { axiosClient, subaxiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
 

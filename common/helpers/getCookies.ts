@@ -1,6 +1,6 @@
 import { isServer } from "./checkIsServer";
 import Cookies from 'js-cookie';
-import { TOKEN } from "@/common/constants/cookies";
+import { TOKEN, ROLE } from "@/common/constants/cookies";
 
 // let getCookie: (key: string) => string | undefined = () => "";
 
@@ -20,5 +20,12 @@ import { TOKEN } from "@/common/constants/cookies";
 
 // export { getCookie };
 
-let getCookie = (key: string) => Cookies.get(TOKEN);
-export {getCookie};
+export const getCookie = (key: string) => Cookies.get(TOKEN);
+
+export function getAccessCookies() {
+    return Cookies.get(TOKEN);
+}
+
+export function getRole() {
+    return Cookies.get(ROLE);
+}

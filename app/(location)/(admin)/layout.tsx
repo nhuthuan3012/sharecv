@@ -1,15 +1,19 @@
 "use client";
 import { PropsWithChildren, useEffect } from "react";
-import redirect from "next/navigation";
+import { getRole } from "@/common/helpers/getCookies";
+import { redirect } from "next/navigation";
+
 
 function AdminRoutesLayout({ children }: PropsWithChildren) {
+    const role = getRole();
+
     useEffect(() => {
         // check if account is admin
-        if(!true){
-            redirect("/login");
+        if (role !== "admin") {
+            // redirect("/login"); // redirect to general home page
         }
-     }, []);
-  return <>{children}</>;
+    }, [role]);
+    return <>{children}</>;
 }
 
 export default AdminRoutesLayout;

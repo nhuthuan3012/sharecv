@@ -6,7 +6,7 @@ import { stringify } from "querystring";
 import { API_URL } from "@/config/_constant";
 
 import { formatParams } from "./func";
-import { getAccessCookies } from "@/common/helpers/setCookies";
+import { getAccessCookies } from "@/common/helpers/getCookies";
 
 //#endregion
 

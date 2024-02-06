@@ -10,6 +10,7 @@ export interface IResumeExperience {
 export interface IResumeEducation {
     institute: string;
     degree: string;
+    gpa:string;
     major: string;
     start_time: Date;
     end_time: Date;
@@ -61,7 +62,7 @@ export interface IResume {
     facebook: string | null;
     instagram: string | null;
     skills: string[];
-    total_point: number;
+    cv_point: number;
     experience: IResumeExperience[];
     educations: IResumeEducation[];
     projects: IResumeProject[];

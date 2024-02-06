@@ -1,15 +1,19 @@
 "use client";
 import { PropsWithChildren, useEffect } from "react";
-import redirect from "next/navigation";
+import { redirect } from "next/navigation";
+import { getRole } from "@/common/helpers/getCookies";
 
 function CollaboratorRoutesLayout({ children }: PropsWithChildren) {
+    const role = getRole();
+
     useEffect(() => {
-        // check if account is collaborator
-        if(!true){
-            redirect("/login");
+        // check if account is admin
+        if (role !== "collaborator") {
+            // redirect("/login"); // redirect to general home page
         }
-     }, []);
-  return <>{children}</>;
+    }, [role]);
+
+    return <>{children}</>;
 }
 
 export default CollaboratorRoutesLayout;

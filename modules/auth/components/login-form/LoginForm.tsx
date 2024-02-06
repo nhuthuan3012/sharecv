@@ -6,7 +6,7 @@ import { IUserLogin } from "../../types";
 import { resolver } from "./resolver";
 
 // cookies
-import { getRole } from "@/common/helpers/setCookies";
+import { getRole } from "@/common/helpers/getCookies";
 
 import {
   Box,
@@ -86,7 +86,7 @@ export const LoginForm = ({
     } else if (getRole() === "recruiter") {
       navigate.replace("/posting-job/uv-list-ntd");
     } else if (getRole() === "admin") {
-      navigate.replace("/posting-job/uv-list-admin");
+      navigate.replace("/home");
     }
 
   });

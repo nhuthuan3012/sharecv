@@ -1,5 +1,5 @@
 "use client";
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie, getRole } from "@/common/helpers/getCookies";
 import { removeAccessCookies } from "@/common/helpers/setCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
@@ -22,13 +22,17 @@ const initialForm: ValuateCV ={
 }
 function CVPricingPage({params}:{params:any}) {
   // if (!getCookie("token")) {
+  const [role,setRole]=useState<string>("recruiter");
   if (!true) {
     redirect("/login", RedirectType.replace);
+  }
+  if(getRole()=== "collaborator"){
+    setRole("collaborator");
   }
   const [data,setData] = useState<ValuateCV>(initialForm);
   useEffect(() => {
     try {
-      getValuateCV(params.id).then(res => {
+      getValuateCV(params.id,role).then(res => {
         setData(res.data.data);
         console.log(res);
       })

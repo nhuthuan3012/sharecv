@@ -583,7 +583,7 @@ function JobDescription({
                       textDecoration: "none",
                     }}
                   >
-                    {data.working_time}
+                    {`${data.working_time?.week} ${data.working_time?.time}`}
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 2 }} display="flex" flexDirection="column">

@@ -1,4 +1,4 @@
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import { LoginFormHolderer } from "@/modules/auth/page";
 import { Box, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";

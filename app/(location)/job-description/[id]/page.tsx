@@ -1,6 +1,6 @@
 "use client";
-import { getCookie } from "@/common/helpers/getCokkies";
-import { getRole, removeAccessCookies } from "@/common/helpers/setCookies";
+import { getCookie } from "@/common/helpers/getCookies";
+import { getRole } from "@/common/helpers/getCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
 import JobDescription from "@/modules/posting-job/page/job-description/JobDescription";
@@ -22,7 +22,7 @@ const initialForm: IJobDetailResponse = {
   working_time: null,
   description: null,
   requirement: null,
-  benefits: [],
+  benefits: [""],
   levels: null,
   roles: null,
   yoe: null,
@@ -45,9 +45,9 @@ const initialForm: IJobDetailResponse = {
   requirements: null,
 };
 
-function JobDescriptionPage({ params }: { params: { slug: string } }) {
-  const user_role = params.slug[0];
-  const cv_id = params.slug[1];
+function JobDescriptionPage({ params }: { params: { id: string } }) {
+  const [user_role,setRole] = useState<string>("recruiter");
+  const cv_id = params.id;
   // if (!getCookie("token")) {
   if (!true) {
     redirect("/login", RedirectType.replace);
@@ -56,18 +56,21 @@ function JobDescriptionPage({ params }: { params: { slug: string } }) {
   useEffect(() => {
     try {
       if (getRole() === "collaborator") {
+        setRole("collaborator")
         getCollaboratorJobDetail(cv_id).then((res) => {
           setData(res.data.data);
           console.log(res);
         });
       }
       else if (getRole() === "recruiter") {
+        setRole("recruiter")
         getRecruiterJobDetail(cv_id).then((res) => {
           setData(res.data.data);
           console.log(res);
         });
       }
       else if (getRole() === "admin") {
+        setRole("admin")
         getAdminJobDetail(cv_id).then((res) => {
           setData(res.data.data);
           console.log(res);

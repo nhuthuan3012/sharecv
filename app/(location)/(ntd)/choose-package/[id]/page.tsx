@@ -1,10 +1,10 @@
 "use client";
 import { candidateInfoApi } from "@/common/apis/candidate-info";
 import { IResume } from "@/modules/cv-info-ntd/resume.interface";
-import CvInfoPage from "@/modules/cv-info-ntd/pages/CvInfoPage";
+import CvInfoPage from "@/modules/cv-info-ntd/pages/Draft";
 import { set } from "lodash";
 import { useEffect, useState } from "react";
-import { getRole } from "@/common/helpers/setCookies";
+import { getRole } from "@/common/helpers/getCookies";
 
 function CandidateInfoPage({ params }: { params: { id: string } }) {
   const initialData: IResume = {
@@ -29,7 +29,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
     facebook: null,
     instagram: null,
     skills: [],
-    total_point: 0,
+    cv_point: 0,
     experience: [],
     educations: [],
     projects: [],
@@ -56,7 +56,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-full flex justify-center">
-      <CvInfoPage {...candidateData} />
+      <CvInfoPage   {...candidateData} />
     </div>
   );
 }

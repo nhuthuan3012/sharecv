@@ -1,5 +1,5 @@
 "use client";
-import { getCookie } from "@/common/helpers/getCokkies";
+import { getCookie } from "@/common/helpers/getCookies";
 import { removeAccessCookies } from "@/common/helpers/setCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
@@ -10,9 +10,6 @@ import Benefit from "@/modules/home/section/benefit/Benefit";
 import Review from "@/modules/home/section/review/Review";
 function Home() {
   // if (!getCookie("token")) {
-  if (!true) {
-    redirect("/login", RedirectType.replace);
-  }
 
   return (
     <Box

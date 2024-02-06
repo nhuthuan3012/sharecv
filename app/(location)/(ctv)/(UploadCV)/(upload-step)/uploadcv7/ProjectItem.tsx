@@ -2,11 +2,11 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { ProjectItemProps } from "./type";
 import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
-import SquareAdd from "../uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../uploadcv4/search-cv/icons/SquareXmark";
 import { Input } from "@/common/components/control/Input";
 import { useDispatch } from "react-redux";
 import { addProject, addProjectAchive, changeProject, changeProjectAchive, removeProject, removeProjectAchive } from "@/lib/redux/slices";
+import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
+import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
 
 
 export default function ProjectItem({

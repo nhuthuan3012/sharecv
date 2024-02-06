@@ -41,34 +41,73 @@ function CompanyInfo() {
   const handlePlayClick = () => {
     setIsPlaying(true);
   };
-  const [data,setData] = useState<ICompanyInfoResponse>(initialForm);
+  const [data, setData] = useState<ICompanyInfoResponse>(initialForm);
   useEffect(() => {
     try {
-      getCompanyInfo().then(res => {
+      getCompanyInfo().then((res) => {
         setData(res.data.data);
         console.log(res);
-      })
-    } catch(e){
-      console.log(e)
+      });
+    } catch (e) {
+      console.log(e);
     }
-  }, [])
+  }, []);
 
   return (
     <Box
-      sx={{ mt: 10 }}
-      // display="flex"
-      width="80%"
-      // flexDirection="column"
+      display="flex"
+      width="100%"
+      flexDirection="column"
       alignItems="center"
       // py={5}
       justifyContent="center"
     >
+      <Box
+        display="flex"
+        width="100%"
+        minHeight="400px"
+        maxHeight="400px"
+        // justifyContent="center"
+        // alignItems="center"
+      >
+        <Box position="relative" display="flex" justifyContent="center" alignItems="center" height="400px" width="100%" my={0}>
+          <Box
+            position="absolute"
+            height="400px"
+            width="100%"
+            my={0}
+            sx={{
+              zIndex: "0",
+              overFlow: "hidden",
+            }}
+          >
+            <Image
+              src={data.cover_image?data.cover_image:""}
+              alt=""
+              fill
+              style={{
+                maxHeight: "100%",
+                objectFit: "fill",
+              }}
+            />
+          </Box>
+          <Box display="flex" flexDirection={"column"} sx={{zIndex:2}}>
+            <Typography className="text-white" variant="h3" sx={{zIndex:2}}>Thêm vị trí</Typography>
+            <Box display="flex" width="100%" justifyContent={"center"} flexDirection={"row"} >
+            <Typography className="text-white" sx={{zIndex:2}}>Nhà tuyển dụng</Typography>
+            <Typography className="text-white" sx={{zIndex:2}}>/</Typography>
+            <Typography className="text-orange" sx={{zIndex:2}}>Thông tin công ty</Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       <Grid
+        width="80%"
         container
         spacing={5}
         py={5}
         // px={5}
-        className="flex w-full"
+        className="flex"
         // height="700px"
         sx={{
           backgroundSize: "cover",
@@ -84,10 +123,30 @@ function CompanyInfo() {
           alignItems={"top"}
           justifyContent={"left"}
         >
-          <Image src={data.logo? data.logo:"/Logo.png"} height={100} width={100} alt="" />
-          <Box display="flex" flexDirection="column" px={3}  alignContent={"top"}>
-            <Typography className="font-bold text-primary" sx={{fontSize:"36px"}}>{data.company_name}</Typography>
-            <Typography className="font-medium text-primary" sx={{fontSize:"14px"}}>{data.address+","+data.city+","+data.country}</Typography>
+          <Image
+            src={data.logo ? data.logo : "/Logo.png"}
+            height={100}
+            width={100}
+            alt=""
+          />
+          <Box
+            display="flex"
+            flexDirection="column"
+            px={3}
+            alignContent={"top"}
+          >
+            <Typography
+              className="font-bold text-primary"
+              sx={{ fontSize: "36px" }}
+            >
+              {data.company_name}
+            </Typography>
+            <Typography
+              className="font-medium text-primary"
+              sx={{ fontSize: "14px" }}
+            >
+              {data.address + "," + data.city + "," + data.country}
+            </Typography>
           </Box>
         </Grid>
         <Grid
@@ -109,7 +168,7 @@ function CompanyInfo() {
           >
             <Button
               component={Link}
-              href="/posting-job/company-info-registry"
+              href="/company-info-registry"
               sx={{ boxShadow: 5 }}
               style={{
                 color: "white",
@@ -134,10 +193,12 @@ function CompanyInfo() {
           <Box
             py={5}
             className={"border-primary"}
-            sx={{
-              // borderTop: 1,
-              // borderBottom: 1,
-            }}
+            sx={
+              {
+                // borderTop: 1,
+                // borderBottom: 1,
+              }
+            }
           >
             <Typography
               className="text-primary"
@@ -150,32 +211,32 @@ function CompanyInfo() {
             >
               Mô tả công ty
             </Typography>
-            <Typography sx={{ mt: 2 }}>
-              {data.description}
-            </Typography>
+            <Typography sx={{ mt: 2 }}>{data.description}</Typography>
           </Box>
-          {data.company_images!== null? 
-          <Box
-            display="flex"
-            flexDirection={"column"}
-            justifyContent={"left"}
-            sx={{ pt: 3 }}
-          >
-            <Typography
-              className="text-primary"
-              variant="h6"
-              sx={{
-                // mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
+          {data.company_images !== null ? (
+            <Box
+              display="flex"
+              flexDirection={"column"}
+              justifyContent={"left"}
+              sx={{ pt: 3 }}
             >
-              Hình ảnh
-            </Typography>
-            <CardCarousel listImage={data.company_images} />
-          </Box>
-          : <></>}
+              <Typography
+                className="text-primary"
+                variant="h6"
+                sx={{
+                  // mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontWeight: 700,
+                  textDecoration: "none",
+                }}
+              >
+                Hình ảnh
+              </Typography>
+              <CardCarousel listImage={data.company_images} />
+            </Box>
+          ) : (
+            <></>
+          )}
           <Box
             display="flex"
             flexDirection={"column"}
@@ -220,79 +281,77 @@ function CompanyInfo() {
               />
             </Box> */}
             <Box
-                display="flex"
-                width="100%"
-                className={"bg-background"}
-                sx={{
-                  p: 5,
-                }}
+              display="flex"
+              width="100%"
+              className={"bg-background"}
+              sx={{
+                p: 5,
+              }}
+            >
+              <div
+                className={`video-player ${isPlaying ? "playing" : ""} w-full`}
               >
-                <div
-                  className={`video-player ${
-                    isPlaying ? "playing" : ""
-                  } w-full`}
-                >
-                  {!isPlaying && (
-                    <Box
-                      width="100%"
-                      height="300px"
-                      display="flex"
-                      alignItems={"center"}
-                      justifyContent={"center"}
+                {!isPlaying && (
+                  <Box
+                    width="100%"
+                    height="300px"
+                    display="flex"
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    sx={{
+                      p: 5,
+                      // backdropFilter: "blur(2px)",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <IconButton
                       sx={{
-                        p: 5,
-                        // backdropFilter: "blur(2px)",
                         backgroundColor: "white",
+                        p: 0,
+                        height: 100,
+                        width: 100,
+                        borderRadius: "50%",
+                        "&:hover": {
+                          backgroundColor: "gba(217, 217, 217, 0.9)",
+                        },
                       }}
+                      onClick={handlePlayClick}
                     >
-                      <IconButton
-                        sx={{
-                          backgroundColor: "white",
-                          p: 0,
+                      <FaRegPlayCircle
+                        style={{
+                          padding: 0,
+                          // stroke: "white",
+                          color: "#063776",
                           height: 100,
-                          width: 100,
-                          borderRadius: "50%",
-                          "&:hover": {
-                            backgroundColor: "gba(217, 217, 217, 0.9)",
-                          },
-                        }}
-                        onClick={handlePlayClick}
-                      >
-                        <FaRegPlayCircle
-                          style={{
-                            padding: 0,
-                            // stroke: "white",
-                            color: "#063776",
-                            height: 100,
-                            width: "100%",
-                          }}
-                        />
-                      </IconButton>
-                    </Box>
-                  )}
-                  {isPlaying && (
-                    <Box
-                      sx={{
-                        "& .player-wrapper": {
-                          width: "auto",
-                          height: "auto",
-                        },
-                        "& .react-player": {
                           width: "100%",
-                        },
-                      }}
-                    >
-                      <ReactPlayer
-                        width="100%"
-                        height={"500px"}
-                        controls
-                        file="mp4"
-                        url="./video.mp4"
+                        }}
                       />
-                    </Box>
-                  )}
-                </div>
-              </Box>
+                    </IconButton>
+                  </Box>
+                )}
+                {isPlaying && (
+                  <Box
+                    sx={{
+                      "& .player-wrapper": {
+                        width: "auto",
+                        height: "auto",
+                      },
+                      "& .react-player": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <ReactPlayer
+                      width="100%"
+                      height={"500px"}
+                      controls
+                      file="mp4"
+                      url="./video.mp4"
+                    />
+                  </Box>
+                )}
+              </div>
+            </Box>
           </Box>
         </Grid>
         <Grid
@@ -515,7 +574,7 @@ function CompanyInfo() {
               </Box>
               <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                 <Typography
-                className={"text-primary"}
+                  className={"text-primary"}
                   sx={{
                     display: { xs: "none", md: "flex" },
                     fontWeight: 400,
@@ -540,7 +599,7 @@ function CompanyInfo() {
               </Box>
               <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                 <Typography
-                className={"text-primary"}
+                  className={"text-primary"}
                   sx={{
                     display: { xs: "none", md: "flex" },
                     fontWeight: 400,

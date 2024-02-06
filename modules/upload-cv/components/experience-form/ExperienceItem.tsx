@@ -21,10 +21,10 @@ import {
 } from "./mockData";
 import { useState } from "react";
 import dayjs from "dayjs";
-import SquareAdd from "../../../../app/(location)/(UploadCV)/(upload-step)/uploadcv4/search-cv/icons/SquareAdd";
-import SquareXmark from "../../../../app/(location)/(UploadCV)/(upload-step)/uploadcv4/search-cv/icons/SquareXmark";
 import { useDispatch } from "react-redux";
 import { addExperience, changeExperience, removeExperience } from "@/lib/redux/slices";
+import SquareAdd from "../../icons/SquareAdd";
+import SquareXmark from "../../icons/SquareXmark";
 
 function ExperienceItem({
   index,

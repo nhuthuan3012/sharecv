@@ -1,30 +1,33 @@
 "use client";
- 
+
 import Header from "@/common/components/Header/Header";
 import { Footer } from "@/common/components/Footer";
 // import AppHeader from "@/common/components/AppHeader";
 // import { hasAuthCookies } from "@/common/helpers/authCookies";
 // import dayjs from "dayjs";
 // import "dayjs/locale/vi";
-import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect } from "react";
- 
+import { useRouter } from "next/navigation";
+import { checkIsLogin } from "@/common/helpers/checkIsLogin";
+import { getAccessCookies } from "@/common/helpers/setCookies";
+
 export default function MainLayout({ children }: PropsWithChildren) {
-//   const isLogin = hasAuthCookies();
-//   const router = useRouter();
-//   useEffect(() => {
-//     dayjs.locale("vi");
-//   }, []);
- 
-//   if(!isLogin) {
-//     router.replace("/un-auth");
-//   }
- 
+  const isLogin = checkIsLogin();
+  const router = useRouter();
+  //   useEffect(() => {
+  //     dayjs.locale("vi");
+  //   }, []);
+  useEffect(() => {
+    if (!isLogin) {
+      router.push("/login");
+    }
+  }, [isLogin]);
+
   return (
-    < div  >
+    <div>
       <Header />
-      <div className="flex justify-center">{children}</div>
+      <div>{children}</div>
       <Footer />
-    </div >
+    </div>
   );
 }
