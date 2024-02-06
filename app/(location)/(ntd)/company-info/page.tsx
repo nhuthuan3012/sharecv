@@ -20,10 +20,6 @@ function CompanyInfoPage() {
       justifyContent="center"
       sx={{overflow:"auto"}}
     >
-      <Box display="flex" width="100%" minHeight="400px" maxHeight="500px" sx={{backgroundImage:`url(${"/background-posting-job.png"})`}} justifyContent="center"
-      alignItems="center" flex={1}>
-       <Typography variant="h3">Thêm vị trí</Typography>
-       </Box>
       <CompanyInfo/>
     </Box>
   );

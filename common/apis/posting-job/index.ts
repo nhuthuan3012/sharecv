@@ -40,7 +40,7 @@ export const addCompany = (data: ICompanyInfo): Promise<IAuthResponse> => {
     
     }
   }
-  return axiosClient.post("/postjob/recruiter/add-company-info", formData, {
+  return axiosClient.post("/company/add-company-info", formData, {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
@@ -51,5 +51,5 @@ export const revaluate = (data: IRevaluate): Promise<IAuthResponse> => {
   return axiosClient.put("/postjob/collaborator/update-resume-valuate", data);
 };
 export const getCompanyInfo = (): Promise<ICompanyInfo> => {
-  return axiosClient.get("/postjob/recruiter/get-company-info");
+  return axiosClient.get("/company/get-company-info");
 };

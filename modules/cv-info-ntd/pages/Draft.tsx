@@ -32,7 +32,7 @@ function CvInfoPage({
   facebook,
   instagram,
   skills,
-  total_point,
+  cv_point,
   experience,
   educations,
   projects,
@@ -61,7 +61,7 @@ function CvInfoPage({
     facebook: facebook,
     instagram: instagram,
     skills:skills,
-    total_point: total_point,
+    cv_point: cv_point,
     experience: experience,
     educations: educations,
     projects: projects,
@@ -89,7 +89,7 @@ function CvInfoPage({
         <div className="flex-1" />
 
         <Typography className="text-[22px] font-bold text-amber-400">
-          {total_point} điểm
+          {cv_point} điểm
         </Typography>
       </div>
 
@@ -132,7 +132,7 @@ function CvInfoPage({
               Mục tiêu nghề nghiệp
             </Typography>
             <ul className="list-disc list-inside">
-              {objectives.map((item) => (
+              {objectives&&objectives.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
