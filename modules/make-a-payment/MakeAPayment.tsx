@@ -12,14 +12,37 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import { IListPointRespone, PointPackage } from "@/interfaces/point-package";
 import { useRouter } from "next/navigation";
-function MakeAPayment({ data,num }: { data: PointPackage,num:number }) {
+import PaymentInfo from "./components/PaymentInfo";
+import { IPaymentInfo } from "./type";
+import { getPaymentInfo } from "@/common/apis/money-2-point";
+function MakeAPayment({ data, num }: { data: PointPackage; num: number }) {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
+  const [pay, setPay] = useState(false);
+  const [info, setInfo] = useState<IPaymentInfo>({
+    id_code:"",
+    bank_name: "",
+    transaction: "",
+    account_owner: "",
+    account_number: "",
+    qr_code: ""
+  });
   const handleCheckbox = (event: any) => {
     setChecked(event.target.checked);
   };
   const onClickReturn = () => {
-    router.push("/buy-point")
+    router.push("/buy-point");
+  };
+  const onClickPay = () => {
+    (async () => {
+      try {
+        const res = await getPaymentInfo(data.package_id.toString(),num.toString(),(data.price*num).toString(),"banking");
+        setInfo(res.data.data);
+        setPay(true);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   };
   return (
     <Box
@@ -60,59 +83,59 @@ function MakeAPayment({ data,num }: { data: PointPackage,num:number }) {
             style={{ height: "50px" }}
           >
             {/* {data.map((row) => ( */}
-              <tr className="gap-0" key={data.package_id}>
-                <td
-                  style={{
-                    borderBottomLeftRadius: "10px",
-                    borderTopLeftRadius: "10px",
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography className="text-black">
-                    {" "}
-                    {`Gói ${data.point} Điểm`}{" "}
-                  </Typography>
-                </td>
-                <td
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography className="text-black">
-                    {" "}
-                    {data.price.toLocaleString("en-US")}
-                  </Typography>
-                </td>
-                <td
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  {num}
-                </td>
-                <td
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography className="text-black">
-                    {" "}
-                    {(data.price * num).toLocaleString("en-US")}
-                  </Typography>
-                </td>
-                <td
-                  style={{
-                    borderBottomRightRadius: "10px",
-                    borderTopRightRadius: "10px",
-                    textAlign: "center",
-                  }}
-                >
-                  <IconButton aria-label="delete" color="primary">
-                    <DeleteIcon />
-                  </IconButton>
-                </td>
-                {/* Add more cells based on your data structure */}
-              </tr>
+            <tr className="gap-0" key={data.package_id}>
+              <td
+                style={{
+                  borderBottomLeftRadius: "10px",
+                  borderTopLeftRadius: "10px",
+                  textAlign: "center",
+                }}
+              >
+                <Typography className="text-black">
+                  {" "}
+                  {`Gói ${data.point} Điểm`}{" "}
+                </Typography>
+              </td>
+              <td
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Typography className="text-black">
+                  {" "}
+                  {data.price.toLocaleString("en-US")}
+                </Typography>
+              </td>
+              <td
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                {num}
+              </td>
+              <td
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Typography className="text-black">
+                  {" "}
+                  {(data.price * num).toLocaleString("en-US")}
+                </Typography>
+              </td>
+              <td
+                style={{
+                  borderBottomRightRadius: "10px",
+                  borderTopRightRadius: "10px",
+                  textAlign: "center",
+                }}
+              >
+                <IconButton aria-label="delete" color="primary">
+                  <DeleteIcon />
+                </IconButton>
+              </td>
+              {/* Add more cells based on your data structure */}
+            </tr>
             {/* ))} */}
           </tbody>
         </table>
@@ -148,8 +171,19 @@ function MakeAPayment({ data,num }: { data: PointPackage,num:number }) {
             của ShareCV
           </Typography>
         </Box>
-        <Button className={"hover:text-primary border-primary hover:border-primary hover:bg-white"} sx={{border:1,borderRadius:"20px"}} variant="contained"> Thanh toán</Button>
+        <Button
+          className={
+            "hover:text-primary border-primary hover:border-primary hover:bg-white"
+          }
+          disabled={!checked}
+          sx={{ border: 1, borderRadius: "20px" }}
+          variant="contained"
+          onClick={onClickPay}
+        >
+          Thanh toán
+        </Button>
       </Box>
+      {checked&&pay&&<PaymentInfo data={info}/>}
     </Box>
   );
 }

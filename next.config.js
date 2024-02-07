@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
     images: {
-        domains: [ 'localhost','103.130.212.245',"0475-2402-800-62f8-2bc4-7a79-f49-5a79-a976.ngrok-free.app"],
+        domains: [ 'localhost','103.130.212.245',"06b3-116-96-77-72.ngrok-free.app"],
     },
     webpack: (config) => {
         config.resolve.fallback = { fs: false };

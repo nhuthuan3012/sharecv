@@ -202,7 +202,7 @@ const ViewCV = ({
               }}
             >
               <View style={styles.viewRow}>
-                <Text style={styles.text}>Ngày sinh: </Text>
+                <Text style={styles.text}>Day of Birth: </Text>
                 <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
                   {`${dayjs(birthday).format("DD/MM/YYYY")}`}
                 </Text>
@@ -313,7 +313,7 @@ const ViewCV = ({
             </View>
           </View>
           )}
-          {educations&&(
+          {experience&&(
           <View
             style={{
               borderTop: 1,
@@ -345,7 +345,7 @@ const ViewCV = ({
                 justifyContent: "flex-start",
               }}
             >
-              {educations.map((item, index) => (
+              {experience.map((item, index) => (
                 <View
                   key={index}
                   wrap={false}
@@ -392,19 +392,20 @@ const ViewCV = ({
                       alignItems: "flex-start",
                     }}
                   >
-                    <Text style={styles.text}>{item.institute}</Text>
+                    <Text style={styles.text}>{item.job_title}</Text>
+                    <Text style={{ color: "black", fontSize: 12 }}>
+                      {item.company_name}
+                    </Text>
                     <Text
                       style={{ color: "black", fontSize: 12 }}
-                    >{`${item.degree} ${item.major}`}</Text>
-                    <Text style={{ color: "black", fontSize: 12 }}>
-                      {item.gpa}
-                    </Text>
+                    >{`${item.levels} ${item.roles}`}</Text>
                   </View>
                 </View>
               ))}
             </View>
           </View>
           )}
+          {skills&&(
           <View
             style={{
               borderTop: 1,
@@ -436,10 +437,11 @@ const ViewCV = ({
                 alignItems: "flex-start",
               }}
             >
-              <Text style={styles.nomarl}>Ngày sinh: </Text>
+              {skills.map((item,index)=>(<Text key={index} style={styles.nomarl}>{item} </Text>))}
             </View>
           </View>
-          {educations&&(
+          )}
+          {certificates&&(
           <View
             style={{
               borderTop: 1,
@@ -474,7 +476,7 @@ const ViewCV = ({
                 justifyContent: "flex-start",
               }}
             >
-              {educations.map((item, index) => (
+              {certificates.language_certificates.map((item, index) => (
                 <View
                   key={index}
                   wrap={false}
@@ -495,20 +497,10 @@ const ViewCV = ({
                     }}
                   >
                     <Text style={{ color: "gray", fontSize: 12 }}>
-                      {" "}
-                      {`${
-                        item.start_time !== undefined
-                          ? dayjs(item.start_time).format("MM/YYYY")
-                          : ""
-                      } -`}{" "}
+                     1/2019 -
                     </Text>
                     <Text style={{ color: "gray", fontSize: 12 }}>
-                      {" "}
-                      {`${
-                        item.end_time !== undefined
-                          ? dayjs(item.end_time).format("MM/YYYY")
-                          : ""
-                      }`}{" "}
+                     1/2022
                     </Text>
                   </View>
                   <View
@@ -521,13 +513,57 @@ const ViewCV = ({
                       alignItems: "flex-start",
                     }}
                   >
-                    <Text style={styles.text}>{item.institute}</Text>
+                    <Text style={styles.text}>{item.certificate_language}</Text>
                     <Text
                       style={{ color: "black", fontSize: 12 }}
-                    >{`${item.degree} ${item.major}`}</Text>
+                    >{`${item.certificate_name} - ${item.certificate_level}`}</Text>
                     <Text style={{ color: "black", fontSize: 12 }}>
-                      {item.gpa}
+                      {item.certificate_level}
                     </Text>
+                  </View>
+                </View>
+              ))}
+              {certificates.other_certificate.map((item, index) => (
+                <View
+                  key={index}
+                  wrap={false}
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      width: "30%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                     1/2019 -
+                    </Text>
+                    <Text style={{ color: "gray", fontSize: 12 }}>
+                     1/2021
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      gap: "5px",
+                      display: "flex",
+                      width: "70%",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Text style={styles.text}>{item.certificate_name}</Text>
+                    <Text
+                      style={{ color: "black", fontSize: 12 }}
+                    >{`${item.certificate_level}`}</Text>
                   </View>
                 </View>
               ))}

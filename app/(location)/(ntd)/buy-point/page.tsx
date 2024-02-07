@@ -8,7 +8,7 @@ import CompanyInfo from "@/modules/company-info/CompanyInfo";
 import BuyPoint from "@/modules/buy-point/BuyPoint";
 import { IListPointRespone, PointPackage } from "@/interfaces/point-package";
 import { useEffect, useState } from "react";
-import { getListPointPackage } from "@/common/apis/point-package";
+import { getListPointPackage } from "@/common/apis/money-2-point";
 function BuyPointPage() {
   // if (!getCookie("token")) {
     const [data, setData] = useState<PointPackage[]>([{
