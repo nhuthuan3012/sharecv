@@ -52,7 +52,7 @@ export default function InterviewDialog({
   const onSubmit = handleSubmit(async (data) => {
     if (confirmInterview) {
       console.log("confirmInterview", data);
-      const res = await confirmInterviewInfo(data.cv_id);
+      const res = await confirmInterviewInfo(data.cv_id!);
     } else {
       console.log("isBooking", data);
       const res = await rescheduleInterview(data);
