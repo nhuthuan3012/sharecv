@@ -32,7 +32,7 @@ function CvInfoPage({
   facebook,
   instagram,
   skills,
-  cv_point,
+  total_point,
   experience,
   educations,
   projects,

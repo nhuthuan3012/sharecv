@@ -62,7 +62,7 @@ export interface IResume {
     facebook: string | null;
     instagram: string | null;
     skills: string[];
-    cv_point: number;
+    total_point: number;
     experience: IResumeExperience[];
     educations: IResumeEducation[];
     projects: IResumeProject[];
