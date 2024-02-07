@@ -1,16 +1,20 @@
-import { BorderColor, Height } from "@mui/icons-material";
-import React from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import Select, { GroupBase, Props } from "react-select";
+import type {} from 'react-select/base';
+// This import is necessary for module augmentation.
+// It allows us to extend the 'Props' interface in the 'react-select/base' module
+// and add our custom property 'myCustomProp' to it.
 
-interface SelectProps<
-  Option = unknown,
-  IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
-> {
-  id?: string;
-  label?: string;
-  required?: boolean;
-  placeholder?: string;
+declare module 'react-select/base' {
+  export interface Props<
+    Option,
+    IsMulti extends boolean,
+    Group extends GroupBase<Option>
+  > {
+    id?: string;
+    label?: string;
+    required?: boolean;
+  }
 }
 
 const customStyles = {
@@ -21,6 +25,7 @@ const customStyles = {
 
   control: (provided: any) => ({
     ...provided,
+    minHeight: '54px',
     height: '100%',
     borderWidth: '2px',
     borderColor: "#073776",
@@ -46,11 +51,12 @@ const customStyles = {
   }),
 };
 
-function CustomSelect<
+function Component  <
   Option,
-  IsMulti extends boolean,
-  Group extends GroupBase<Option>
->(props: Props<Option, IsMulti, Group> & SelectProps<Option, IsMulti, Group>) {
+  IsMulti extends boolean = false ,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(props: Props<Option, IsMulti, Group>,
+  ref: ForwardedRef<HTMLInputElement>) {
   const { id, label, required, placeholder, ...selectProps } = props;
 
   return (
@@ -59,11 +65,12 @@ function CustomSelect<
         {label}
         {required && <span className="text-red-500"> *</span>}
       </label>
-      <div className="h-11">
-      <Select  {...selectProps} styles={customStyles} theme={(theme) => ({ ...theme, borderRadius: 8 })} />
+      <div className="">
+      <Select 
+       {...selectProps} styles={customStyles} theme={(theme) => ({ ...theme, borderRadius: 8 })} />
       </div>
     </div>
   );
 }
 
-export default CustomSelect;
+export const CustomSelect = forwardRef(Component);

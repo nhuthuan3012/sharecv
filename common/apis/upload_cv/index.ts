@@ -43,6 +43,7 @@ export const fillResume = (data: any): Promise<IUploadCVResponse> => {
   formData.append('instagram',data.instagram)
   formData.append('education',JSON.stringify(data.education))
   formData.append('work_experiences',JSON.stringify(data.work_experiences))
+  formData.append('projects', JSON.stringify(data.projects))
   formData.append('skills',JSON.stringify(data.skills))
   formData.append('awards',JSON.stringify(data.awards))
   formData.append('language_certificates',JSON.stringify(data.language_certificates))

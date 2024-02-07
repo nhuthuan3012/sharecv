@@ -2,7 +2,8 @@
 
 import { IconButton } from "@mui/material";
 import { EducationItemProps } from "./type";
-import CustomSelect from "@/common/components/control/select/Select";
+
+import {CustomSelect} from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { academicDegree } from "./mockData";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -12,6 +13,8 @@ import { addEducation, changeEducation, removeEducation } from "@/lib/redux/slic
 import utc from 'dayjs/plugin/utc';
 import SquareAdd from "@/modules/upload-cv/icons/SquareAdd";
 import SquareXmark from "@/modules/upload-cv/icons/SquareXmark";
+import { SingleValue } from "react-select";
+import { SelectOption } from "@/common/components/control/select/types";
 dayjs.extend(utc);
 
 export default function EducationItem({
@@ -43,7 +46,7 @@ export default function EducationItem({
             options={academicDegree}
             value={{value: initialValues.degree, label: initialValues.degree}}
             label="Học vị"
-            onChange={(prop) => dispatch(changeEducation({value: prop?.value as string, key: 'degree', index: index}))}
+            onChange={(prop) => dispatch(changeEducation({value: (prop as SingleValue<SelectOption>)?.value as string, key: 'degree', index: index}))}
           />
         <Input
           label="Tên trường, tổ chức"

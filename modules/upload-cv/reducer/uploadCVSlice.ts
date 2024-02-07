@@ -66,8 +66,8 @@ export const InitialCertificate: Certificate = {
 };
 
 export const InitialProject: Project = {
-  name_project: "",
-  description: [""],
+  project_name: "",
+  descriptions: [""],
   start_time: "2024-01-01 00:00:00",
   end_time: "2024-01-01 00:00:00",
 };
@@ -118,6 +118,12 @@ export const uploadCVSlice = createSlice({
       action: PayloadAction<string>
     ): void => {
       state.personal_infor.avatar = action.payload
+    },
+    changeCvFile: (  
+      state,
+      action: PayloadAction<string>
+    ): void => {
+      state.personal_infor.cv_file = action.payload
     },
     changeSkill: (  
       state,
@@ -181,8 +187,8 @@ export const uploadCVSlice = createSlice({
       );
     },
     addProjectAchive: (state, action: PayloadAction<number>) => {
-      state.projects[action.payload].description = [
-        ...state.projects[action.payload].description,
+      state.projects[action.payload].descriptions = [
+        ...state.projects[action.payload].descriptions,
         "",
       ];
     },
@@ -190,16 +196,16 @@ export const uploadCVSlice = createSlice({
       state,
       action: PayloadAction<RemoveProjectAchive>
     ) => {
-      state.projects[action.payload.index].description = state.projects[
+      state.projects[action.payload.index].descriptions = state.projects[
         action.payload.index
-      ].description.filter((_, i) => i !== action.payload.achiveIndex);
+      ].descriptions.filter((_, i) => i !== action.payload.achiveIndex);
     },
     changeProjectAchive: (
       state,
       action: PayloadAction<ChangeProjectAchive>
     ) => {
       const { index, value, achiveIndex } = action.payload;
-      state.projects[index].description[achiveIndex] = value;
+      state.projects[index].descriptions[achiveIndex] = value;
     },
     addAward: (state) => {
       state.awards = [...state.awards, InitialAward];
@@ -216,7 +222,7 @@ export const uploadCVSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(addUploadCV.fulfilled, (state, action) => {
       // Add user to the state array
-      state.personal_infor.address = action.payload.data.contact_information.address[0]
+      state.personal_infor.address = action.payload.data.contact_information.address
       state.personal_infor.birthday = action.payload.data.personal_information.birthday
       state.personal_infor.city = action.payload.data.contact_information.city
       state.personal_infor.country = action.payload.data.contact_information.country
@@ -224,8 +230,8 @@ export const uploadCVSlice = createSlice({
       state.personal_infor.facebook = action.payload.data.personal_information.facebook
       state.personal_infor.gender = action.payload.data.personal_information.gender
       // state.personal_infor.id = action.payload.data.
-      state.personal_infor.industry = action.payload.data.industry[0] // !!!!
-      state.personal_infor.job = action.payload.data.job_title[0] //!!!
+      state.personal_infor.industry = action.payload.data.industry // !!!!
+      state.personal_infor.job = action.payload.data.job_title //!!!
       state.personal_infor.level = action.payload.data.levels[0] //!!!
       state.personal_infor.linkedln = action.payload.data.personal_information.linkedin
       state.personal_infor.name = action.payload.data.personal_information.name
@@ -238,12 +244,16 @@ export const uploadCVSlice = createSlice({
 
       state.educations = action.payload.data.education
       state.experiences = action.payload.data.work_experience
-      state.projects = action.payload.data.projects.map((item) => (
-        {name_project: item.project_name,
-          start_time: item.start_time,
-          end_time: item.end_time,
-          description: item.detailed_descriptions}
-      ))
+      if(action.payload.data.projects.length > 0){
+        state.projects = action.payload.data.projects.map((item) => (
+          {
+            project_name: item.project_name,
+            start_time: item.start_time,
+            end_time: item.end_time,
+            descriptions: item.detailed_descriptions
+          }
+        ))
+      }
 
       if(action.payload.data.certificates.language_certificates.length > 0){
         state.certificates = action.payload.data.certificates.language_certificates.map(item => ({
@@ -255,13 +265,15 @@ export const uploadCVSlice = createSlice({
         }))
       }
 
-      if(action.payload.data.awards.length !== 0){
+      if(action.payload.data.awards.length > 0 ){
         state.awards = action.payload.data.awards.map(item => ( {
           name: item.award_name,
           time: item.time,
-          description: item.descriptions,
+          description: item.description,
         }))
       }
+
+      
 
       state.status='fullfilled'
 
@@ -291,6 +303,7 @@ export const {
   changeExperience,
   changeSkill,
   changeAvatar,
+  changeCvFile,
 } = uploadCVSlice.actions;
 
 /* Types */
@@ -355,10 +368,10 @@ export interface Certificate {
 }
 
 export interface Project {
-  name_project: string;
+  project_name: string;
   start_time: string;
   end_time: string;
-  description: string[];
+  descriptions: string[];
 }
 
 export interface Award {

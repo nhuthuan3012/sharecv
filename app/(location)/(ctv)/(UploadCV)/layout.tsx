@@ -21,14 +21,10 @@ export default function UploadCVLayout({
     storeRef.current = reduxStore()
   }
 
-  if (getRole() !== "collaborator") {
-    redirect("/home", RedirectType.replace);
-  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Provider store={storeRef.current}>
-        <Header />
         {children}
       </Provider>
     </LocalizationProvider>
