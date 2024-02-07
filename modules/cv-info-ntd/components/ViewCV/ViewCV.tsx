@@ -1,25 +1,23 @@
 "use client";
-import React from "react";
-import ReactPDF, {
+import { IResume } from "@/modules/cv-info/resume.interface";
+import {
+  Document,
+  Font,
+  Image,
+  PDFViewer,
   Page,
+  StyleSheet,
   Text,
   View,
-  Image,
-  Document,
-  StyleSheet,
-  Font,
-  PDFViewer,
 } from "@react-pdf/renderer";
-import { Box, Typography } from "@mui/material";
-import { ViewHeadline } from "@mui/icons-material";
-import { IResume } from "@/modules/cv-info/resume.interface";
-import "react-pdf/dist/Page/TextLayer.css";
 import dayjs from "dayjs";
+import "react-pdf/dist/Page/TextLayer.css";
+
 // Create styles
-Font.register({
-  family: "Montserrat",
-  src: "http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf",
-});
+// Font.register({
+//   family: "Montserrat",
+//   src: "http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf",
+// });
 
 const styles = StyleSheet.create({
   body: {
