@@ -67,7 +67,7 @@ function CvInfoPage({
             py: 1,
             mx: 1,
           }}
-          onClick={() => navigate.replace(`/posting-job/ai-result/admin/${cv_id}`) }
+          onClick={() => navigate.replace(`/ai-result/admin/${cv_id}`) }
         >
           <Typography className="font-bold hover:text-primary">Xem kết quả AI</Typography>
         </Button>

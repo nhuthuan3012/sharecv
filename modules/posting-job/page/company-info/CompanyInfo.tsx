@@ -11,6 +11,7 @@ import { ICompanyInfo, ICompanyInfoResponse } from "@/common/interfaces";
 import { getAccessCookies } from "@/common/helpers/setCookies";
 import { FaRegPlayCircle } from "react-icons/fa";
 import React from "react";
+import { getRole } from "@/common/helpers/getCookies";
 const initialForm: ICompanyInfoResponse = {
   company_name: "",
   industry: "",
@@ -52,7 +53,7 @@ function CompanyInfo() {
       console.log(e)
     }
   }, [])
-
+  const isRecruiter= (getRole()==="recruiter")
   return (
     <Box
       sx={{ mt: 10 }}
@@ -97,6 +98,7 @@ function CompanyInfo() {
           height="100px"
           justifyContent={"right"}
         >
+          {isRecruiter&&(
           <Box
             display="flex"
             flexDirection={"column"}
@@ -122,6 +124,7 @@ function CompanyInfo() {
               Chỉnh sửa
             </Button>
           </Box>
+          )}
         </Grid>
         <Grid
           item
