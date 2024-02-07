@@ -1,0 +1,173 @@
+"use client";
+import { ICtvWithDrawalList } from "@/interfaces/ctv-withdrawal-list";
+import { CustomPagination } from "@/modules/withdrawal-list-ctv/components/pagination";
+import { TableSearchBar } from "@/modules/withdrawal-list-ctv/components/searchbar";
+import { CtvWithDrawalListTable } from "@/modules/withdrawal-list-ctv/sections/CtvWithdrawalListTable";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+function UVListPage() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const [pagination, setPagination] = useState({
+    page_index: 1,
+    limit: 10,
+  });
+  const router = useRouter();
+  const [metaData, setMetaData] = useState({
+    total_pages: 5,
+    total_items: 20,
+  });
+
+  const [uvListData, setUvListData] = useState<ICtvWithDrawalList[]>([]);
+  const changeState = (state: string) => {
+    router.push(`${pathname}?state=${state}`);
+  };
+  useEffect(() => {
+    try {
+      let payload: any = {
+        page_index: pagination.page_index,
+        limit: pagination.limit,
+        state: searchParams.get("state") || "referred",
+        role: "collaborator",
+      };
+      /*getCtvWalletList(payload).then((res) => {
+        setMetaData({
+          ...metaData,
+          total_pages: res.data.data.total_pages,
+          total_items: res.data.data.total_items,
+        });
+        setUvListData(res.data.data.item_lst);
+      });*/
+    } catch (err) {
+      console.log(err);
+    }
+  }, [pagination, searchParams]);
+
+  const handleChangeNumPerPage = (value: any) => {
+    setPagination({
+      ...pagination,
+      limit: value,
+    });
+  };
+
+  const handleChangePageNumber = (page: number) => {
+    setPagination({
+      ...pagination,
+      page_index: page,
+    });
+  };
+
+  const handleGetJobDetail = (index: number) => {
+    console.log(uvListData);
+    // router.push(`job-description/collaborator/1`)
+  };
+
+  return (
+    <Box
+      sx={{
+        width: "auto",
+        marginTop: "10px",
+      }}
+      className="mx-10"
+    >
+      <Box>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#063776",
+            fontFamily: "Montserrat",
+            fontSize: "36px",
+            fontStyle: "normal",
+            fontWeight: 700,
+            lineHeight: "80px",
+            padding: "5px",
+          }}
+        >
+          Lịch sử rút tiền
+        </Typography>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mt="20px"
+      >
+        <Box
+          display="flex"
+          flexDirection="row"
+          gap="15px"
+          alignItems="center"
+          p={"5px"}
+        >
+          <Box>
+            <Typography
+              sx={{
+                color: "#063776",
+                fontFamily: "Montserrat",
+                fontSize: "22px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "76.296px",
+              }}
+            >
+              Show
+            </Typography>
+          </Box>
+          <Box>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              value={pagination.limit}
+              options={[10, 20, 30, 40, 50]}
+              renderInput={(params) => <TextField {...params} label="" />}
+              onChange={(event, value) => handleChangeNumPerPage(value)}
+              getOptionLabel={(option) => option.toString()}
+              sx={{
+                height: "40px",
+                width: "100px",
+                "& .MuiInputBase-root": {
+                  borderRadius: "10px",
+                  color: "#063776",
+                  height: "40px",
+                  width: "100px",
+                },
+                "& .input": {
+                  height: "20px",
+                },
+              }}
+            />
+          </Box>
+        </Box>
+        <Box>
+          <TableSearchBar />
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: "50px",
+        }}
+      >
+        <CtvWithDrawalListTable data={uvListData} />
+        <Box
+          sx={{
+            marginTop: "25px",
+          }}
+        >
+          <CustomPagination
+            onChangePage={(page: number) => handleChangePageNumber(page)}
+            numsPerPage={pagination.limit}
+            totalPage={metaData.total_pages}
+            total_items={metaData.total_items}
+            currentPage={pagination.page_index}
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+export default UVListPage;

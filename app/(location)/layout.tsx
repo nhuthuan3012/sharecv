@@ -6,10 +6,9 @@ import { Footer } from "@/common/components/Footer";
 // import { hasAuthCookies } from "@/common/helpers/authCookies";
 // import dayjs from "dayjs";
 // import "dayjs/locale/vi";
-import { PropsWithChildren, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { checkIsLogin } from "@/common/helpers/checkIsLogin";
-import { getAccessCookies } from "@/common/helpers/setCookies";
+import { useRouter } from "next/navigation";
+import { PropsWithChildren, useEffect } from "react";
 import AppHeader from "@/common/components/AppHeader";
 import { getRole } from "@/common/helpers/getCookies";
 
