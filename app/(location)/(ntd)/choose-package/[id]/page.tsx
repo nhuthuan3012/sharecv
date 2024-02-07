@@ -1,10 +1,10 @@
 "use client";
 import { candidateInfoApi } from "@/common/apis/candidate-info";
-import { IResume } from "@/modules/cv-info-ntd/resume.interface";
-import CvInfoPage from "@/modules/cv-info-ntd/pages/Draft";
-import { set } from "lodash";
-import { useEffect, useState } from "react";
 import { getRole } from "@/common/helpers/getCookies";
+import CvInfoPage from "@/modules/cv-info-ntd/pages/Draft";
+import { IResume } from "@/modules/cv-info-ntd/resume.interface";
+
+import { useEffect, useState } from "react";
 
 function CandidateInfoPage({ params }: { params: { id: string } }) {
   const initialData: IResume = {
@@ -29,7 +29,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
     facebook: null,
     instagram: null,
     skills: [],
-    cv_point: 0,
+    total_point: 100,
     experience: [],
     educations: [],
     projects: [],
@@ -46,7 +46,11 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
     if (!params.id) return;
     (async () => {
       try {
-        const res = await candidateInfoApi.getById(parseInt(params.id),getRole());
+        const res = await candidateInfoApi.getById(
+          parseInt(params.id),
+          getRole()
+        );
+        console.log("Giá trị: ", res.data);
         setCandidateData(res.data.data);
       } catch (error) {
         console.log(error);

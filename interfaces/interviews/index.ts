@@ -22,7 +22,7 @@ export interface IInterviewListResponse {
 }
 
 export interface IFormInterview {
-  cv_id: number;
+  cv_id?: number;
   date: string;
   location: string;
   start_time: string;
