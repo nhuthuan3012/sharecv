@@ -36,7 +36,7 @@ function UploadJDPage({ params }: { params: any }) {
         <OtherCertificateForm/>
         <SalaryForm/>
         <WorkingAddressForm/>
-        <AwardPrizeForm/>
+        {/* <AwardPrizeForm/> */}
         <div className="flex flex-row justify-end gap-8">
           
         <button

@@ -81,9 +81,31 @@ export const initialState: UploadJdSliceState = {
 };
 
 // interface for payload
+export interface changeWorkAddressJDPayload {
+  key: keyof WorkAddress;
+  value: string ;
+}
+
+export interface changeSalaryJDPayload {
+  key: keyof Salary;
+  value: string ;
+}
+
 export interface ChangeOtherCertificatePayload {
   index: number;
   key: keyof OtherCertificate;
+  value: string;
+}
+
+export interface ChangeEducationJDPayload {
+  index: number;
+  key: keyof Education;
+  value: string;
+}
+
+export interface changeLanguageCertificatePayload {
+  index: number;
+  key: keyof LanguageCertificate;
   value: string;
 }
 

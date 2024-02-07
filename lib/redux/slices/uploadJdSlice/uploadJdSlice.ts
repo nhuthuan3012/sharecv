@@ -4,8 +4,13 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import {
+  ChangeEducationJDPayload,
   ChangeJobDescription,
   ChangeOtherCertificatePayload,
+  changeLanguageCertificatePayload,
+  changeSalaryJDPayload,
+  changeWorkAddressJDPayload,
+  initialEducation,
   initialLanguageCertificate,
   initialOtherCertificate,
   initialState,
@@ -38,6 +43,19 @@ export const uploadJdSlice = createSlice({
       const { key, value } = action.payload;
       state.jobDescription = { ...state.jobDescription, [key]: value };
     },
+    // Education
+    addEducationJD: (state) => {
+      state.education = [...state.education, initialEducation]
+    },
+    removeEducationJD: (state, action: PayloadAction<number>) => {
+      state.education = state.education.filter(
+        (_, i) => i !== action.payload
+      );
+    },
+    changeEducationJD: (state,action: PayloadAction<ChangeEducationJDPayload> ) => {
+      const { index, key, value } = action.payload;
+      state.education[index][key] = value
+    },
     // LanguageCertificate
     addLanguageCertificate: (state) => {
       state.languageCerttificate = [
@@ -50,8 +68,9 @@ export const uploadJdSlice = createSlice({
         (_, i) => i !== action.payload
       );
     },
-    changeLanguageCertificate: (state) => {
-      state.status = "failed";
+    changeLanguageCertificate: (state, action: PayloadAction<changeLanguageCertificatePayload>) => {
+      const {index, value, key} = action.payload
+      state.languageCerttificate[index][key] = value
     },
     // OtherCertificate
     addOtherCertificate: (state) => {
@@ -71,6 +90,20 @@ export const uploadJdSlice = createSlice({
     ) => {
       const { index, key, value } = action.payload;
       state.otherCertificate[index][key] = value;
+    },
+    changeSalaryJD: (
+      state,
+      action: PayloadAction<changeSalaryJDPayload>
+    ) => {
+      const { key, value } = action.payload;
+      state.salary = {...state.salary, [key]: value}
+    },
+    changeWorkAddressJD: (
+      state,
+      action: PayloadAction<changeWorkAddressJDPayload>
+    ) => {
+      const { key, value } = action.payload;
+      state.workAddress = {...state.workAddress, [key]: value}
     },
   },
   extraReducers: (builder) => {
@@ -117,17 +150,22 @@ export const uploadJdSlice = createSlice({
     });
     builder.addCase(actionParseJD.pending, (state, action) => {
       state.status = "loading"
-    })
+    });
   },
 });
 
 export const {
   changeJdFile,
   changeJobDescription,
+  addEducationJD,
+  removeEducationJD,
+  changeEducationJD,
   addLanguageCertificate,
   removeLanguageCertificate,
   changeLanguageCertificate,
   addOtherCertificate,
   removeOtherCertificate,
   changeOtherCertificate,
+  changeSalaryJD,
+  changeWorkAddressJD,
 } = uploadJdSlice.actions;

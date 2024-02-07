@@ -1,10 +1,16 @@
 import { Input } from "@/common/components/control/Input";
-import {CustomSelect} from "@/common/components/control/select/Select";
+import { CustomSelect } from "@/common/components/control/select/Select";
 import { IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { currencyUnitOpt } from "./mockData";
+import UploadJD from "../../UploadJD";
+import { useDispatch, useSelector } from "react-redux";
+import { ReduxDispatch } from "@/lib/redux/store";
+import { changeSalaryJD, selectUploadJD } from "@/lib/redux/slices";
 
 const SalaryForm = () => {
+  const uploadJD = useSelector(selectUploadJD);
+  const dispatch = useDispatch<ReduxDispatch>();
   return (
     <>
       <div className="border-2 border-solid rounded-2xl p-8 border-primary bg-light">
@@ -18,9 +24,20 @@ const SalaryForm = () => {
                 <span className="block mb-2 text-sm font-medium text-primary">
                   Lương min <span className="text-red-500"> *</span>
                 </span>
-                
+
                 <div className="flex flex-row gap-4 ">
-                  <Input placeholder="Please type here" />
+                  <Input
+                    value={uploadJD.salary.min_salary}
+                    onChange={(e) =>
+                      dispatch(
+                        changeSalaryJD({
+                          key: "min_salary",
+                          value: e.target.value,
+                        })
+                      )
+                    }
+                    placeholder="Please type here"
+                  />
                   <CustomSelect
                     instanceId={"currency-unit"}
                     isMulti={false}
@@ -32,9 +49,20 @@ const SalaryForm = () => {
                 <label className="block mb-2 text-sm font-medium text-primary">
                   Lương max <span className="text-red-500"> *</span>
                 </label>
-                
+
                 <div className="flex flex-row gap-4 ">
-                  <Input placeholder="Please type here" />
+                  <Input
+                    value={uploadJD.salary.max_salary}
+                    onChange={(e) =>
+                      dispatch(
+                        changeSalaryJD({
+                          key: "max_salary",
+                          value: e.target.value,
+                        })
+                      )
+                    }
+                    placeholder="Please type here"
+                  />
                   <CustomSelect
                     instanceId={"currency-unit"}
                     isMulti={false}

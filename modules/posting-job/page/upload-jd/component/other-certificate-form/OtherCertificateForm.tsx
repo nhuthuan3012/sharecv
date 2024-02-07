@@ -1,4 +1,3 @@
-import CustomSelect from "@/common/components/control/select/Select";
 import { Input } from "@/common/components/control/Input";
 import { IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -28,7 +27,7 @@ const OtherCertificateForm = () => {
         </div>
         <div className="flex flex-col gap-5">
           {uploadJD.otherCertificate.map((item, index) => (
-            <div className=" flex flex-row w-full gap-4" key={index}>
+            <div className=" flex flex-row w-full gap-4 border-slate-300 border-solid p-5 rounded-2xl" key={index}>
               <div className="flex flex-row gap-8 w-full">
                 <Input
                   value={item.certificate_name}

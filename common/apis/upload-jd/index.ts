@@ -1,7 +1,8 @@
 import { IParseJdResponse } from "@/common/interfaces/upload-jd";
 import { axiosClient } from "@/utils/axios";
+import { AxiosResponse } from "axios";
 
-export const parseJD = (data: File): Promise<IParseJdResponse> => {
+export const parseJD = (data: File): Promise<AxiosResponse<IParseJdResponse>> => {
     const formData = new FormData();
     formData.append('uploaded_file', data)
     

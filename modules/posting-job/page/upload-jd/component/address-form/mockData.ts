@@ -1,4 +1,6 @@
-export const countryOpt = [
+import { SelectOption } from "@/common/components/control/select/types";
+
+export const countryOpt: readonly SelectOption[] = [
     { value: "USA", label: "United States" },
     { value: "CAN", label: "Canada" },
     { value: "GBR", label: "United Kingdom" },
@@ -50,7 +52,7 @@ export const countryOpt = [
     { value: "Other", label: "Other" },
 ];
 
-export const cityOpt = [
+export const cityOpt: readonly SelectOption[] = [
     { value: "Hà Nội", label: "Hà Nội" },
     { value: "Hồ Chí Minh", label: "Hồ Chí Minh" },
     { value: "Huế", label: "Huế" },

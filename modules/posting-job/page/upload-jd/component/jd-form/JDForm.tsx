@@ -88,7 +88,6 @@ function JDForm() {
                   label: uploadJD.jobDescription.industries,
                   value: uploadJD.jobDescription.industries,
                 }}
-
                 onChange={(newValue) =>
                   {
                     field.onChange((newValue as SelectOption)?.value ?? "")

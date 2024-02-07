@@ -15,7 +15,6 @@ import {
   selectUploadJD,
 } from "@/lib/redux/slices";
 import { useRouter } from "next/navigation";
-import { UnknownAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { ReduxDispatch } from "@/lib/redux/store";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -38,13 +37,27 @@ export default function ParseJD() {
       pauseOnHover: true,
       draggable: true,
     });
-    dispatch(actionParseJD(files[0])).unwrap()
-    .then((result) => {
-      console.log(result)
-    }).catch((err) => {
-      console.log(err)
-    });
-  }
+    dispatch(actionParseJD(files[0]))
+      .unwrap()
+      .then((res) => { 
+        toast.update(toastId, {
+          render: res.message,
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+        
+      })
+      .catch((err) => {
+        toast.update(toastId, {
+          render: err,
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
+      });
+  };
+
   useEffect(() => {
     if (fileUrl) {
       const fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);

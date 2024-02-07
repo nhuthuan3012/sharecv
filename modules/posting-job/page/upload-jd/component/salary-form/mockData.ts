@@ -1,4 +1,6 @@
-export const currencyUnitOpt = [
+import { SelectOption } from "@/common/components/control/select/types";
+
+export const currencyUnitOpt: readonly SelectOption[] = [
     { value: "USD", label: "USD" },
     { value: "EUR", label: "EUR" },
     { value: "GBP", label: "GBP" },
