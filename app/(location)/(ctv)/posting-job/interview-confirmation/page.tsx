@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function ConfirmInterview() {
   const [open, setOpen] = useState(true);
   const [defaultValues, setDefaultValues] = useState<IFormInterview>({
-    cv_id: 8,
+    cv_id: 13,
     date: "",
     location: "",
     start_time: "",
@@ -15,8 +15,9 @@ export default function ConfirmInterview() {
     note: "",
   });
   useEffect(() => {
-    getInterviewInfo(8).then((res) => {
+    getInterviewInfo(13).then((res) => {
       if (res.data) {
+        console.log("Hello: ", res.data);
         setDefaultValues(res.data);
       }
     });
@@ -25,7 +26,7 @@ export default function ConfirmInterview() {
     <InterviewDialog
       open={open}
       setOpen={setOpen}
-      isBooking={true}
+      isBooking={false}
       defaultValues={defaultValues!}
     />
   );
