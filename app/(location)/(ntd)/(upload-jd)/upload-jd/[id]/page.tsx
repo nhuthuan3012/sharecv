@@ -40,7 +40,6 @@ function UploadJDPage({ params }: { params: any }) {
     });
     fillFormUploadJD(uploadJd)
       .then((res) => {
-        console.log("res")
         toast.update(toastId, {
           render: `${res.data.message}, Upload JD Thành công....`,
           type: "success",
@@ -49,7 +48,6 @@ function UploadJDPage({ params }: { params: any }) {
         });
       })
       .catch((err) => {
-        console.log(err)
         toast.update(toastId, {
           render: "Upload thất bại",
           type: "error",
