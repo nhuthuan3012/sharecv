@@ -1,8 +1,6 @@
 "use client";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 import PointPackage from "./component/PointPackage";
-import { IListPointRespone } from "@/interfaces/point-package";
 function BuyPoint({ data }: { data: PointPackage[] }) {
   return (
     <Box
@@ -13,14 +11,22 @@ function BuyPoint({ data }: { data: PointPackage[] }) {
       justifyContent={"center"}
       sx={{ borderRadius: "5px" }}
     >
-        <Box display={"flex"} justifyContent={"flex-start"} className="col-span-10">
-            <Typography className=" text-2xl text-primary font-bold"> Mua điểm</Typography>
-        </Box>
-      {data&&data.map((item, index) => (
-        <Box key={index} className="col-span-5">
-          <PointPackage data={item} />
-        </Box>
-      ))}
+      <Box
+        display={"flex"}
+        justifyContent={"flex-start"}
+        className="col-span-10"
+      >
+        <Typography className=" text-2xl text-primary font-bold">
+          {" "}
+          Mua điểm
+        </Typography>
+      </Box>
+      {data &&
+        data.map((item, index) => (
+          <Box key={index} className="col-span-5">
+            <PointPackage data={item} />
+          </Box>
+        ))}
     </Box>
   );
 }
