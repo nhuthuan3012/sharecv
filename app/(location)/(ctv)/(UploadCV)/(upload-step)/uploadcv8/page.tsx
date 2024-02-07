@@ -11,6 +11,7 @@ export default function UploadCV8() {
   const uploadCV = useSelector(selectUploadCV);
 
   const handleFillResume = async (e: any) => {
+    console.log("some");
     let avatar = await fetch(uploadCV.personal_infor.avatar).then((r) =>
       r.blob()
     );
@@ -62,6 +63,7 @@ export default function UploadCV8() {
       language_certificates: uploadCV.certificates,
       other_certificates: JSON.stringify(other),
     }).then((res) => {
+      console.log(res);
       // router.push(`/cv-pricing/${res.data.id}`);
     });
   };

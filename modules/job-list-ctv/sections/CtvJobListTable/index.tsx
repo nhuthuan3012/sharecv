@@ -24,7 +24,7 @@ export const CtvJobListTable = ({ data }: UVListTableProps) => {
   const searchParams = useSearchParams();
 
   const handleClickJobDetail = (index: any) => {
-    router.push(`job-description/collaborator/${data[index].job_id}`);
+    router.push(`/job-description/${data[index].job_id}`);
   };
 
   useEffect(() => {

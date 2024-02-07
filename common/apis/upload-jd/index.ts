@@ -37,7 +37,7 @@ export const fillFormUploadJD = async (data: UploadJdSliceState): Promise<AxiosR
   })
   formData.append("job_type", data.jobDescription.job_type)
   formData.append("received_job_time", data.jobDescription.received_job_time)
-  formData.append("working_time", `${data.jobDescription.start_days_of_week}-${data.jobDescription.end_days_of_week} ${data.jobDescription.start_work_hours}-${data.jobDescription.end_work_hours}`)
+  formData.append("working_time", `${data.jobDescription.start_days_of_week}-${data.jobDescription.end_days_of_week},${data.jobDescription.start_work_hours},${data.jobDescription.end_work_hours}`)
   formData.append("descriptions", data.jobDescription.descriptions)
   formData.append("requirements", data.jobDescription.requirements)
   formData.append("benefits", data.jobDescription.benefits)

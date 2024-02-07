@@ -5,9 +5,10 @@ import {
   IRevaluate,
   IJobDetailResponse,
   IAdminJDDetail,
-  IResponse
+  IResponse,
 } from "@/common/interfaces";
 import { AxiosResponse } from "axios";
+import { AdminReviewJob, AdminReviewJobResponse } from "@/interfaces/job-list";
 
 export const addCompany = (data: ICompanyInfo): Promise<IAuthResponse> => {
   console.log("data api", data);
@@ -16,28 +17,23 @@ export const addCompany = (data: ICompanyInfo): Promise<IAuthResponse> => {
     if (data.hasOwnProperty(key)) {
       if (key === "logo" && data.logo) {
         formData.append(key, data.logo);
-      }
-      else if (key === "cover_image" && data.cover_image) {
+      } else if (key === "cover_image" && data.cover_image) {
         formData.append(key, data.cover_image);
-      }
-      else if (key === "company_images" && data.company_images) {
-        const size=data.company_images.length
-        for(let i =0 ;i<size;i++){
+      } else if (key === "company_images" && data.company_images) {
+        const size = data.company_images.length;
+        for (let i = 0; i < size; i++) {
           formData.append(key, data.company_images[i]);
         }
-      }
-      else if (key === "company_video" && data.company_video) {
+      } else if (key === "company_video" && data.company_video) {
         formData.append(key, data.company_video);
-      }
-      else if (data[key] !== null && data[key] !== undefined) {
+      } else if (data[key] !== null && data[key] !== undefined) {
         // if (typeof data !== 'string' && !(data instanceof Blob)) {
         //   continue;
         // }
         // else {
-          formData.append(key, data[key]);
+        formData.append(key, data[key]);
         // }
       }
-    
     }
   }
   return axiosClient.post("/postjob/recruiter/add-company-info", formData, {
@@ -50,16 +46,32 @@ export const addCompany = (data: ICompanyInfo): Promise<IAuthResponse> => {
 export const revaluate = (data: IRevaluate): Promise<IAuthResponse> => {
   return axiosClient.put("/postjob/collaborator/update-resume-valuate", data);
 };
-export const getRecruiterJobDetail = (id: string): Promise<IJobDetailResponse> => {
+export const getRecruiterJobDetail = (
+  id: string
+): Promise<IJobDetailResponse> => {
   return axiosClient.get(`/postjob/recruiter/get-detailed-job/${id}`);
 };
-export const getCollaboratorJobDetail = (id: string): Promise<IJobDetailResponse> => {
+export const getCollaboratorJobDetail = (
+  id: string
+): Promise<IJobDetailResponse> => {
   return axiosClient.get(`/postjob/collaborator/get-detail-job/${id}`);
 };
-export const getAdminJobDetail = (id: string): Promise<AxiosResponse<IResponse<IAdminJDDetail>>> => {
-  return axiosClient.get(`/postjob/admin/get-detailed-job`,{
+export const getAdminJobDetail = (
+  id: string
+): Promise<AxiosResponse<IResponse<IAdminJDDetail>>> => {
+  return axiosClient.get(`/postjob/admin/get-detailed-job`, {
     params: {
-      job_id: id
-    }
+      job_id: id,
+    },
+  });
+};
+
+export const adminApproveJob = (
+  id: number
+): Promise<AxiosResponse<IResponse<AdminReviewJobResponse>>> => {
+  return axiosClient.post(`/postjob/admin/review-job`, {
+    job_id: id,
+    is_approved: true,
+    decline_reason: "",
   });
 };

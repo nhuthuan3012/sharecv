@@ -14,7 +14,10 @@ import { actionGetDetailJD, selectUploadJD } from "@/lib/redux/slices";
 import { fillFormUploadJD } from "@/common/apis/upload-jd";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { getAdminJobDetail } from "@/common/apis/job-description";
+import {
+  adminApproveJob,
+  getAdminJobDetail,
+} from "@/common/apis/job-description";
 import { ReduxDispatch, useDispatch } from "@/lib/redux/store";
 
 function JobDetailAdmin({ params }: { params: any }) {
@@ -64,10 +67,50 @@ function JobDetailAdmin({ params }: { params: any }) {
       });
   };
 
+  const handleApprove = async () => {
+    const toastId = toast.loading("Đang duyệt JD...", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    adminApproveJob(params.id)
+      .then((res) => {
+        if (res.status === 200) {
+          router.push("/job-list-admin");
+          toast.update(toastId, {
+            render: "Duyệt thành công",
+            type: "success",
+            isLoading: false,
+            autoClose: 3000,
+          });
+        } else {
+          toast.update(toastId, {
+            render: "Duyệt thất bại",
+            type: "error",
+            isLoading: false,
+            autoClose: 3000,
+          });
+        }
+      })
+      .catch((err) => {
+        toast.update(toastId, {
+          render: "Duyệt thất bại",
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
+      });
+  };
+
   useEffect(() => {
     if (!params.id) return;
     dispatch(actionGetDetailJD(params.id));
   }, [params, dispatch]);
+
+  console.log("uploadJd", uploadJd);
 
   return (
     <>
@@ -98,7 +141,7 @@ function JobDetailAdmin({ params }: { params: any }) {
         {/* <AwardPrizeForm/> */}
         <div className="flex flex-row justify-between gap-8">
           <button
-            onClick={() => handleClick()}
+            // onClick={() => handleClick()}
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >
@@ -106,7 +149,7 @@ function JobDetailAdmin({ params }: { params: any }) {
           </button>
 
           <button
-            onClick={() => handleClick()}
+            // onClick={() => handleClick()}
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >
@@ -114,7 +157,7 @@ function JobDetailAdmin({ params }: { params: any }) {
           </button>
 
           <button
-            onClick={() => handleClick()}
+            // onClick={() => handleClick()}
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >
@@ -122,7 +165,7 @@ function JobDetailAdmin({ params }: { params: any }) {
           </button>
 
           <button
-            type="submit"
+            onClick={() => handleApprove()}
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >

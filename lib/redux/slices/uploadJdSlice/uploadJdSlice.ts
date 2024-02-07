@@ -177,10 +177,9 @@ export const uploadJdSlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(actionGetDetailJD.fulfilled, (state, action) => {
-      const [startTime, endTime] = action.payload.data.working_time.time.split("-");
+      console.log(action.payload.data);
       const [yoeStart, yoeEnd] = action.payload.data.yoe.split("-");
       const [startDay, endDay] = action.payload.data.working_time.week.split("-");
-      console.log(startDay, endDay, yoeStart, yoeEnd)
       state.jobDescription.job_title = action.payload.data.job_title;
       state.jobDescription.industries = action.payload.data.industries;
       state.jobDescription.gender = action.payload.data.gender;
@@ -189,11 +188,11 @@ export const uploadJdSlice = createSlice({
       state.jobDescription.received_job_time = action.payload.data.received_job_time;
       state.jobDescription.start_days_of_week = startDay;
       state.jobDescription.end_days_of_week = endDay;
-      state.jobDescription.start_work_hours = startTime;
-      state.jobDescription.end_work_hours = endTime;
-      state.jobDescription.descriptions = action.payload.data.descriptions.join("");
-      state.jobDescription.requirements = action.payload.data.requirements.join("");
-      state.jobDescription.benefits = action.payload.data.benefits[0];
+      state.jobDescription.start_work_hours = action.payload.data.working_time.startTime;
+      state.jobDescription.end_work_hours = action.payload.data.working_time.endTime;
+      state.jobDescription.descriptions = action.payload.data.descriptions;
+      state.jobDescription.requirements = action.payload.data.requirements;
+      state.jobDescription.benefits = action.payload.data.benefits;
       state.jobDescription.levels = action.payload.data.levels;
       state.jobDescription.roles = action.payload.data.roles;
       state.jobDescription.num_recruit = action.payload.data.num_recruit;

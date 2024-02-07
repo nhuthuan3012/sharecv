@@ -65,21 +65,25 @@ export interface IJobDetailResponse {
   company_cover_image: string;
   status: string;
   job_title: string;
-  industry: string;
+  industries: string[];
   gender: string;
   job_type: string | null;
   skills: string[] | null;
   received_job_time: string | null;
   working_time: {
     week: string;
-    time: string;
+    startTime: string;
+    endTime: string;
   } | null;
-  descriptions: string[] | null;
-  requirements: string[] | null;
-  benefits: string[] | null;
-  levels: string | null;
-  roles: string | null;
-  yoe: string | null;
+  descriptions: string | null;
+  requirements: string | null;
+  benefits: string | null;
+  levels: string[] | null;
+  roles: string[] | null;
+  yoe: {
+    from: string;
+    to: string;
+  } | null;
   num_recruit: string | null;
   education: string[] | null;
   language_certificate: ILanguageCertificates[] | null;
@@ -131,11 +135,11 @@ export interface IProductsResponse<TEntity> {
 }
 
 export interface IAdminJDDetail {
-  company_logo?: string;
-  company_name?: string;
-  company_cover_image?: string;
-  industry?: string;
-  admin_decline_reason?: string;
+  // company_logo?: string;
+  // company_name?: string;
+  // company_cover_image?: string;
+  // industry?: string;
+  admin_decline_reason: string | null;
   status: string;
   job_service: string;
   job_title: string;
@@ -147,11 +151,12 @@ export interface IAdminJDDetail {
   job_type: string;
   working_time: {
     week: string;
-    time: string;
+    startTime: string;
+    endTime: string;
   };
-  descriptions: string[];
-  requirements: string[];
-  benefits: string[];
+  descriptions: string;
+  requirements: string;
+  benefits: string;
   skills: string[];
   education: {
     degree: string;

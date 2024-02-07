@@ -5,7 +5,7 @@ const nextConfig = {
     domains: [
       "localhost",
       "103.130.212.245",
-      "06b3-116-96-77-72.ngrok-free.app",
+      "9436-2402-800-62f8-2bc4-4d39-d5e5-5234-5d02.ngrok-free.app",
     ],
   },
   webpack: (config) => {

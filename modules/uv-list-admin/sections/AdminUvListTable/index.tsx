@@ -12,6 +12,7 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from "material-react-table";
+import Link from "next/link";
 import { useState } from "react";
 
 export interface UVListTableProps {
@@ -72,7 +73,7 @@ export const AdminUvListTable = ({ data }: UVListTableProps) => {
             alignItems: "center",
           }}
         >
-          <Typography>{cell.getValue<string>()}</Typography>
+          <Typography component={Link} href={`/uv-info/${data[cell.row.index].id}`}>{cell.getValue<string>()}</Typography>
         </Box>
       ),
     },

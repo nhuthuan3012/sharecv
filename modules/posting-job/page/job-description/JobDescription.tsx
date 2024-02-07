@@ -22,9 +22,12 @@ function JobDescription({
   role: string;
 }) {
   const [showButton, setShowButton] = useState<boolean>(false);
-  if (!true) {
-    redirect("/login", RedirectType.replace);
-  }
+
+  useEffect(() => {
+    if (!true) {
+      redirect("/login", RedirectType.replace);
+    }
+  }, []);
   return (
     <Box width="100%">
       <Box
@@ -32,7 +35,7 @@ function JobDescription({
         width="100%"
         minHeight="400px"
         maxHeight="500px"
-        sx={{backgroundImage:`url(${"/background-posting-job.png"})`}}
+        sx={{ backgroundImage: `url(${"/background-posting-job.png"})` }}
         justifyContent="center"
         alignItems="center"
         flex={1}
@@ -153,7 +156,9 @@ function JobDescription({
                   >
                     <DashboardOutlinedIcon className="text-primary" />
                     <Typography className="font-normal text-green-600">
-                      {data.industry ? data.industry : "Công nghệ"}
+                      {data.industries
+                        ? data.industries.join(", ")
+                        : "Công nghệ"}
                     </Typography>
                   </Box>
                 </Box>
@@ -199,89 +204,89 @@ function JobDescription({
               flexDirection={"row"}
               justifyContent={"right"}
             >
-                {role === "collaborator" ? (
+              {role === "collaborator" ? (
+                <Box
+                  className="gap-5"
+                  display="flex"
+                  flexDirection={"row"}
+                  justifyContent={"right"}
+                >
                   <Box
                     className="gap-5"
                     display="flex"
-                    flexDirection={"row"}
+                    flexDirection={"column"}
                     justifyContent={"right"}
                   >
-                    <Box
-                      className="gap-5"
-                      display="flex"
-                      flexDirection={"column"}
-                      justifyContent={"right"}
-                    >
-                      <Button
-                        className="hover:text-primary"
-                        variant="contained"
-                        onClick={() => setShowButton(!showButton)}
-                        sx={{
-                          minHeight: "50px",
-                          width: "150px",
-                          borderRadius: "20px",
-                        }}
-                      >
-                        Giới thiệu
-                      </Button>
-                      {showButton ? (
-                        <Box
-                          className="gap-1"
-                          display="flex"
-                          flexDirection={"column"}
-                        >
-                          <Button
-                            className="hover:text-primary"
-                            variant="contained"
-                            component={Link}
-                            href="http://localhost:3000/uploadcv1"
-                            sx={{
-                              height: "50px",
-                              width: "200px",
-                              borderRadius: "10px",
-                            }}
-                          >
-                            Thêm ứng viên
-                          </Button>
-                          <Button
-                            className="hover:text-primary"
-                            variant="contained"
-                            component={Link}
-                            href=""
-                            sx={{
-                              height: "50px",
-                              width: "200px",
-                              borderRadius: "10px",
-                            }}
-                          >
-                            Chọn từ danh sách
-                          </Button>
-                        </Box>
-                      ) : (
-                        <></>
-                      )}{" "}
-                    </Box>
                     <Button
-                      component={Link}
                       className="hover:text-primary"
-                      href=""
+                      variant="contained"
+                      onClick={() => setShowButton(!showButton)}
                       sx={{
-                        height: "50px",
+                        minHeight: "50px",
                         width: "150px",
                         borderRadius: "20px",
                       }}
-                      variant="contained"
                     >
-                      Quan tâm
+                      Giới thiệu
                     </Button>
+                    {showButton ? (
+                      <Box
+                        className="gap-1"
+                        display="flex"
+                        flexDirection={"column"}
+                      >
+                        <Button
+                          className="hover:text-primary"
+                          variant="contained"
+                          component={Link}
+                          href="http://localhost:3000/uploadcv1"
+                          sx={{
+                            height: "50px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >
+                          Thêm ứng viên
+                        </Button>
+                        <Button
+                          className="hover:text-primary"
+                          variant="contained"
+                          component={Link}
+                          href=""
+                          sx={{
+                            height: "50px",
+                            width: "200px",
+                            borderRadius: "10px",
+                          }}
+                        >
+                          Chọn từ danh sách
+                        </Button>
+                      </Box>
+                    ) : (
+                      <></>
+                    )}{" "}
                   </Box>
-                ) : (
-                  <Box
-                    className="gap-5"
-                    display="flex"
-                    flexDirection={"row"}
-                    justifyContent={"right"}
+                  <Button
+                    component={Link}
+                    className="hover:text-primary"
+                    href=""
+                    sx={{
+                      height: "50px",
+                      width: "150px",
+                      borderRadius: "20px",
+                    }}
+                    variant="contained"
                   >
+                    Quan tâm
+                  </Button>
+                </Box>
+              ) : (
+                <Box
+                  className="gap-5"
+                  display="flex"
+                  flexDirection={"row"}
+                  justifyContent={"right"}
+                >
                   <Button
                     className="hover:text-primary"
                     variant="contained"
@@ -306,9 +311,9 @@ function JobDescription({
                   >
                     Tạo bản sao
                   </Button>
-                  </Box>
-                )}
-              </Box>
+                </Box>
+              )}
+            </Box>
           </Grid>
           <Grid
             item
@@ -339,15 +344,8 @@ function JobDescription({
               >
                 Mô tả công việc
               </Typography>
-              {data.descriptions ? (
-                data.descriptions.map((item, index) => (
-                  <Typography
-                    key={index}
-                    sx={{ mt: 2 }}
-                  >{`- ${item}`}</Typography>
-                ))
-              ) : (
-                <></>
+              {data.descriptions && (
+                <Typography>{data.descriptions}</Typography>
               )}
             </Box>
             <Box
@@ -371,15 +369,8 @@ function JobDescription({
               >
                 Yêu cầu
               </Typography>
-              {data.requirements ? (
-                data.requirements.map((item, index) => (
-                  <Typography
-                    key={index}
-                    sx={{ mt: 2 }}
-                  >{`- ${item}`}</Typography>
-                ))
-              ) : (
-                <></>
+              {data.requirements && (
+                <Typography>{data.requirements}</Typography>
               )}
             </Box>
             <Box
@@ -403,16 +394,7 @@ function JobDescription({
               >
                 Quyền lợi
               </Typography>
-              {data.benefits ? (
-                data.benefits.map((item, index) => (
-                  <Typography
-                    key={index}
-                    sx={{ mt: 2 }}
-                  >{`- ${item}`}</Typography>
-                ))
-              ) : (
-                <></>
-              )}
+              {data.benefits && <Typography>{data.benefits}</Typography>}
             </Box>
             {data.skills !== null ? (
               <Box
@@ -583,7 +565,7 @@ function JobDescription({
                       textDecoration: "none",
                     }}
                   >
-                    {`${data.working_time?.week} ${data.working_time?.time}`}
+                    {`${data.working_time?.week} ${data.working_time?.startTime} - ${data.working_time?.endTime}`}
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
@@ -716,7 +698,7 @@ function JobDescription({
                       textDecoration: "none",
                     }}
                   >
-                    {data.levels}
+                    {data.levels && data.levels.join(", ")}
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
@@ -742,7 +724,7 @@ function JobDescription({
                       textDecoration: "none",
                     }}
                   >
-                    {data.roles}
+                    {data.roles && data.roles.join(", ")}
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
@@ -768,7 +750,7 @@ function JobDescription({
                       textDecoration: "none",
                     }}
                   >
-                    {data.yoe}
+                    {data.yoe?.from} - {data.yoe?.to}
                   </Typography>
                 </Box>
                 <Box sx={{ mt: 2 }} display="flex" flexDirection="column">

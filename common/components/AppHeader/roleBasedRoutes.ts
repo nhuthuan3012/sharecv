@@ -40,7 +40,7 @@ export const collaboratorRoutes: INavigation[] = [
   },
   {
     label: "Danh sách",
-    path: "/uv-list-ctv",
+    path: "/posting-job/job-list-ctv",
   },
   {
     label: "Lịch phỏng vấn",

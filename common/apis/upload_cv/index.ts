@@ -49,7 +49,7 @@ export const fillResume = (data: any): Promise<IUploadCVResponse> => {
   formData.append('language_certificates',JSON.stringify(data.language_certificates))
   formData.append('other_certificates',data.other_certificates)
 
-
+  console.log(formData)
   return axiosClient.post("/postjob/collaborator/fill-extracted-resume", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
