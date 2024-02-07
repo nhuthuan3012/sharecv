@@ -11,7 +11,7 @@ import "../UploadCV1.css"
 import { uploadCV } from "@/common/apis/upload_cv";
 import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
-import { addUploadCV, selectUploadCV } from "@/lib/redux/slices";
+import { addUploadCV, changeCvFile, selectUploadCV } from "@/lib/redux/slices";
 import {  UnknownAction } from "@reduxjs/toolkit";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -68,7 +68,13 @@ const UploadCV1 = () => {
               required
               files={files}
               onupdatefiles={(files: FilePondFile[]) =>
-                setFiles(files.map((file) => file.file as File))
+                {
+                  setFiles(files.map((file) => file.file as File))
+                  if(files[0]){
+                    const url = URL.createObjectURL(files[0].file);
+                    dispatch(changeCvFile(url))
+                    }
+                }
               }
               allowMultiple={false}
               instantUpload={false}

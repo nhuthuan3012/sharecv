@@ -20,17 +20,18 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 import { Input } from "@/common/components/control/Input";
 import { Textarea } from "@/common/components/control/textarea";
-import CustomSelect from "@/common/components/control/select/Select";
+import {CustomSelect} from "@/common/components/control/select/Select";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeAvatar,
   changePersonalInfor,
-  counterSlice,
-  selectCount,
   selectUploadCV,
 } from "@/lib/redux/slices";
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
+import { SelectOption } from "@/common/components/control/select/types";
+import { SingleValue } from "react-select";
 
 const industries = [
   { value: "education", label: "Education" },
@@ -199,6 +200,7 @@ const UploadCV2 = () => {
   const [files, setFiles] = useState<File[]>([]);
   const uploadCV = useSelector(selectUploadCV);
   const dispatch = useDispatch();
+  const navigate = useRouter()
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -214,6 +216,10 @@ const UploadCV2 = () => {
                   files={files}
                   onupdatefiles={(files: FilePondFile[]) => {
                     setFiles(files.map((file) => file.file as File));
+                    if(files[0]){
+                      const url = URL.createObjectURL(files[0].file);
+                      dispatch(changeAvatar(url))
+                      }
                   }}
                   allowMultiple={false}
                   instantUpload={false}
@@ -253,7 +259,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.label as string,
+                        value: (value as SingleValue<SelectOption>)?.label as string,
                         key: "industry",
                       })
                     )
@@ -285,7 +291,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.label as string,
+                        value: (value as SingleValue<SelectOption>)?.label as string,
                         key: "level",
                       })
                     )
@@ -352,7 +358,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "city",
                       })
                     )
@@ -371,7 +377,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "country",
                       })
                     )
@@ -441,7 +447,7 @@ const UploadCV2 = () => {
                   onChange={(value) =>
                     dispatch(
                       changePersonalInfor({
-                        value: value?.value as string,
+                        value: (value as SingleValue<SelectOption>)?.value as string,
                         key: "gender",
                       })
                     )
@@ -560,6 +566,7 @@ const UploadCV2 = () => {
                   Lưu nháp
                 </button>
                 <button
+                  onClick={() => navigate.push('/uploadcv3')}
                   type="button"
                   className=" bg-primary rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-none cursor-pointer text-white"
                 >

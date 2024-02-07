@@ -3,10 +3,11 @@
 import { useSelector } from "react-redux";
 import ProjectItem from "./ProjectItem";
 import { selectUploadCV } from "@/lib/redux/slices";
+import { useRouter } from "next/navigation";
 
 export default function UploadCV7() {
   const uploadCV = useSelector(selectUploadCV)
-
+  const navigate = useRouter()
   return (
     <>
       <div className="container">
@@ -39,6 +40,7 @@ export default function UploadCV7() {
               Lưu nháp
             </button>
             <button
+              onClick={() => navigate.push('/uploadcv8')}
               type="button"
               className=" bg-primary rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-none cursor-pointer text-white"
             >
