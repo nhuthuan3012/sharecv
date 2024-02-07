@@ -14,7 +14,6 @@ export default function UploadCV8() {
 
   const handleFillResume = async (e: any) => {
     let avatar = await fetch(uploadCV.personal_infor.avatar).then(r => r.blob());
-    console.log(avatar)
     let cv_file = await fetch(uploadCV.personal_infor.cv_file).then(r => r.blob())
     const other = [
       {certificate_name: "ACCA", certificate_point_level: "B1", start_time: "2022-01-22 10:16:09", end_time: "2023-01-22 10:16:09"},

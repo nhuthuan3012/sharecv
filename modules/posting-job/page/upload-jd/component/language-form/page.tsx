@@ -3,7 +3,9 @@ import { Input } from "@/common/components/control/Input";
 import { IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useDispatch, useSelector } from "react-redux";
-import { addLanguageCertificate, removeLanguageCertificate, selectUploadJD } from "@/lib/redux/slices";
+import { addLanguageCertificate, changeLanguageCertificate, removeLanguageCertificate, selectUploadJD } from "@/lib/redux/slices";
+import { certiNameOpt, languageOpt } from "./mockData";
+import { SelectOption } from "@/common/components/control/select/types";
 
 const LanguageForm = () => {
   const uploadJD = useSelector(selectUploadJD);
@@ -23,23 +25,56 @@ const LanguageForm = () => {
         </div>
         <div className="flex flex-col gap-5">
           {uploadJD.languageCerttificate.map((item, index) => (
-            <div className=" flex flex-row w-full gap-4" key={index}>
+            <div className=" flex flex-row w-full gap-4 border-2 border-slate-300 border-solid p-5 rounded-2xl" key={index}>
               <div className="flex flex-row gap-8 w-full">
                 <CustomSelect
-                  value={item.certificate_language}
+                  value={{value: item.certificate_language, label: item.certificate_language}}
+                  onChange={(newValue) =>
+                    {
+                      // field.onChange((newValue as SelectOption)?.value ?? "")
+                      dispatch(
+                        changeLanguageCertificate({
+                          index: index,
+                          value: (newValue as SelectOption)?.value ?? "",
+                          key: "certificate_language",
+                        })
+                      )
+                    }
+                  }
                   instanceId={"academic-degree"}
                   isMulti={false}
                   required
                   label="Tên ngoại ngữ"
+                  options={languageOpt}
                 />
                 <CustomSelect
-                  value={item.certificate_name}
-                  instanceId={"major"}
+                  value={{value: item.certificate_name, label: item.certificate_name}}
+                  onChange={(newValue) =>
+                    {
+                      // field.onChange((newValue as SelectOption)?.value ?? "")
+                      dispatch(
+                        changeLanguageCertificate({
+                          index: index,
+                          value: (newValue as SelectOption)?.value ?? "",
+                          key: "certificate_name",
+                        })
+                      )
+                    }
+                  }
+                  instanceId={"certificate-name"}
                   isMulti={false}
                   required
                   label="Tên chứng chỉ"
+                  options={certiNameOpt[item.certificate_language]}
                 />
-                <Input required placeholder="Please type here" label="Level" />
+                <Input
+                value={item.certificate_point_level}
+                onChange={(e) => dispatch(changeLanguageCertificate({
+                  value: e.target.value,
+                  index: index, 
+                  key: "certificate_point_level"
+                }))} 
+                required placeholder="Please type here" label="Level" />
               </div>
               <div className="mt-8">
                 <IconButton onClick={() => dispatch(removeLanguageCertificate(index))}>

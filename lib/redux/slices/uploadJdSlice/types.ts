@@ -10,6 +10,7 @@ import { Salary } from "@/modules/posting-job/page/upload-jd/component/salary-fo
 
 export interface UploadJdSliceState {
   jdFile: string;
+  jdFilename: string;
   jobDescription: JobDescription;
   education: Education[];
   languageCerttificate: LanguageCertificate[];
@@ -22,7 +23,7 @@ export interface UploadJdSliceState {
 // Initial Value
 const initialJobDescription: JobDescription = {
   job_title: "",
-  industries: "Education",
+  industries: ["Education"],
   job_type: "parttime",
   skills: ["Analyze data"],
   gender: Gender.Male,
@@ -61,6 +62,7 @@ export const initialOtherCertificate: OtherCertificate = {
 export const initialSalary: Salary = {
   min_salary: 0,
   max_salary: 0,
+  currency: 'VND'
 };
 
 export const initialworkAddress: WorkAddress = {
@@ -71,6 +73,7 @@ export const initialworkAddress: WorkAddress = {
 
 export const initialState: UploadJdSliceState = {
   jdFile: '',
+  jdFilename: '',
   jobDescription: initialJobDescription,
   education: [initialEducation],
   languageCerttificate: [initialLanguageCertificate],
@@ -81,9 +84,31 @@ export const initialState: UploadJdSliceState = {
 };
 
 // interface for payload
+export interface changeWorkAddressJDPayload {
+  key: keyof WorkAddress;
+  value: string ;
+}
+
+export interface changeSalaryJDPayload {
+  key: keyof Salary;
+  value: string ;
+}
+
 export interface ChangeOtherCertificatePayload {
   index: number;
   key: keyof OtherCertificate;
+  value: string;
+}
+
+export interface ChangeEducationJDPayload {
+  index: number;
+  key: keyof Education;
+  value: string;
+}
+
+export interface changeLanguageCertificatePayload {
+  index: number;
+  key: keyof LanguageCertificate;
   value: string;
 }
 

@@ -13,9 +13,9 @@ import {
   changeJdFile,
   actionParseJD,
   selectUploadJD,
+  changeJdFileName,
 } from "@/lib/redux/slices";
 import { useRouter } from "next/navigation";
-import { UnknownAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { ReduxDispatch } from "@/lib/redux/store";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -38,21 +38,36 @@ export default function ParseJD() {
       pauseOnHover: true,
       draggable: true,
     });
-    dispatch(actionParseJD(files[0])).unwrap()
-    .then((result) => {
-      console.log(result)
-    }).catch((err) => {
-      console.log(err)
-    });
-  }
+    dispatch(actionParseJD(files[0]))
+      .unwrap()
+      .then((res) => { 
+        toast.update(toastId, {
+          render: `${res.message}, Đang chuyển trang....`,
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+        router.push('upload-jd/1');
+      })
+      .catch((err) => {
+        toast.update(toastId, {
+          render: err,
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
+      });
+  };
+
   useEffect(() => {
     if (fileUrl) {
-      const fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
       fetch(fileUrl)
-        .then((res) => res.blob())
+        .then((res) => {
+          return res.blob() 
+        })
         .then((blob): void => {
-          const file = new File([blob], fileName); // replace 'filename' and 'image/jpeg' with your actual file name and type
-          setFiles([...files, file]);
+          const file = new File([blob], uploadJD.jdFilename); // replace 'filename' and 'image/jpeg' with your actual file name and type
+          setFiles([file]);
         });
     }
   }, []);
@@ -78,6 +93,7 @@ export default function ParseJD() {
                 setFiles(files.map((file) => file.file as File));
                 if (files[0]) {
                   const url = URL.createObjectURL(files[0].file);
+                  dispatch(changeJdFileName(files[0].filename))
                   dispatch(changeJdFile(url));
                 }
               }}

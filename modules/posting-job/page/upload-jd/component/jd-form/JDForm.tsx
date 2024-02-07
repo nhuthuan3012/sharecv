@@ -52,7 +52,7 @@ function JDForm() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="border-2 border-solid rounded-2xl p-8 border-primary bg-light">
         <p className="text-primary font-bold">Thông tin công việc</p>
-        <form className="grid grid-cols-2 gap-8" onSubmit={(e) => onSubmit1(e)}>
+        <div className="grid grid-cols-2 gap-8" >
           <Controller
             control={control}
             name="job_title"
@@ -84,24 +84,23 @@ function JDForm() {
             render={({ field }) => (
               <CustomSelect
                 {...field}
-                value={{
-                  label: uploadJD.jobDescription.industries,
-                  value: uploadJD.jobDescription.industries,
-                }}
-
-                onChange={(newValue) =>
+                value={uploadJD.jobDescription.industries?.map(item => ({
+                  value: item,
+                  label: item
+                }))}
+                onChange={(option) =>
                   {
-                    field.onChange((newValue as SelectOption)?.value ?? "")
+                    const industries = (option as SelectOption[]).map((item) => item.value);
                     dispatch(
                       changeJobDescription({
-                        value: (newValue as SelectOption)?.value ?? "",
+                        value: industries,
                         key: "industries",
                       })
-                    )
+                    );
                   }
                 }
                 instanceId={"industry"}
-                isMulti={false}
+                isMulti={true}
                 required
                 label="Ngành nghề"
                 options={industries}
@@ -595,13 +594,7 @@ function JDForm() {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            
-          >
-            Thêm
-          </button>
-        </form>
+        </div>
       </div>
     </LocalizationProvider>
   );
