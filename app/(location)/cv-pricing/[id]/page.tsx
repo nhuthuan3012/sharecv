@@ -3,7 +3,6 @@ import { getCookie, getRole } from "@/common/helpers/getCookies";
 import { removeAccessCookies } from "@/common/helpers/setCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
-import Header from "@common/components/Header/Header";
 import CVPricing from "@/modules/posting-job/page/cv-pricing/CVPricing";
 import Sample from "@/modules/posting-job/page/cv-pricing/component/PdfViewer/PdfViewer";
 import { ValuateCV } from "@/common/interfaces";

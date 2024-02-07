@@ -80,14 +80,15 @@ export const LoginForm = ({
     // window.location.reload();
 
     console.log(getRole());
-
-    if (getRole() === "collaborator") {
-      navigate.replace("/posting-job/job-list-ctv");
-    } else if (getRole() === "recruiter") {
-      navigate.replace("/posting-job/uv-list-ntd");
-    } else if (getRole() === "admin") {
-      navigate.replace("/home");
-    }
+    
+    navigate.replace("/home");
+    // if (getRole() === "collaborator") {
+    //   navigate.replace("/posting-job/job-list-ctv");
+    // } else if (getRole() === "recruiter") {
+    //   navigate.replace("/posting-job/uv-list-ntd");
+    // } else if (getRole() === "admin") {
+    //   navigate.replace("/home");
+    // }
 
   });
 

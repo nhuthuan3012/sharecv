@@ -3,7 +3,6 @@ import { getCookie } from "@/common/helpers/getCookies";
 import { removeAccessCookies } from "@/common/helpers/setCookies";
 import { Box, Button, Typography } from "@mui/material";
 import { redirect, RedirectType } from "next/navigation";
-import Header from "@common/components/Header/Header"
 import CompanyInfo from "@/modules/company-info/CompanyInfo";
 function CompanyInfoPage() {
   // if (!getCookie("token")) {

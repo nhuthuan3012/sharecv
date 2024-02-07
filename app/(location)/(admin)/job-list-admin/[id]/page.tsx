@@ -10,11 +10,16 @@ import SalaryForm from "@/modules/posting-job/page/upload-jd/component/salary-fo
 import WorkingAddressForm from "@/modules/posting-job/page/upload-jd/component/address-form/WorkingAddressForm";
 import AwardPrizeForm from "@/modules/posting-job/page/upload-jd/component/award-prize-form/AwardPrizeForm";
 import { useSelector } from "react-redux";
-import { selectUploadJD } from "@/lib/redux/slices";
+import { actionGetDetailJD, selectUploadJD } from "@/lib/redux/slices";
 import { fillFormUploadJD } from "@/common/apis/upload-jd";
 import { toast } from "react-toastify";
-function UploadJDPage({ params }: { params: any }) {
+import { useEffect } from "react";
+import { getAdminJobDetail } from "@/common/apis/job-description";
+import { ReduxDispatch, useDispatch } from "@/lib/redux/store";
+
+function JobDetailAdmin({ params }: { params: any }) {
   const uploadJd = useSelector(selectUploadJD);
+  const dispatch = useDispatch();
   const router = useRouter();
   // if (!getCookie("token")) {
   if (!true) {
@@ -28,6 +33,7 @@ function UploadJDPage({ params }: { params: any }) {
       console.log(err);
     }
   };
+
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const toastId = toast.loading("Đang tạo JD...", {
@@ -58,6 +64,11 @@ function UploadJDPage({ params }: { params: any }) {
       });
   };
 
+  useEffect(() => {
+    if (!params.id) return;
+    dispatch(actionGetDetailJD(params.id));
+  }, [params, dispatch]);
+
   return (
     <>
       <p
@@ -85,13 +96,29 @@ function UploadJDPage({ params }: { params: any }) {
         <SalaryForm />
         <WorkingAddressForm />
         {/* <AwardPrizeForm/> */}
-        <div className="flex flex-row justify-end gap-8">
+        <div className="flex flex-row justify-between gap-8">
           <button
             onClick={() => handleClick()}
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >
-            Lưu nháp
+            Xoá
+          </button>
+
+          <button
+            onClick={() => handleClick()}
+            className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
+            style={{ color: "white", borderColor: "#073776" }}
+          >
+            Chỉnh sửa
+          </button>
+
+          <button
+            onClick={() => handleClick()}
+            className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
+            style={{ color: "white", borderColor: "#073776" }}
+          >
+            Từ chối
           </button>
 
           <button
@@ -99,7 +126,7 @@ function UploadJDPage({ params }: { params: any }) {
             className=" bg-primary hover:  rounded-3xl text-sm px-16 py-2.5 me-2 mb-2 font-bold border-solid cursor-pointer transform active:scale-75 transition-transform"
             style={{ color: "white", borderColor: "#073776" }}
           >
-            Gửi
+            Duyệt
           </button>
         </div>
       </form>
@@ -107,4 +134,4 @@ function UploadJDPage({ params }: { params: any }) {
   );
 }
 
-export default UploadJDPage;
+export default JobDetailAdmin;

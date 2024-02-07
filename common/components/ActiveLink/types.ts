@@ -1,6 +1,5 @@
-import { INavigation } from "@/common/types";
+import { INavigation } from "@/common/interfaces/navigation.interface";
 import { LinkProps } from "next/link";
-
 
 export type TActiveLink = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,

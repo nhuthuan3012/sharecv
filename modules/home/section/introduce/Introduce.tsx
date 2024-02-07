@@ -6,7 +6,9 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import React from "react";
+import { useRouter } from "next/navigation";
 function Introduce() {
+  const router = useRouter();
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   const handlePlayClick = () => {
@@ -356,6 +358,9 @@ function Introduce() {
             className="border-primary bg-white text-primary text-lg"
             sx={{ width: "220px", height: "60px" }}
             endIcon={<NorthEastIcon />}
+            onClick={() => {
+              router.push("/register");
+            }}
             variant="outlined"
           >
             Cộng tác viên

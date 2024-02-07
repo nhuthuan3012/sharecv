@@ -7,7 +7,17 @@ export const recruiterRoutes: INavigation[] = [
   },
   {
     label: "Dịch vụ",
-    path: "/search-cv",
+    path: "/parse-jd",
+    // children: [
+    //   {
+    //     label: "Tìm kiếm",
+    //     path: "/search-cv",
+    //   },
+    //   {
+    //     label: "Tải lên CV",
+    //     path: "/upload-cv",
+    //   }
+    // ]
   },
   {
     label: "Danh sách",

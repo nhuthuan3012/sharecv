@@ -38,6 +38,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
       language_certificates: [],
       other_certificate: [],
     },
+    cv_point: 0,
   };
 
   const [candidateData, setCandidateData] = useState<IResume>(initialData);

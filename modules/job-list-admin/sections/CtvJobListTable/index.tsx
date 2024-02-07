@@ -228,7 +228,13 @@ export const CtvJobListTable = ({ data }: UVListTableProps) => {
           gap="5px"
         >
           {!isCantView && (
-            <IconButton aria-label="delete" size="small">
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                router.push(`job-list-admin/${data[cell.row.index].job_id}`);
+              }}
+            >
               <VisibilityIcon color="primary" />
             </IconButton>
           )}

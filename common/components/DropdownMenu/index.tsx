@@ -4,10 +4,10 @@ import { INavigation } from "@/common/interfaces/navigation.interface";
 import { ActiveLink } from "../ActiveLink";
 
 
-function DropdownMenu({children}: {children: INavigation[]}) {
+function DropdownMenu({childPath}: {childPath: INavigation[]}) {
   return (
     <div className="hidden absolute top-full peer-hover:flex hover:flex w-[200px] flex-col bg-white drop-shadow-lg z-10 p-2 rounded-md">
-      {children.map(({ path, label }) => (
+      {childPath.map(({ path, label }) => (
         <ActiveLink
           key={path}
           href={path}

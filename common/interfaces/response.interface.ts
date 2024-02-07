@@ -12,11 +12,12 @@ export interface IMetadata {
 }
 
 export interface IResponse<TEntity> {
-  status: number;
-  detail?: string | null;
-  data?: TEntity | null;
-  metadata?: IMetadata | null;
-  status_code?: number;
+  // status: number;
+  // detail?: string | null;
+  data: TEntity;
+  messasge?: string | null;
+  // metadata?: IMetadata | null;
+  // status_code?: number;
 }
 
 export interface IPaginationResponse<TEntity>
@@ -63,9 +64,9 @@ export interface IJobDetailResponse {
   company_name: string;
   company_cover_image: string;
   status: string;
-  job_title: string ;
-  industry: string ;
-  gender: string ;
+  job_title: string;
+  industry: string;
+  gender: string;
   job_type: string | null;
   skills: string[] | null;
   received_job_time: string | null;
@@ -75,19 +76,21 @@ export interface IJobDetailResponse {
   } | null;
   descriptions: string[] | null;
   requirements: string[] | null;
-  benefits: string[]|null ;
+  benefits: string[] | null;
   levels: string | null;
   roles: string | null;
   yoe: string | null;
   num_recruit: string | null;
   education: string[] | null;
   language_certificate: ILanguageCertificates[] | null;
-  other_certificate: [
-    {
-      certificate_name: string;
-      certificate_level: string;
-    }
-  ]|null;
+  other_certificate:
+    | [
+        {
+          certificate_name: string;
+          certificate_level: string;
+        }
+      ]
+    | null;
   min_salary: number;
   max_salary: number;
   address: string;
@@ -125,4 +128,50 @@ export interface IProductsResponse<TEntity> {
 
     total_products: number;
   };
+}
+
+export interface IAdminJDDetail {
+  company_logo?: string;
+  company_name?: string;
+  company_cover_image?: string;
+  industry?: string;
+  admin_decline_reason?: string;
+  status: string;
+  job_service: string;
+  job_title: string;
+  gender: string;
+  industries: string[];
+  address: string;
+  city: string;
+  country: string;
+  job_type: string;
+  working_time: {
+    week: string;
+    time: string;
+  };
+  descriptions: string[];
+  requirements: string[];
+  benefits: string[];
+  skills: string[];
+  education: {
+    degree: string;
+    major: string;
+    gpa: string;
+  }[];
+  language_certificate: {
+    language: string;
+    certificate_name: string;
+    certificate_level: string;
+  }[];
+  other_certificate: {
+    certificate_name: string;
+    certificate_level: string | null;
+  }[];
+  min_salary: number;
+  max_salary: number;
+  received_job_time: string;
+  levels: string[];
+  roles: string[];
+  yoe: string;
+  num_recruit: number;
 }

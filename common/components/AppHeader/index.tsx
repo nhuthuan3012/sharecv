@@ -17,8 +17,8 @@ import {
   defaultRoutes,
 } from "./roleBasedRoutes";
 
-import AvatarMenu from "./AvatarMenu";
 import { INavigation } from "@/common/interfaces/navigation.interface";
+import { removeAccessCookies, removeRoleCookies } from "@/common/helpers/setCookies";
 
 const descendAnimation = keyframes`
   from {
@@ -45,7 +45,11 @@ function AppHeader({ isAuth, role }: { isAuth: boolean; role: string }) {
     } else if (role === "collaborator") {
       // console.log("business");
       setNavigation(collaboratorRoutes);
-    } else {
+    } else if (role === "admin") {
+      // console.log("admin");
+      setNavigation(adminRoutes);
+    }    
+    else {
       setNavigation(defaultRoutes);
     }
   }, [role, isAuth]);
@@ -101,7 +105,7 @@ function AppHeader({ isAuth, role }: { isAuth: boolean; role: string }) {
                       <ArrowDropDown className="h-4 w-4 absolute -right-4 top-1/2 -translate-y-1/2 transform transition-transform duration-200 group-hover:rotate-180 text-black group-hover:text-primary group-[.is-active]:text-primary" />
                     )}
                   </ActiveLink>
-                  {/* {children && <DropdownMenu children={children} />} */}
+                  {children && <DropdownMenu childPath={children} />}
                 </div>
               ))}
             </div>
@@ -113,6 +117,23 @@ function AppHeader({ isAuth, role }: { isAuth: boolean; role: string }) {
 
                 {/* <AvatarMenu full_name={profile.full_name} /> */}
                 {/* <Typography>{profile.full_name}</Typography> */}
+                <Button
+                  disableFocusRipple
+                  sx={{
+                    textTransform: "capitalize",
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      opacity: 0.6,
+                    },
+                  }}
+                  onClick={() => {
+                    removeAccessCookies();
+                    removeRoleCookies();
+                    router.push("/login");
+                  }}
+                >
+                  Đăng xuất
+                </Button>
               </div>
             ) : (
               <>

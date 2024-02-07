@@ -71,7 +71,11 @@ function JobDescriptionPage({ params }: { params: { id: string } }) {
       }
       else if (getRole() === "admin") {
         setRole("admin")
-        getAdminJobDetail(cv_id).then((res) => {
+        // getAdminJobDetail(cv_id).then((res) => {
+        //   setData(res.data.data);
+        //   console.log(res);
+        // });
+        getRecruiterJobDetail(cv_id).then((res) => {
           setData(res.data.data);
           console.log(res);
         });

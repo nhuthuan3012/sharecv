@@ -3,8 +3,11 @@ import {
   IAuthResponse,
   ICompanyInfo,
   IRevaluate,
-  IJobDetailResponse
+  IJobDetailResponse,
+  IAdminJDDetail,
+  IResponse
 } from "@/common/interfaces";
+import { AxiosResponse } from "axios";
 
 export const addCompany = (data: ICompanyInfo): Promise<IAuthResponse> => {
   console.log("data api", data);
@@ -53,6 +56,10 @@ export const getRecruiterJobDetail = (id: string): Promise<IJobDetailResponse> =
 export const getCollaboratorJobDetail = (id: string): Promise<IJobDetailResponse> => {
   return axiosClient.get(`/postjob/collaborator/get-detail-job/${id}`);
 };
-export const getAdminJobDetail = (id: string): Promise<IJobDetailResponse> => {
-  return axiosClient.get(`/postjob/admin/get-detailed-job/${id}`);
+export const getAdminJobDetail = (id: string): Promise<AxiosResponse<IResponse<IAdminJDDetail>>> => {
+  return axiosClient.get(`/postjob/admin/get-detailed-job`,{
+    params: {
+      job_id: id
+    }
+  });
 };

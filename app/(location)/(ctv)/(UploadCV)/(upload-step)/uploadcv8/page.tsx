@@ -6,21 +6,33 @@ import { selectUploadCV } from "@/lib/redux/slices";
 import { fillResume } from "@/common/apis/upload_cv";
 import { useRouter } from "next/navigation";
 
-
 export default function UploadCV8() {
   const router = useRouter();
   const uploadCV = useSelector(selectUploadCV);
 
-
   const handleFillResume = async (e: any) => {
-    let avatar = await fetch(uploadCV.personal_infor.avatar).then(r => r.blob());
-    let cv_file = await fetch(uploadCV.personal_infor.cv_file).then(r => r.blob())
+    let avatar = await fetch(uploadCV.personal_infor.avatar).then((r) =>
+      r.blob()
+    );
+    let cv_file = await fetch(uploadCV.personal_infor.cv_file).then((r) =>
+      r.blob()
+    );
     const other = [
-      {certificate_name: "ACCA", certificate_point_level: "B1", start_time: "2022-01-22 10:16:09", end_time: "2023-01-22 10:16:09"},
-      {certificate_name: "CPA", certificate_point_level: "", start_time: "2019-01-22 10:16:09", end_time: "2023-01-22 10:16:09"}
-      ]
-    e.preventDefault()
-    await fillResume({
+      {
+        certificate_name: "ACCA",
+        certificate_point_level: "B1",
+        start_time: "2022-01-22 10:16:09",
+        end_time: "2023-01-22 10:16:09",
+      },
+      {
+        certificate_name: "CPA",
+        certificate_point_level: "",
+        start_time: "2019-01-22 10:16:09",
+        end_time: "2023-01-22 10:16:09",
+      },
+    ];
+    e.preventDefault();
+    fillResume({
       job_id: "1",
       avatar: avatar,
       cv_file: cv_file,
@@ -49,8 +61,11 @@ export default function UploadCV8() {
       awards: uploadCV.awards,
       language_certificates: uploadCV.certificates,
       other_certificates: JSON.stringify(other),
+    }).then((res) => {
+      // router.push(`/cv-pricing/${res.data.id}`);
     });
   };
+
   return (
     <>
       <div className="container">

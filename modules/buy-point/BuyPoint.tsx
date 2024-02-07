@@ -1,6 +1,8 @@
 "use client";
+import { PointPackage } from "@/interfaces/point-package";
 import { Box, Typography } from "@mui/material";
-import PointPackage from "./component/PointPackage";
+import PointPackageComponent from "./component/PointPackage";
+
 function BuyPoint({ data }: { data: PointPackage[] }) {
   return (
     <Box
@@ -24,7 +26,7 @@ function BuyPoint({ data }: { data: PointPackage[] }) {
       {data &&
         data.map((item, index) => (
           <Box key={index} className="col-span-5">
-            <PointPackage data={item} />
+            <PointPackageComponent data={item} />
           </Box>
         ))}
     </Box>
