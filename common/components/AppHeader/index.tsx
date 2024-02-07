@@ -39,10 +39,10 @@ function AppHeader({ isAuth, role }: { isAuth: boolean; role: string }) {
   const [navigation, setNavigation] = useState<INavigation[]>(defaultRoutes);
 
   useEffect(() => {
-    if (role === "organization") {
+    if (role === "recruiter") {
       // console.log("organization");
       setNavigation(recruiterRoutes);
-    } else if (role === "business") {
+    } else if (role === "collaborator") {
       // console.log("business");
       setNavigation(collaboratorRoutes);
     } else {
