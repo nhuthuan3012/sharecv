@@ -5,6 +5,10 @@ import { LanguageCertificate } from "@/modules/posting-job/page/upload-jd/compon
 import { OtherCertificate } from "@/modules/posting-job/page/upload-jd/component/other-certificate-form/resolver";
 import { Salary } from "@/modules/posting-job/page/upload-jd/component/salary-form/resolver";
 
+export interface IBaseJdResponse {
+  message: string;
+}
+
 export interface IParseJdResponse {
   message: string;
   data: {
@@ -49,4 +53,11 @@ export interface IParseJdResponse {
       address: string[];
     };
   };
+}
+
+export interface IFillFormJd extends Salary, WorkAddress, JobDescription {
+  jd_file: File,
+  education: Education[],
+  language_certificates: LanguageCertificate[],
+  other_certificates: OtherCertificate[]
 }

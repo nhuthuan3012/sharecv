@@ -67,7 +67,7 @@ export const skill: readonly SelectOption[] = [
 export const gender: readonly SelectOption[] = [
     { value: "male", label: "Nam" },
     { value: "female", label: "Nữ" },
-    { value: "other", label: "Khác" },
+    { value: "both", label: "Cả hai" },
   ];
 
   export const daysOfWeek: readonly SelectOption[] = [

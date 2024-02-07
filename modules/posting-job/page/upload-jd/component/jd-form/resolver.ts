@@ -11,7 +11,7 @@ export enum Gender {
 
 const jobDescriptionSchema = yup.object().shape({
     job_title: yup.string().required(requiredMsg),  
-    industries: yup.string().required(requiredMsg),
+    industries: yup.array(yup.string().required(requiredMsg)),
     job_type: yup.string().required(requiredMsg),
     skills: yup.array(yup.string().required(requiredMsg)),
     gender: yup.string().required(requiredMsg),

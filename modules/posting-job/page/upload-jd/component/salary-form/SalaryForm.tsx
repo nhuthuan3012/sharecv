@@ -7,6 +7,7 @@ import UploadJD from "../../UploadJD";
 import { useDispatch, useSelector } from "react-redux";
 import { ReduxDispatch } from "@/lib/redux/store";
 import { changeSalaryJD, selectUploadJD } from "@/lib/redux/slices";
+import { SelectOption } from "@/common/components/control/select/types";
 
 const SalaryForm = () => {
   const uploadJD = useSelector(selectUploadJD);
@@ -39,6 +40,18 @@ const SalaryForm = () => {
                     placeholder="Please type here"
                   />
                   <CustomSelect
+                    value={{
+                      value: uploadJD.salary.currency,
+                      label: uploadJD.salary.currency,
+                    }}
+                    onChange={(option) =>
+                      dispatch(
+                        changeSalaryJD({
+                          value: (option as SelectOption)?.value ?? "",
+                          key: "currency",
+                        })
+                      )
+                    }
                     instanceId={"currency-unit"}
                     isMulti={false}
                     options={currencyUnitOpt}
@@ -64,6 +77,18 @@ const SalaryForm = () => {
                     placeholder="Please type here"
                   />
                   <CustomSelect
+                    value={{
+                      value: uploadJD.salary.currency,
+                      label: uploadJD.salary.currency,
+                    }}
+                    onChange={(option) =>
+                      dispatch(
+                        changeSalaryJD({
+                          value: (option as SelectOption)?.value ?? "",
+                          key: "currency",
+                        })
+                      )
+                    }
                     instanceId={"currency-unit"}
                     isMulti={false}
                     options={currencyUnitOpt}

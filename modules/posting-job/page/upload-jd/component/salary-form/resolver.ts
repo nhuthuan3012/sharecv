@@ -6,6 +6,7 @@ const requiredMsg = "Trường thông tin này là bắt buộc";
 const salarySchema = yup.object().shape({
   min_salary: yup.number().required(requiredMsg),
   max_salary: yup.number().required(requiredMsg),
+  currency: yup.string().required(requiredMsg),
 });
 export const resolver = yupResolver(salarySchema);
 

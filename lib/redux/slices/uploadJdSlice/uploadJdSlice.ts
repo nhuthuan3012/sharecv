@@ -35,6 +35,9 @@ export const uploadJdSlice = createSlice({
     changeJdFile: (state, action: PayloadAction<string>) => {
       state.jdFile = action.payload;
     },
+    changeJdFileName: (state, action: PayloadAction<string>) =>{
+      state.jdFilename = action.payload
+    },
     // JobDescription
     changeJobDescription: (
       state,
@@ -110,7 +113,7 @@ export const uploadJdSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(actionParseJD.fulfilled, (state, action) => {
       state.jobDescription.job_title = action.payload.data.job_title[0]
-      state.jobDescription.industries = action.payload.data.industries[0]
+      state.jobDescription.industries = action.payload.data.industries
       state.jobDescription.gender = action.payload.data.gender[0]
       state.jobDescription.job_type = action.payload.data.job_type[0]
       state.jobDescription.skills = action.payload.data.skills
@@ -156,6 +159,7 @@ export const uploadJdSlice = createSlice({
 
 export const {
   changeJdFile,
+  changeJdFileName,
   changeJobDescription,
   addEducationJD,
   removeEducationJD,
