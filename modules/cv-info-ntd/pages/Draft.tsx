@@ -111,7 +111,7 @@ function CvInfoPage({
         <div className="w-full grid grid-cols-3 gap-5">
           <div
             className={`w-full ${
-              allown ? "col-span-2" : "col-span-3"
+              allown ? "col-span-3" : "col-span-3"
             } flex flex-col gap-6`}
           >
             <Box
