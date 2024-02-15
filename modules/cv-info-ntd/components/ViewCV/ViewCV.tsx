@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     fontWeight: "bold",
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Montserrat",
   },
   nomarl: {
     fontSize: 12,
@@ -252,8 +252,8 @@ const ViewCV = ({
                 alignItems: "flex-start",
               }}
             >
-              <Text style={styles.name}>Họ và tên</Text>
-              <Text style={styles.industry}>{industry}</Text>
+              <Text style={styles.name}>{candidate_name}</Text>
+              <Text style={styles.industry}>{current_job}</Text>
             </View>
           </View>
           <View
@@ -274,33 +274,61 @@ const ViewCV = ({
                 alignItems: "flex-start",
               }}
             >
-              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Infomation </Text>
+              <Text style={{ color: "rgba(6, 55, 118, 1)",fontFamily: "Montserrat" }}> Thông tin </Text>
             </View>
             <View
               style={{
                 display: "flex",
-                width: "70%",
+                width: "30%",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "flex-start",
               }}
             >
               <View style={styles.viewRow}>
-                <Text style={styles.text}>Day of Birth: </Text>
+                <Text style={styles.text}>Ngày sinh: </Text>
                 <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
                   {`${dayjs(birthday).format("DD/MM/YYYY")}`}
                 </Text>
               </View>
               <View style={styles.viewRow}>
-                <Text style={styles.text}>Age: </Text>
+                <Text style={styles.text}>Tuổi: </Text>
                 <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
                   {`${dayjs(birthday).format("DD/MM/YYYY")}`}
                 </Text>
               </View>
               <View style={styles.viewRow}>
-                <Text style={styles.text}>Sex: </Text>
+                <Text style={styles.text}>Giới tính: </Text>
                 <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
                   {gender}
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                display: "flex",
+                width: "40%",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>Email: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {email}
+                </Text>
+              </View>
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>Địa chỉ: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {address}
+                </Text>
+              </View>
+              <View style={styles.viewRow}>
+                <Text style={styles.text}>CMND/CCCD: </Text>
+                <Text style={{ color: "black", fontWeight: 40, fontSize: 12 }}>
+                  {identification_code}
                 </Text>
               </View>
             </View>
@@ -325,7 +353,7 @@ const ViewCV = ({
                 flexDirection: "column",
               }}
             >
-              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Education </Text>
+              <Text style={{ color: "rgba(6, 55, 118, 1)",fontFamily: "Montserrat", fontWeight:500 }}> Giáo dục </Text>
             </View>
             <View
               wrap={false}
@@ -417,7 +445,7 @@ const ViewCV = ({
                 flexDirection: "column",
               }}
             >
-              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Experience </Text>
+              <Text style={{ color: "rgba(6, 55, 118, 1)",fontFamily: "Montserrat", fontWeight:500 }}> Kinh Nghiệm </Text>
             </View>
             <View
               wrap={false}
@@ -509,7 +537,7 @@ const ViewCV = ({
                 alignItems: "flex-start",
               }}
             >
-              <Text style={{ color: "rgba(6, 55, 118, 1)" }}> Skills </Text>
+              <Text style={{ color: "rgba(6, 55, 118, 1)",fontFamily: "Montserrat", fontWeight:500 }}> Kĩ năng </Text>
             </View>
             <View
               style={{
@@ -545,10 +573,7 @@ const ViewCV = ({
                 flexDirection: "column",
               }}
             >
-              <Text style={{ color: "rgba(6, 55, 118, 1)" }}>
-                {" "}
-                Certificates{" "}
-              </Text>
+              <Text style={{ color: "rgba(6, 55, 118, 1)",fontFamily: "Montserrat", fontWeight:500 }}>Bằng cấp</Text>
             </View>
             <View
               wrap={false}

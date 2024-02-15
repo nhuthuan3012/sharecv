@@ -197,9 +197,6 @@ function RegistryForm() {
                   //     </InputAdornment>
                   //   }
                 />
-                <Typography variant="inherit" color={"error"}>
-                  {errors.email?.message}
-                </Typography>
               </Box>
             )}
           />
