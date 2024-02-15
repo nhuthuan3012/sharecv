@@ -4,7 +4,8 @@ import { IProjectModel } from "../type";
 import { NextSliderArrow, PrevSliderArrow } from "./CarouselArrow";
 import dayjs from "dayjs";
 import CarouselItem from "./CarouselItem";
-import { IResumeProject } from "@/modules/cv-info/resume.interface";
+import { IResumeProject } from "../resume.interface";
+
 
 function ProjectCarousel({ initialData }: { initialData: IResumeProject[] }) {
   const sliderSetting: Settings = {

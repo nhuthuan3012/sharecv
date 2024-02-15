@@ -1,4 +1,4 @@
-import { IResume } from "@/modules/cv-info/resume.interface";
+import { IResume } from "@/modules/cv-info-ntd/resume.interface";
 import { axiosClient } from "@/utils/axios";
 import { AxiosResponse } from "axios";
 

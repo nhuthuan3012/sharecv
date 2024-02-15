@@ -1,5 +1,5 @@
 "use client";
-import { IResume } from "@/modules/cv-info/resume.interface";
+
 import {
   Document,
   Font,
@@ -12,6 +12,7 @@ import {
 } from "@react-pdf/renderer";
 import dayjs from "dayjs";
 import "react-pdf/dist/Page/TextLayer.css";
+import { IResume } from "../../resume.interface";
 
 // Create styles
 Font.register({

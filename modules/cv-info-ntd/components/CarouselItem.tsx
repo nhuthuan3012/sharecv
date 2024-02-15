@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { IResumeProject } from "@/modules/cv-info/resume.interface";
+import { IResumeProject } from "../resume.interface";
+
 
 function CarouselItem({
   project_name,

@@ -1,6 +1,6 @@
 "use client";
 import { checkHasEnoughPoint } from "@/common/apis/point-package";
-import { IResume } from "@/modules/cv-info/resume.interface";
+
 import NtdBookInterviewDialog from "@/modules/interview-ntd-popup/book-interview";
 import { NotiEnoughPoint } from "@/modules/interview-ntd-popup/enough-point";
 import { Monitor } from "@mui/icons-material";
@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { GENDER, RESUME_STATUS } from "../_constant";
 import ViewCV from "../components/ViewCV/ViewCV";
+import { IResume } from "../resume.interface";
 
 function CvInfoPage({
   cv_id,

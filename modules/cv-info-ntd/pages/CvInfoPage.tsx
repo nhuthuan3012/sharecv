@@ -1,4 +1,4 @@
-import { IResume } from "@/modules/cv-info/resume.interface";
+
 import { Language, Monitor } from "@mui/icons-material";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import dayjs from "dayjs";
@@ -7,6 +7,7 @@ import ExperienceItem from "../components/ExperienceItem";
 import ProjectCarousel from "../components/ProjectCarousel";
 import { SocialIcon } from "react-social-icons/component";
 import { useState } from "react";
+import { IResume } from "../resume.interface";
 
 function CvInfoPage({
   cv_id,
