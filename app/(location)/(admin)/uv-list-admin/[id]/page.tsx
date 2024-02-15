@@ -1,9 +1,9 @@
 "use client";
 import { candidateInfoApi } from "@/common/apis/candidate-info";
 import { getRole } from "@/common/helpers/getCookies";
-import { IResume } from "@/modules/cv-info-ntd/resume.interface";
-import CvInfoPage from "@/modules/cv-info/pages/CvInfoPage";
-import { set } from "lodash";
+import CvInfoPage from "@/modules/cv-info-admin/pages/CvInfoPage";
+import { IResume } from "@/modules/cv-info-admin/resume.interface";
+
 import { useEffect, useState } from "react";
 
 function CandidateInfoPage({ params }: { params: { id: string } }) {
@@ -29,7 +29,7 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
     facebook: null,
     instagram: null,
     skills: [],
-    total_point: 0,
+    total_point: 100,
     experience: [],
     educations: [],
     projects: [],
@@ -38,29 +38,29 @@ function CandidateInfoPage({ params }: { params: { id: string } }) {
       language_certificates: [],
       other_certificate: [],
     },
-    cv_point: 0,
   };
 
   const [candidateData, setCandidateData] = useState<IResume>(initialData);
-  const [role, setRole] = useState(getRole());
-  if (role === undefined) {
-    setRole("admin");
-  }
+
   useEffect(() => {
     if (!params.id) return;
     (async () => {
       try {
-        const res = await candidateInfoApi.getById(parseInt(params.id), role);
+        const res = await candidateInfoApi.getById(
+          parseInt(params.id),
+          getRole()
+        );
+        console.log("Giá trị: ", res.data);
         setCandidateData(res.data.data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [params, role]);
+  }, [params]);
 
   return (
     <div className="w-full flex justify-center">
-      <CvInfoPage {...candidateData} />
+      <CvInfoPage   {...candidateData} />
     </div>
   );
 }

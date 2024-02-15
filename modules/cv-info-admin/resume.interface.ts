@@ -10,8 +10,8 @@ export interface IResumeExperience {
 export interface IResumeEducation {
     institute: string;
     degree: string;
+    gpa:string;
     major: string;
-    gpa: string;
     start_time: Date;
     end_time: Date;
 }

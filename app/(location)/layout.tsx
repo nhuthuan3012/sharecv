@@ -21,7 +21,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
   //   }, []);
   useEffect(() => {
     if (!isLogin) {
-      router.push("/login");
+      // router.push("/login");
     }
   }, [isLogin]);
 

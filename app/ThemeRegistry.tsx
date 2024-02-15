@@ -1,20 +1,25 @@
-'use client';
-import createCache from '@emotion/cache';
-import { useServerInsertedHTML } from 'next/navigation';
-import { CacheProvider } from '@emotion/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { useState } from 'react';
+"use client";
+import createCache from "@emotion/cache";
+import { useServerInsertedHTML } from "next/navigation";
+import { CacheProvider } from "@emotion/react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { useState } from "react";
 
 const theme = createTheme({
-    typography: {
-        // fontFamily: 'inherit',
-        // fontSize: 'inherit',
+  typography: {
+    // fontFamily: 'inherit',
+    // fontSize: 'inherit',
+  },
+  palette: {
+    primary: {
+      main: "#063776",
+      contrastText: "#fff",
+      light: "#0A4CA3",
+      dark: "#03204D",
     },
-    palette:{
-      primary:{main:"#063776", contrastText:"#fff",light:"#000000",dark:"#FFFFFF"},
-      secondary:{main:"#063776", contrastText:"#FFFFFF"}
-    }
+    secondary: { main: "#063776", contrastText: "#FFFFFF" },
+  },
 });
 
 export default function ThemeRegistry(props: any) {
@@ -45,14 +50,14 @@ export default function ThemeRegistry(props: any) {
     if (names.length === 0) {
       return null;
     }
-    let styles = '';
+    let styles = "";
     for (const name of names) {
       styles += cache.inserted[name];
     }
     return (
       <style
         key={cache.key}
-        data-emotion={`${cache.key} ${names.join(' ')}`}
+        data-emotion={`${cache.key} ${names.join(" ")}`}
         dangerouslySetInnerHTML={{
           __html: styles,
         }}

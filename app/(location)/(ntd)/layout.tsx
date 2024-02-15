@@ -8,7 +8,7 @@ function RecruiterRoutesLayout({ children }: PropsWithChildren) {
   useEffect(() => {
     // check if account is recruiter
     if (!true) {
-      redirect("/login");
+      // redirect("/login");
     }
   }, []);
   return (

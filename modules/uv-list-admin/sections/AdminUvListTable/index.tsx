@@ -73,7 +73,7 @@ export const AdminUvListTable = ({ data }: UVListTableProps) => {
             alignItems: "center",
           }}
         >
-          <Typography component={Link} href={`/uv-info/${data[cell.row.index].id}`}>{cell.getValue<string>()}</Typography>
+          <Typography component={Link} href={`/uv-list-admin/${data[cell.row.index].id}`}>{cell.getValue<string>()}</Typography>
         </Box>
       ),
     },

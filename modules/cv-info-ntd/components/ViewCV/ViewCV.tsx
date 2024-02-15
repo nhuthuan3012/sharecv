@@ -14,10 +14,94 @@ import dayjs from "dayjs";
 import "react-pdf/dist/Page/TextLayer.css";
 
 // Create styles
-// Font.register({
-//   family: "Montserrat",
-//   src: "http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf",
-// });
+Font.register({
+  family: "Montserrat",
+  // src: "http://fonts.gstatic.com/s/montserrat/v10/zhcz-_WihjSQC0oHJ9TCYC3USBnSvpkopQaUR-2r7iU.ttf",
+  fonts: [
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf",
+      fontWeight: 400,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-Y3tcoqK5.ttf",
+      fontWeight: 100,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Ew-Y3tcoqK5.ttf",
+      fontWeight: 200,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Ew-Y3tcoqK5.ttf",
+      fontWeight: 300,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-Y3tcoqK5.ttf",
+      fontWeight: 500,
+    },
+    // 
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf",
+      fontWeight: 600,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-Y3tcoqK5.ttf",
+      fontWeight: 700,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-Y3tcoqK5.ttf",
+      fontWeight: 800,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC70w-Y3tcoqK5.ttf",
+      fontWeight: 900,
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R8aX9-p7K5ILg.ttf",
+      fontWeight: 100,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR9aX9-p7K5ILg.ttf",
+      fontWeight: 200,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq_p9aX9-p7K5ILg.ttf",
+      fontWeight: 300,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9aX9-p7K5ILg.ttf",
+      fontWeight: 400,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq5Z9aX9-p7K5ILg.ttf",
+      fontWeight: 500,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq3p6aX9-p7K5ILg.ttf",
+      fontWeight: 600,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6aX9-p7K5ILg.ttf",
+      fontWeight: 700,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6aX9-p7K5ILg.ttf",
+      fontWeight: 800,
+      fontStyle: "italic",
+    },
+    {
+      src: "http://fonts.gstatic.com/s/montserrat/v26/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqw16aX9-p7K5ILg.ttf",
+      fontWeight: 900,
+      fontStyle: "italic",
+    },
+  ]
+});
 
 const styles = StyleSheet.create({
   body: {

@@ -4,4 +4,4 @@ export interface IProjectModel {
     startDate: Date;
     endDate: Date;
     archivements: string[];
-} 
+}
